@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>親子活動雷達 🎈</title>
+<!-- Google AdSense -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4396964540234247" crossorigin="anonymous"></script>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-JQZWV3TVD8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-JQZWV3TVD8');
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800;900&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--sky:#EEF6FF;--cloud:#FFF;--sun:#FFD93D;--sun-dk:#E6A800;--grass:#52B788;--grass-dk:#2D6A4F;--coral:#FF6B6B;--coral-dk:#C0392B;--coral-lt:#FFF0F0;--lav:#9B72CF;--lav-lt:#F3ECFF;--ocean:#3AAEDC;--ocean-lt:#E3F6FF;--peach:#FF9A3C;--peach-lt:#FFF3E8;--mint:#1DB9AA;--mint-lt:#E3FAF8;--text:#222;--muted:#8A8A9A;--border:rgba(0,0,0,.07);--r:18px;--rsm:12px;--rxs:8px}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+body{font-family:'Noto Sans TC',sans-serif;background:var(--sky);color:var(--text);min-height:100vh;max-width:480px;margin:0 auto;padding-bottom:90px;overflow-x:hidden}
+.bg1{position:fixed;top:-80px;right:-80px;width:220px;height:220px;background:var(--sun);border-radius:50%;opacity:.18;z-index:0;pointer-events:none}
+.bg2{position:fixed;bottom:80px;left:-60px;width:180px;height:180px;background:var(--grass);border-radius:50%;opacity:.10;z-index:0;pointer-events:none}
+.hdr{background:var(--cloud);padding:13px 16px 11px;position:sticky;top:0;z-index:100;border-bottom:3px solid var(--sun)}
+.rainbow{height:4px;background:linear-gradient(90deg,#FF6B6B,#FFD93D 25%,#6BCB77 50%,#4CC9F0 75%,#C77DFF);border-radius:2px;margin-bottom:11px}
+.hdr-row{display:flex;align-items:center;justify-content:space-between}
+.logo-wrap{display:flex;align-items:center;gap:8px}
+.logo-ball{width:36px;height:36px;background:var(--sun);border-radius:50%;border:3px solid var(--sun-dk);display:flex;align-items:center;justify-content:center;font-size:18px;animation:wobble 4s ease-in-out infinite}
+@keyframes wobble{0%,100%{transform:rotate(-8deg)}50%{transform:rotate(8deg)}}
+.app-name{font-family:'Nunito',sans-serif;font-size:20px;font-weight:900;color:var(--coral);letter-spacing:-.5px;line-height:1}
+.app-name b{color:var(--ocean)}
+.loc-pill{display:flex;align-items:center;gap:5px;background:var(--ocean-lt);border-radius:999px;padding:6px 12px;border:2px solid #b8e4f5;cursor:pointer}
+.ldot{width:8px;height:8px;border-radius:50%;background:#ccc}
+.ldot.on{background:var(--grass-dk);animation:blink 2s infinite}
+.ldot.demo{background:var(--peach);animation:blink 2s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+.lloc{font-size:11px;font-weight:800;font-family:'Nunito',sans-serif;color:#1a7fa8}
+.fpanel{background:var(--cloud);margin:10px 12px 0;border-radius:var(--r);padding:13px 14px 11px;border:2px solid var(--border);box-shadow:0 4px 0 rgba(0,0,0,.05);position:relative;z-index:1}
+.fsec{margin-bottom:11px}.fsec:last-child{margin-bottom:0}
+.ftitle{font-family:'Nunito',sans-serif;font-size:11px;font-weight:900;letter-spacing:.5px;color:var(--muted);margin-bottom:7px;display:flex;align-items:center;gap:5px;text-transform:uppercase}
+.fdot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{padding:5px 11px;border-radius:999px;font-size:12px;font-weight:800;font-family:'Nunito',sans-serif;border:2px solid var(--border);background:var(--sky);color:var(--muted);cursor:pointer;white-space:nowrap;user-select:none}
+.chip:active{transform:scale(.92)}
+.c-age{border-color:#d0aaff;color:var(--lav);background:var(--lav-lt)}.c-age.on{background:var(--lav);color:#fff;border-color:var(--lav)}
+.c-free{border-color:#80d4b8;color:var(--grass-dk);background:var(--mint-lt)}.c-free.on{background:var(--grass);color:#fff;border-color:var(--grass)}
+.c-low{border-color:#7fd4f0;color:#1a7fa8;background:var(--ocean-lt)}.c-low.on{background:var(--ocean);color:#fff;border-color:var(--ocean)}
+.c-mid{border-color:#ffc090;color:#b85c00;background:var(--peach-lt)}.c-mid.on{background:var(--peach);color:#fff;border-color:var(--peach)}
+.c-high{border-color:#ffb0b0;color:var(--coral-dk);background:var(--coral-lt)}.c-high.on{background:var(--coral);color:#fff;border-color:var(--coral)}
+.c-reg{border-color:#ffb0b0;color:var(--coral-dk);background:var(--coral-lt)}.c-reg.on{background:var(--coral);color:#fff;border-color:var(--coral)}
+.c-loc{border-color:#80d4b8;color:var(--grass-dk);background:var(--mint-lt)}.c-loc.on{background:var(--mint);color:#fff;border-color:var(--mint)}
+.srow{display:flex;align-items:center;gap:8px}
+.slbl{font-size:11px;color:var(--muted);white-space:nowrap}
+.sval{font-family:'Nunito',sans-serif;font-size:15px;font-weight:900;color:var(--coral);min-width:48px;text-align:right}
+input[type=range]{flex:1;-webkit-appearance:none;height:5px;border-radius:3px;background:var(--sky);border:2px solid var(--border);outline:none}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;height:22px;border-radius:50%;background:var(--coral);cursor:pointer;border:3px solid #fff}
+.sbar{display:flex;align-items:center;justify-content:space-between;padding:10px 16px 4px;position:relative;z-index:1}
+.stxt{font-size:11px;color:var(--muted);font-weight:700;font-family:'Nunito',sans-serif}
+.cnt{font-family:'Nunito',sans-serif;font-size:12px;font-weight:900;background:var(--coral);color:#fff;padding:3px 11px;border-radius:999px}
+.clist{padding:4px 12px 0;position:relative;z-index:1}
+.acard{background:var(--cloud);border-radius:var(--r);margin-bottom:11px;border:2px solid var(--border);box-shadow:0 4px 0 rgba(0,0,0,.06);overflow:hidden;cursor:pointer;animation:popin .28s ease backwards}
+@keyframes popin{from{opacity:0;transform:translateY(10px) scale(.97)}to{opacity:1;transform:none}}
+.acard:active{transform:scale(.98)}
+.cstripe{height:7px}
+.cbody{padding:12px 14px 10px}
+.ctop{display:flex;align-items:flex-start;justify-content:space-between;gap:8px;margin-bottom:7px}
+.ctitle{font-family:'Nunito',sans-serif;font-size:15px;font-weight:800;color:var(--text);line-height:1.3;flex:1}
+.dbub{font-family:'Nunito',sans-serif;font-size:11px;font-weight:900;color:var(--ocean);background:var(--ocean-lt);padding:3px 10px;border-radius:999px;border:1.5px solid #b8e4f5;white-space:nowrap;flex-shrink:0}
+.ctags{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:7px}
+.tpill{font-family:'Nunito',sans-serif;font-size:11px;font-weight:800;padding:2px 9px;border-radius:999px}
+.tp-free{background:var(--mint-lt);color:var(--mint);border:1.5px solid #b2ede8}
+.tp-paid{background:var(--peach-lt);color:var(--peach);border:1.5px solid #ffd6a8}
+.tp-age{background:var(--lav-lt);color:var(--lav);border:1.5px solid #d8c0f8}
+.tp-reg{background:var(--coral-lt);color:var(--coral);border:1.5px solid #ffb8b8}
+.tp-date{background:var(--sky);color:var(--muted);border:1.5px solid var(--border)}
+.tp-in{background:var(--ocean-lt);color:#1a7fa8;border:1.5px solid #b8e4f5}
+.tp-out{background:var(--mint-lt);color:var(--grass-dk);border:1.5px solid #88d8c0}
+.cfoot{display:flex;align-items:center;justify-content:space-between}
+.caddr{font-size:11px;color:var(--muted);flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.chev{width:16px;height:16px;color:var(--muted);transition:transform .22s;flex-shrink:0}
+.chev.open{transform:rotate(180deg)}
+.cdet{border-top:2px dashed var(--sky);padding:12px 14px 14px;background:#FAFBFF;display:none}
+.cdet.show{display:block;animation:slidedn .2s ease}
+@keyframes slidedn{from{opacity:0;transform:translateY(-5px)}to{opacity:1;transform:none}}
+.drow{display:flex;gap:8px;margin-bottom:8px;align-items:flex-start}
+.dico{font-size:14px;flex-shrink:0;line-height:1.6}
+.dtxt{font-size:12px;color:var(--muted);line-height:1.65}
+.dtxt strong{color:var(--text);font-weight:700}
+.hbox{background:var(--lav-lt);border-left:4px solid var(--lav);border-radius:var(--rxs);padding:9px 11px;margin:10px 0 12px;font-size:12px;color:#5a3480;line-height:1.65}
+.hbox strong{color:var(--lav)}
+.abtns{display:flex;gap:8px;margin-top:12px}
+.btngo{flex:1;padding:11px 0;text-align:center;background:var(--coral);color:#fff;border:none;border-radius:var(--rsm);font-size:13px;font-weight:800;font-family:'Nunito',sans-serif;cursor:pointer;text-decoration:none;display:block;border-bottom:3px solid var(--coral-dk)}
+.btnstar{padding:11px 13px;background:#fff;color:var(--muted);border:2px solid var(--border);border-bottom:3px solid var(--border);border-radius:var(--rsm);font-size:13px;font-family:'Nunito',sans-serif;font-weight:800;cursor:pointer}
+.btnstar.on{background:var(--sun);color:#7a5000;border-color:#e0b000;border-bottom-color:#b08000}
+.swrap{background:var(--cloud);border-radius:var(--r);margin:14px 12px;padding:30px 22px;border:2px dashed var(--border);text-align:center;position:relative;z-index:1}
+.semi{font-size:52px;display:block;margin-bottom:14px;animation:float 3s ease-in-out infinite}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
+.stitle{font-family:'Nunito',sans-serif;font-size:20px;font-weight:900;margin-bottom:8px}
+.stext{font-size:13px;color:var(--muted);line-height:1.8;margin-bottom:22px}
+.fbtn{display:block;width:100%;padding:13px;background:var(--coral);color:#fff;border:none;border-radius:var(--rsm);font-size:15px;font-weight:900;font-family:'Nunito',sans-serif;cursor:pointer;border-bottom:4px solid var(--coral-dk);margin-bottom:10px}
+.fbtn.sec{background:#fff;color:var(--muted);border:2px solid var(--border);border-bottom:4px solid var(--border)}
+.bnav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:480px;background:var(--cloud);border-top:3px solid var(--border);display:flex;padding:6px 0 16px;z-index:200}.nbtn{flex:1;min-width:0}
+.nbtn{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;background:none;border:none;cursor:pointer;font-family:'Nunito',sans-serif;color:var(--muted);padding:4px 0}
+.nbtn.on{color:var(--coral)}
+.nico{font-size:20px;line-height:1}
+.nlbl{font-size:9px;font-weight:800}
+.toast{position:fixed;bottom:95px;left:50%;transform:translateX(-50%) translateY(10px);background:#222;color:#fff;padding:10px 20px;border-radius:999px;font-size:13px;font-weight:700;font-family:'Nunito',sans-serif;opacity:0;transition:all .22s;pointer-events:none;z-index:999;white-space:nowrap}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+</style>
+</head>
+<body>
+<div class="bg1"></div><div class="bg2"></div>
+<div class="hdr">
+  <div class="rainbow"></div>
+  <div class="hdr-row">
+    <div class="logo-wrap">
+      <div class="logo-ball">🎈</div>
+      <div class="app-name">親子<b>活動</b>雷達</div>
+    </div>
+    <div class="loc-pill" onclick="reqLoc()">
+      <div class="ldot" id="ld"></div>
+      <span class="lloc" id="lt">開啟定位</span>
+    </div>
+  </div>
+</div>
+<div id="mc"></div>
+<div class="toast" id="toast"></div>
+<div class="bnav">
+  <button class="nbtn on" id="nb-nearby" onclick="goTab('nearby')"><span class="nico">📍</span><span class="nlbl">附近</span></button>
+  <button class="nbtn" id="nb-rest" onclick="goTab('rest')"><span class="nico">🍽️</span><span class="nlbl">餐廳</span></button>
+  <button class="nbtn" id="nb-stay" onclick="goTab('stay')"><span class="nico">🏨</span><span class="nlbl">住宿</span></button>
+  <button class="nbtn" id="nb-goods" onclick="goTab('goods')"><span class="nico">🛍️</span><span class="nlbl">育兒好物</span></button>
+  <button class="nbtn" id="nb-saved" onclick="goTab('saved')"><span class="nico">⭐</span><span class="nlbl">收藏</span></button>
+  <button class="nbtn" id="nb-info" onclick="goTab('info')"><span class="nico">💡</span><span class="nlbl">說明</span></button>
+</div>
+<script>
+const D=[
+{id:1,name:'北美館「小孩轉大人」兒童節計畫',region:'台北市',env:'indoor',lat:25.0726,lng:121.5236,emoji:'🎨',color:'#FF6B6B',addr:'台北市中山區中山北路三段181號',dates:'2026/3/31–4/30 全月免費',hours:'週二–五 9:30–17:30，週六至 20:30，週一休',ticket:'全月免費入館',note:'4/4 工作坊大班–小3（5–8歲）✅ 免費，需網路報名',tags:['美術館','免費','5歲✓','室內'],pR:'free',lo:0,hi:8,p:0,mQ:'台北市立美術館',url:'https://www.tfam.museum/kid/'},
+{id:2,name:'台北市立動物園',region:'台北市',env:'outdoor',lat:24.9986,lng:121.5799,emoji:'🦁',color:'#52B788',addr:'台北市文山區新光路二段30號',dates:'常態開放，4/4 兒童節免費',hours:'9:00–17:00',ticket:'一般票 $100 / 6歲以下常態免費\n4/4：國小以下兒童免費（家長1位同免）',note:'5歲（6歲以下）常態免費 ✅，推車友善動線',tags:['4/4免費','6歲下免費','戶外'],pR:'free',lo:0,hi:8,p:0,mQ:'台北市立動物園',url:'https://www.zoo.gov.taipei/'},
+{id:3,name:'台北市立兒童新樂園',region:'台北市',env:'outdoor',lat:25.0892,lng:121.5142,emoji:'🎡',color:'#3AAEDC',addr:'台北市士林區承德路五段55號',dates:'常態開放，4/3–4/6 兒童節免費',hours:'9:00–18:00（週末）',ticket:'入園 $30 / 一日票 $200（13項設施）\n4/3–4/6：國小以下持證免費（家長1位同免）',note:'5歲 ✅，兒童節持健保卡免費，設施有身高限制請現場確認',tags:['4/3–4/6免費','5歲✓','戶外'],pR:'low',lo:0,hi:8,p:200,mQ:'台北市立兒童新樂園',url:'https://www.tcap.taipei/'},
+{id:4,name:'天文科學教育館',region:'台北市',env:'indoor',lat:25.0954,lng:121.5197,emoji:'🚀',color:'#9B72CF',addr:'台北市士林區基河路89號',dates:'常態開放，4/4 宇宙探險免費1次',hours:'9:00–17:00（週一休）',ticket:'展示場 $40（兒童 $20）· 宇宙探險 $35\n4/4：12歲以下免費搭宇宙探險1次',note:'5歲 ✅，宇宙探險請現場確認身高限制',tags:['付費','5歲✓','室內'],pR:'low',lo:3,hi:8,p:75,mQ:'台北天文科學教育館',url:'https://www.tam.gov.taipei/'},
+{id:5,name:'蟲蟲巴斯昆蟲生態館',region:'台北市',env:'indoor',lat:25.0566,lng:121.5558,emoji:'🐛',color:'#52B788',addr:'台北市松山區富錦街350號1樓',dates:'常態開放（需預約）',hours:'請查官網各場次時間',ticket:'入館 $100（平日）/ 導覽 $300（假日）\n昆蟲互動課程 $500–$600',note:'5歲 ✅，適合學齡前初階互動課程，建議先網路預約',tags:['付費','5歲✓','昆蟲館','室內'],pR:'low',lo:2,hi:8,p:300,mQ:'蟲蟲巴斯 富錦街',url:'https://www.entobuzz.com/'},
+{id:6,name:'台灣昆蟲館台北館',region:'台北市',env:'indoor',lat:25.0157,lng:121.5469,emoji:'🪲',color:'#FF9A3C',addr:'台北市大安區和平東路三段406巷8號B1',dates:'常態開放（週一二休）',hours:'週三 12:00–21:00，週四五 16:00–21:00，週六日 10:00–21:00',ticket:'免費參觀展示\n互動課程 $500–$600（需報名）',note:'5歲 ✅，免費看昆蟲爬蟲展示，互動課4歲以上可報名',tags:['免費參觀','昆蟲館','室內'],pR:'free',lo:2,hi:8,p:0,mQ:'台灣昆蟲館 和平東路',url:'https://taiwan.insect.tw/'},
+{id:7,name:'2026台北兒童月',region:'台北市',env:'outdoor',lat:25.0330,lng:121.5654,emoji:'🎉',color:'#FFD93D',addr:'信義區香堤大道 + 全市各場館',dates:'4月全月，市集 4/25–4/26',hours:'戶外活動全日開放',ticket:'免費（戶外活動）\n持探索摺頁享場館折扣',note:'5歲 ✅ 完全適合，推車可通行',tags:['免費','5歲✓','戶外'],pR:'free',lo:0,hi:8,p:0,mQ:'台北101 信義區',url:'https://act.tp.edu.tw/'},
+{id:8,name:'貓空纜車',region:'台北市',env:'outdoor',lat:24.9802,lng:121.5747,emoji:'🚡',color:'#1DB9AA',addr:'台北市文山區指南路三段38巷33號',dates:'常態開放，4/3–4/6 兒童節免費',hours:'9:00–21:00（週一休）',ticket:'單程 $120 / 來回 $220\n4/3–4/6：國小以下持證不限次數免費',note:'5歲 ✅，建議搭水晶車廂（加 $50），需家長陪同',tags:['4/3–4/6免費','5歲✓','戶外'],pR:'low',lo:2,hi:8,p:220,mQ:'貓空纜車動物園站',url:'https://gondola.taipei/'},
+{id:9,name:'野柳海洋世界',region:'新北市',env:'indoor',lat:25.2060,lng:121.6900,emoji:'🐬',color:'#FF9A3C',addr:'新北市萬里區野柳里港東路167-3號',dates:'常態開放，4/3–4/6 兒童節特惠',hours:'9:00–17:30',ticket:'海洋館：成人 $450 / 學童 $380 / 6歲以下免費\n童樂趴（另計）：兒童 $299 / 家長 $100',note:'5歲 ✅，6歲以下海洋館免費，童樂趴室內親子樂園超適合小小孩',tags:['水族館','6歲下免費','5歲✓','室內'],pR:'mid',lo:0,hi:8,p:380,mQ:'野柳海洋世界',url:'https://www.oceanworld.com.tw/'},
+{id:10,name:'十三行博物館',region:'新北市',env:'indoor',lat:25.1557,lng:121.4278,emoji:'🏺',color:'#9B72CF',addr:'新北市八里區博物館路200號',dates:'常態開放',hours:'週一–五 9:30–17:00，週六日至 18:00',ticket:'全票 $80 / 新北市民、12歲以下、學生免費',note:'5歲 ✅，12歲以下免費，考古互動沙坑超適合小朋友',tags:['兒童免費','考古互動','室內'],pR:'free',lo:0,hi:8,p:0,mQ:'十三行博物館 八里',url:'https://www.sshm.ntpc.gov.tw/'},
+{id:11,name:'鶯歌陶瓷博物館',region:'新北市',env:'indoor',lat:24.8998,lng:121.3515,emoji:'🎨',color:'#FF6B6B',addr:'新北市鶯歌區文化路200號',dates:'常態開放（每月第一週一休）',hours:'週一–五 9:30–17:00，週六日至 18:00',ticket:'$80 / 新北市民、12歲以下、學生免費',note:'5歲 ✅，12歲以下免費，兒童體驗室DIY捏陶很受歡迎',tags:['兒童免費','DIY體驗','室內'],pR:'free',lo:0,hi:8,p:0,mQ:'鶯歌陶瓷博物館',url:'https://www.ceramics.ntpc.gov.tw/'},
+{id:12,name:'朱銘美術館',region:'新北市',env:'outdoor',lat:25.2086,lng:121.6462,emoji:'🗿',color:'#52B788',addr:'新北市金山區西勢湖2號',dates:'常態開放',hours:'週二–日 10:00–17:30（週一休）',ticket:'全票 $350 / 6歲以下免費',note:'5歲 ✅，6歲以下免費，戶外噴水戲水區、塗鴉創作牆，超適合親子半日遊',tags:['6歲下免費','戶外美術館','戶外'],pR:'mid',lo:0,hi:8,p:350,mQ:'朱銘美術館 金山',url:'https://www.juming.org.tw/'},
+{id:13,name:'XPARK 水族館（新展開幕）',region:'桃園市',env:'indoor',lat:24.9881,lng:121.3117,emoji:'🐠',color:'#3AAEDC',addr:'桃園市中壢區高鐵南路一段126號',dates:'常態開放，新展 4/3 開幕',hours:'10:00–21:00（分時段入場）',ticket:'成人 $600 / 孩童4–11歲 $270 / 未滿4歲免費',note:'5歲 ✅，孩童票 $270，強烈建議提前線上購票',tags:['水族館','付費','5歲✓','室內'],pR:'mid',lo:0,hi:8,p:270,mQ:'XPARK水族館 桃園',url:'https://www.xpark.com.tw/'},
+{id:14,name:'桃園市兒童美術館',region:'桃園市',env:'indoor',lat:24.9888,lng:121.3014,emoji:'🖼️',color:'#9B72CF',addr:'桃園市中壢區高鐵南路一段101號',dates:'常態開放',hours:'週二–日 9:00–17:00（週一休）',ticket:'18歲以下全部免費！成人 $80',note:'5歲 ✅，18歲以下完全免費，台灣首座專為兒童設計的公立美術館',tags:['18歲下免費','5歲✓','室內'],pR:'free',lo:0,hi:8,p:0,mQ:'桃園市兒童美術館',url:'https://caam.tycg.gov.tw/'},
+{id:15,name:'巧虎夢想樂園（桃園）',region:'桃園市',env:'indoor',lat:24.9876,lng:121.3082,emoji:'🐯',color:'#FF9A3C',addr:'桃園市中壢區春德路101號',dates:'常態開放',hours:'10:00–18:00（週末至19:00）',ticket:'平日兒童 $380 / 成人 $280（一票玩到底）',note:'5歲 ✅，五大主題區，適合0–8歲，鄰近XPARK可搭配同遊',tags:['付費','5歲✓','室內'],pR:'mid',lo:0,hi:8,p:380,mQ:'巧虎夢想樂園 桃園',url:'https://www.shinei-paradise.com.tw/'},
+{id:16,name:'埔心牧場',region:'桃園市',env:'outdoor',lat:24.9027,lng:121.2028,emoji:'🐄',color:'#52B788',addr:'桃園市楊梅區高榮里埔心路上',dates:'常態開放（新年除外）',hours:'9:00–17:00',ticket:'依官網最新公告\n水豚互動、餵食、環場小火車',note:'5歲 ✅，可近距離接觸水豚、羊駝、袋鼠，北台灣親子農場首選',tags:['動物農場','5歲✓','戶外'],pR:'low',lo:0,hi:8,p:200,mQ:'埔心牧場 桃園楊梅',url:'https://puhsin.com.tw/'},
+{id:17,name:'蘭陽博物館',region:'宜蘭',env:'indoor',lat:24.8734,lng:121.8398,emoji:'🏛️',color:'#3AAEDC',addr:'宜蘭縣頭城鎮青雲路三段750號',dates:'常態開放（週二休）',hours:'9:00–17:00',ticket:'全票 $100 / 7歲以下免費 / 宜蘭縣民免費',note:'5歲 ✅，7歲以下免費，造型建築超特別，適合0歲起親子同遊',tags:['7歲下免費','博物館','室內'],pR:'low',lo:0,hi:8,p:100,mQ:'蘭陽博物館 頭城',url:'https://www.lym.gov.tw/'},
+{id:18,name:'宜蘭傳統藝術中心',region:'宜蘭',env:'outdoor',lat:24.7037,lng:121.7606,emoji:'🎪',color:'#FF6B6B',addr:'宜蘭縣五結鄉五濱路二段201號',dates:'常態開放',hours:'9:00–18:00（暑期延長至21:00）',ticket:'全票 $150 / 兒童6–12歲 $100 / 6歲以下免費',note:'5歲 ✅，6歲以下免費，傳統技藝、表演、老街，非常適合親子',tags:['6歲下免費','手作體驗','戶外'],pR:'low',lo:0,hi:8,p:100,mQ:'宜蘭傳統藝術中心',url:'https://www.ntcri.gov.tw/'},
+{id:19,name:'蜡藝蜡筆城堡',region:'宜蘭',env:'indoor',lat:24.7527,lng:121.7564,emoji:'🖍️',color:'#FFD93D',addr:'宜蘭縣五結鄉親河路二段257號',dates:'常態開放',hours:'9:00–17:30',ticket:'$250（含4項DIY體驗＋100元折抵）\n亞洲室內最高8層樓彩虹溜滑梯',note:'5歲 ✅，適合3歲以上，DIY蠟筆製作、8層溜滑梯超刺激好玩',tags:['付費','5歲✓','DIY體驗','室內'],pR:'low',lo:3,hi:8,p:250,mQ:'蜡藝蜡筆城堡 宜蘭',url:'https://www.crayoncastle.com.tw/'},
+{id:20,name:'張美阿嬤農場',region:'宜蘭',env:'outdoor',lat:24.7502,lng:121.7731,emoji:'🦌',color:'#52B788',addr:'宜蘭縣五結鄉孝威村親河路一段130號',dates:'常態開放（周一休）',hours:'9:00–17:30',ticket:'依官網公告（含動物互動體驗）',note:'5歲 ✅，宜蘭人氣第一親子農場，梅花鹿水豚近距離互動，假日建議先預約',tags:['動物農場','5歲✓','戶外'],pR:'low',lo:0,hi:8,p:200,mQ:'張美阿嬤農場 宜蘭',url:'https://www.facebook.com/grandmachangfarm/'},
+{id:21,name:'國立海洋科技博物館（海科館）',region:'基隆市',env:'indoor',lat:25.1421,lng:121.7785,emoji:'🌊',color:'#3AAEDC',addr:'基隆市中正區北寧路367號',dates:'常態開放，4/3–4/6 兒童節 12歲以下免費',hours:'9:00–17:00（週一休）',ticket:'主題館全票 $200 / 6歲以下免費\n4/3–4/6：全國12歲以下兒童免費入主題館',note:'5歲 ✅，6歲以下常態免費，兒童廳、超大錢鰻溜滑梯，全天玩不完！',tags:['水族館','6歲下免費','5歲✓','室內'],pR:'low',lo:0,hi:8,p:200,mQ:'國立海洋科技博物館 基隆',url:'https://www.nmmst.gov.tw/'},
+{id:22,name:'潮境智能海洋館',region:'基隆市',env:'indoor',lat:25.1399,lng:121.7831,emoji:'🐟',color:'#1DB9AA',addr:'基隆市中正區北寧路369巷61號',dates:'常態開放（週一休，需預約）',hours:'9:00–17:00',ticket:'單館票 $200 / 6歲以下免費\n可與海科館合購全區套票更優惠',note:'5歲 ✅，7米高巨型大洋缸、VR互動、水母展示，北部最新水族館體驗！',tags:['水族館','6歲下免費','5歲✓','室內'],pR:'low',lo:0,hi:8,p:200,mQ:'潮境智能海洋館 基隆',url:'https://www.nmmst.gov.tw/'},
+{id:23,name:'和平島公園',region:'基隆市',env:'outdoor',lat:25.1561,lng:121.7733,emoji:'🏖️',color:'#FF9A3C',addr:'基隆市中正區平一路360號',dates:'常態開放',hours:'8:00–18:00',ticket:'全票 $120 / 6歲以下免費\n含奇岩步道、沙灘、戲水區',note:'5歲 ✅，6歲以下免費，台灣唯一置身地質百大奇景的海洋公園，沙灘戲水超棒',tags:['戶外','6歲下免費','5歲✓','戶外'],pR:'low',lo:0,hi:8,p:120,mQ:'和平島公園 基隆',url:'https://www.hppark.com.tw/'},
+{id:24,name:'新竹市立動物園',region:'新竹',env:'outdoor',lat:24.8061,lng:120.9714,emoji:'🦏',color:'#52B788',addr:'新竹市東區食品路66號',dates:'常態開放（週一休，國定假日照常）',hours:'9:00–17:00',ticket:'全票 $50 / 6–12歲 $25 / 6歲以下免費（新竹市民12歲以下免費）',note:'5歲 ✅，6歲以下免費！超平價，河馬樂樂、馬來熊、紅毛猩猩，近新竹火車站步行即達',tags:['動物園','6歲下免費','5歲✓','戶外'],pR:'free',lo:0,hi:8,p:50,mQ:'新竹市立動物園',url:'https://zoo-info.hccg.gov.tw/'},
+{id:25,name:'六福村主題樂園（含動物園）',region:'新竹',env:'outdoor',lat:24.7870,lng:121.1677,emoji:'🎢',color:'#FF6B6B',addr:'新竹縣關西鎮仁安里拱子溝60號',dates:'常態開放（不定期公休請查官網）',hours:'9:30–17:00（暑期延長）',ticket:'成人全票 $1,400 / 孩童票 $699（3歲以上）/ 100cm以下或未滿3歲免費\n線上購票優惠約 $799 起',note:'3–8歲 ✅，一票到底含野生動物園，蒸汽小火車、猛獸巴士、可愛動物區，適合3歲以上',tags:['遊樂園','動物園','付費','戶外'],pR:'high',lo:3,hi:8,p:1400,mQ:'六福村主題樂園 新竹',url:'https://www.leofoovillage.com.tw/'},
+{id:26,name:'新竹昆蟲館（台灣昆蟲館新竹）',region:'新竹',env:'indoor',lat:24.8072,lng:120.9721,emoji:'🪲',color:'#52B788',addr:'新竹市東區食品路66號（動物園旁步行2分鐘）',dates:'常態開放',hours:'週三–五 14:00–20:00，週六日 10:00–18:00（週一二休）',ticket:'免費參觀昆蟲爬蟲展示\n週末水豚餵食體驗另計',note:'5歲 ✅，緊鄰新竹動物園，免費看昆蟲、爬蟲、水豚，可搭配動物園一日遊',tags:['昆蟲館','免費','5歲✓','室內'],pR:'free',lo:2,hi:8,p:0,mQ:'台灣昆蟲館 新竹',url:'https://taiwan.insect.tw/'},
+/* ── 親子影城 ── */
+{id:27,name:'in89 Boomboom 親子影廳（台北西門）',region:'台北市',env:'indoor',lat:25.0453,lng:121.5078,emoji:'🎬',color:'#C77DFF',addr:'台北市萬華區武昌街二段6號（西門in89）',dates:'常態上映，依每週親子場次為主',hours:'依電影場次，通常10:00起',ticket:'兒童沙發座 $429（會員 $319 起）\n一般座 $399（會員 $299 起）\n購票即可免費玩廳內遊戲區',note:'2–8歲 ✅，燈光不全暗、音量較小、廳內有草皮溜滑梯，帶小孩看電影不怕坐不住',tags:['親子影城','付費','2歲+','室內'],pR:'mid',lo:2,hi:8,p:429,mQ:'in89豪華影城 台北西門',url:'https://www.in89cinemax.com/boomboom/'},
+{id:28,name:'in89 Boomboom 親子影廳（桃園站前）',region:'桃園市',env:'indoor',lat:24.9893,lng:121.3136,emoji:'🎬',color:'#C77DFF',addr:'桃園市桃園區中正路1號（統領廣場）',dates:'常態上映，依每週親子場次為主',hours:'依電影場次，通常10:00起',ticket:'兒童沙發座 $399 起\n含騎士堡聯名「太空漫遊」兒童遊戲室（購票即可免費玩）',note:'2–8歲 ✅，球池溜滑梯攀爬設施，看電影中途可讓孩子去玩，家長輕鬆看完整場',tags:['親子影城','付費','2歲+','室內'],pR:'mid',lo:2,hi:8,p:399,mQ:'in89豪華影城 桃園站前',url:'https://www.in89cinemax.com/boomboom/'},
+/* ── 職業體驗 ── */
+{id:29,name:'麥當勞小麥麥體驗營',region:'台北市',env:'indoor',lat:25.0525,lng:121.5221,emoji:'👨‍🍳',color:'#FFD93D',addr:'台北市各分店（以當期活動場次為準）',dates:'不定期開放，需關注官方報名頁',hours:'每場次約 90–120 分鐘',ticket:'$899/人（含兒童餐、家家酒組、制服、證書）\n3歲以上、120cm以內，家長陪同免費',note:'3–8歲 ✅，穿制服、學備餐、坐小摩托車當外送員，孩子超喜歡！名額搶手需提早報名',tags:['職業體驗','3歲+','付費','室內'],pR:'mid',lo:3,hi:8,p:899,mQ:'麥當勞 兒童體驗營 台北',url:'https://www.mcdonalds.com.tw/'},
+{id:30,name:'達美樂 Pizza School 親子體驗',region:'台北市',env:'indoor',lat:25.0478,lng:121.5170,emoji:'🍕',color:'#FF6B6B',addr:'台北市各指定分店（報名後確認場地）',dates:'不定期開放，需至官網預約報名',hours:'每場次約 90 分鐘',ticket:'$499–$599/人（平假日不同）\n含手拍 Pizza、制服、證書；家長須達店內低消 $200',note:'3歲以上 ✅，擀麵皮、抹醬、加料、切披薩、騎外送車，全流程職人體驗',tags:['職業體驗','3歲+','付費','室內'],pR:'mid',lo:3,hi:8,p:549,mQ:'達美樂 Pizza School 台北',url:'https://www.dominos.com.tw/'},
+{id:31,name:'台灣昆蟲館小小動物飼育員',region:'台北市',env:'indoor',lat:25.0157,lng:121.5469,emoji:'🦎',color:'#52B788',addr:'台北市大安區和平東路三段406巷8號B1',dates:'不定期開放，台北館分幼兒梯（4–6歲）/ 國小梯（7–12歲）',hours:'半日營約 3–4 小時',ticket:'$999/人（最多2位家長免費陪同）\n含昆蟲觸摸、餵食、健康檢查、DIY陸龜水果大餐',note:'4–8歲 ✅，近距離觸摸、餵食、照顧昆蟲動物，學習飼育知識，比一般參觀更深入',tags:['職業體驗','4歲+','付費','室內'],pR:'mid',lo:4,hi:8,p:999,mQ:'台灣昆蟲館 台北',url:'https://taiwan.insect.tw/'},
+{id:32,name:'金色三麥小小店長體驗（不定期）',region:'台北市',env:'indoor',lat:25.0478,lng:121.5178,emoji:'🍺',color:'#FF9A3C',addr:'台北市各分店（京站/南港/信義等）',dates:'不定期舉辦，請追蹤官網最新消息',hours:'每場次約 60–90 分鐘',ticket:'費用依各場次公告\n穿制服、端盤、介紹菜單，體驗當小小服務生',note:'5歲以上 ✅，你看到的那種活動！孩子穿上圍裙當小小店長，家長在旁邊當「客人」',tags:['職業體驗','5歲+','付費','室內'],pR:'low',lo:4,hi:8,p:300,mQ:'金色三麥 台北',url:'https://www.lebledor.com/news'},
+{id:33,name:'五股準園生態休閒農場',region:'新北市',env:'outdoor',lat:25.0783,lng:121.4267,emoji:'🦋',color:'#52B788',addr:'新北市五股區新五路二段70號',dates:'週六日 09:30–17:00（平日僅接受20人以上團體預約，週一公休）\n4–5月螢火蟲季，假日有賞螢導覽',hours:'09:30–17:00，各設施 16:30 結束，售票至 16:00',ticket:'全票 $150（2歲以上，可折抵 $50 園內消費）\n優待票 $50（身心障礙及陪同者）\n五股區民週六持證免費\n⚠️ 不提供刷卡，請備現金',note:'5歲 ✅，蝴蝶館、竹節蟲、天竺鼠餵食、釣美國螯蝦、窯烤 Pizza DIY、大草坪野餐，4–5月螢火蟲季必來',tags:['動物農場','DIY體驗','5歲✓','戶外'],pR:'low',lo:0,hi:8,p:150,mQ:'五股準園生態農場 新北',url:'https://www.wugu-farm.com.tw/'},
+{id:34,name:'臺北市立圖書館親子活動',region:'台北市',env:'indoor',lat:25.0469,lng:121.5166,emoji:'📚',color:'#9B72CF',addr:'台北市各分館（總館：中正區南海路23號；各區分館皆有兒童室）',dates:'每週皆有活動，內容每月更新，詳見官網活動頁',hours:'各分館不同，總館週二–六 8:30–21:00，週日 9:00–17:00，週一休',ticket:'免費（部分活動需線上報名，名額有限）',note:'0歲起 ✅，週週有說故事、英文繪本、親子手作、DIY等活動，免費又好玩，強烈建議收藏活動頁！',tags:['圖書館','免費','室內'],pR:'free',lo:0,hi:8,p:0,mQ:'臺北市立圖書館 兒童室',url:'https://tpml.gov.taipei/News.aspx?n=49F42C0F3A955E81&sms=9D72E82EC16F3E64'},
+{id:35,name:'臺博館鐵道部園區',region:'台北市',env:'indoor',lat:25.0478,lng:121.5109,emoji:'🚂',color:'#FF9A3C',addr:'台北市大同區延平北路一段2號（捷運北門站3號出口步行3分鐘）',dates:'常態開放（週一、除夕、初一休館）',hours:'9:30–17:00（最後售票16:30）',ticket:'單館全票 $100 / 6歲以下免費 / 6–12歲半票 $50\n四館聯票（含本館、古生物館、南門館）全票 $130',note:'5歲 ✅，6歲以下免費！必玩「蒸汽夢工廠」可搭木頭小火車（建議2–6歲，110cm以下），動態鐵道模型超精彩',tags:['博物館','科學教育','6歲下免費','5歲✓','室內'],pR:'low',lo:0,hi:8,p:100,mQ:'臺博館鐵道部園區 北門',url:'https://www.ntm.gov.tw/cp.aspx?n=5464'},
+{id:36,name:'臺博館土銀展示館（恐龍館）',region:'台北市',env:'indoor',lat:25.0455,lng:121.5131,emoji:'🦕',color:'#52B788',addr:'台北市中正區襄陽路25號（臺博本館對面）',dates:'常態開放（週一休）',hours:'9:30–17:00',ticket:'兩館聯票（本館＋土銀）全票 $30 / 6歲以下免費\n⭐ 全台最便宜的博物館門票之一',note:'5歲 ✅，6歲以下免費！巨型恐龍化石超震撼，還能走進金庫，$30就玩兩館CP值爆表',tags:['博物館','6歲下免費','5歲✓','室內'],pR:'free',lo:0,hi:8,p:30,mQ:'臺灣博物館土銀展示館',url:'https://www.ntm.gov.tw/'},
+{id:37,name:'國立臺灣科學教育館（科教館）',region:'台北市',env:'indoor',lat:25.0897,lng:121.5161,emoji:'🔭',color:'#3AAEDC',addr:'台北市士林區士商路189號（捷運劍潭站轉公車）',dates:'常態開放（週一休）',hours:'週二–五 9:00–17:00，週六日 9:00–18:00',ticket:'常設展全票 $100 / 6歲以下免費\n3D劇院、立體劇院另計\n北北基好玩卡：科教館+天文館+兒童樂園 $395',note:'5歲 ✅，6歲以下免費！物理化學生命科學通通可動手玩，木造透明空橋超好拍，鄰近兒童新樂園可搭配',tags:['科學教育','博物館','6歲下免費','5歲✓','室內'],pR:'low',lo:0,hi:8,p:100,mQ:'國立臺灣科學教育館 士林',url:'https://www.ntsec.gov.tw/'},
+{id:38,name:'台灣高鐵探索館',region:'桃園市',env:'indoor',lat:24.9879,lng:121.3131,emoji:'🚄',color:'#FF6B6B',addr:'桃園市中壢區高鐵北路一段2號1F（高鐵桃園站5號出口步行5分鐘）',dates:'常態開放（週日、週一及國定假日休館）',hours:'9:30–12:30 / 14:00–16:30（需線上預約，當日亦可預約）',ticket:'免費！但需事先線上預約，憑身分證換證入館',note:'3歲以上 ✅，免費！1:1高鐵車頭模型可坐駕駛艙、動態鐵道縮小模型每30分鐘表演，鐵道迷必訪',tags:['博物館','科學教育','免費','室內'],pR:'free',lo:3,hi:8,p:0,mQ:'台灣高鐵探索館 桃園',url:'https://tdiscovery.thsrc.com.tw/'},
+{id:39,name:'台塑企業文物館',region:'桃園市',env:'indoor',lat:25.0219,lng:121.3685,emoji:'🏭',color:'#9B72CF',addr:'桃園市龜山區文化一路259號（長庚大學校園內，捷運A7體育大學站步行20分鐘）',dates:'常態開放（週一休，選舉日及農曆除夕至年初三休館）',hours:'9:00–17:00（16:30停止入場）',ticket:'免費！停車3小時免費（離館前至服務台辦理折抵）\n週六日有定點導覽 10:00/11:30/14:00/15:30',note:'5歲 ✅，全免費！7層樓，可坐上真實大卡車駕駛座、開電動小車，B1仿森林步道超特別',tags:['博物館','科學教育','免費','5歲✓','室內'],pR:'free',lo:0,hi:8,p:0,mQ:'台塑企業文物館 龜山',url:'https://www.fpgmuseum.com.tw/'},
+{id:40,name:'郵政博物館',region:'台北市',env:'indoor',lat:25.0347,lng:121.5130,emoji:'✉️',color:'#FFD93D',addr:'台北市中正區重慶南路二段45號（捷運中正紀念堂站步行5分鐘）',dates:'常態開放（週一休）',hours:'9:00–17:00',ticket:'全票 $30 / 6–12歲 $15 / 6歲以下免費\n⭐ 門票就是明信片，超有紀念價值',note:'5歲 ✅，6歲以下免費！4樓兒童郵園超好玩，騎自行車模擬送信有海風吹來超有趣，銅板價玩整下午',tags:['博物館','6歲下免費','5歲✓','室內'],pR:'free',lo:0,hi:8,p:30,mQ:'郵政博物館 台北',url:'https://museum.post.gov.tw/'},
+{id:41,name:'長榮海事博物館',region:'台北市',env:'indoor',lat:25.0328,lng:121.5168,emoji:'⚓',color:'#3AAEDC',addr:'台北市中正區中山南路11號1–5樓（捷運中正紀念堂站5/6號出口步行10分鐘）',dates:'常態開放（週一休）\n⭐ 2026/4/1–6/30 張榮發基金會藝術季期間全館免費！',hours:'9:00–17:00（16:30停止入館）',ticket:'平時：全票 $200 / 學生 $150 / 幼兒園以下免費\n🎉 4/1–6/30 藝術季：全館免費，至1F服務台簽名即可',note:'5歲 ✅，幼兒園以下免費！現在4–6月全館免費最划算，5層樓4500件船艦模型，可掌舵開船、吊貨櫃互動遊戲',tags:['博物館','幼兒免費','5歲✓','室內'],pR:'free',lo:0,hi:8,p:0,mQ:'長榮海事博物館 台北',url:'https://www.evergreenmuseum.org.tw/'},
+{id:42,name:'袖珍博物館',region:'台北市',env:'indoor',lat:25.0608,lng:121.5368,emoji:'🏠',color:'#FF6B6B',addr:'台北市中山區建國北路一段96號B1（捷運南京復興站步行5分鐘）',dates:'常態開放（週一至週三休）',hours:'週四–週日 10:00–18:00（最後入館17:00）',ticket:'成人 $250 / 學生 $220 / 3–12歲 $180 / 3歲以下免費',note:'4歲以上 ✅，亞洲第一座袖珍藝術博物館，百餘件精巧模型縮小至1/12，白金漢宮、鐵達尼號，孩子看了眼睛發亮',tags:['博物館','付費','4歲+','室內'],pR:'low',lo:4,hi:8,p:180,mQ:'袖珍博物館 台北',url:'https://www.miniaturemuseum.com.tw/'},
+{id:43,name:'國家鐵道博物館',region:'台北市',env:'outdoor',lat:25.0466,lng:121.5650,emoji:'🚃',color:'#52B788',addr:'台北市信義區市民大道五段50號（捷運永春站步行15分鐘）',dates:'常態開放，採預約制（可官網線上預約）',hours:'9:30–17:00（週一休）',ticket:'免費！需於官網事先預約導覽場次',note:'4歲以上 ✅，免費！1930年代台北鐵道工場，可近距離看光華號、蒸汽火車等珍貴歷史火車，鐵道迷聖地',tags:['博物館','科學教育','免費','室內'],pR:'free',lo:4,hi:8,p:0,mQ:'國家鐵道博物館 台北',url:'https://www.nrm.gov.tw/'},
+/* ── 玩水戲水 ── */
+{id:44,name:'臺北自來水園區（水鄉庭園戲水區）',region:'台北市',env:'outdoor',lat:25.0185,lng:121.5285,emoji:'💧',color:'#3AAEDC',addr:'台北市中正區思源街1號（捷運公館站步行10分鐘）',dates:'戲水區夏季限定（7–8月每日開放；5–6月、9月部分週末，依公告為主）\n自來水博物館古蹟區全年開放',hours:'夏季 9:00–18:00；非夏季 9:00–17:00（週一休）',ticket:'夏季：全票 $80 / 優待票 $40 / 6歲以下免費\n非夏季（古蹟區）：全票 $50 / 優待票 $25 / 6歲以下免費',note:'5歲 ✅，三道滑水管、大水桶、香菇水濂洞，有救生員看顧，更衣室吹風機齊全；館區歐式古蹟建築超美拍',tags:['玩水','6歲下免費','5歲✓','戶外'],pR:'low',lo:0,hi:8,p:80,mQ:'台北自來水園區 公館',url:'https://waterpark.water.gov.taipei/'},
+{id:45,name:'新北大都會公園海世界水樂園',region:'新北市',env:'outdoor',lat:25.0739,lng:121.4568,emoji:'🌊',color:'#3AAEDC',addr:'新北市三重區重新路五段609巷（熊猴森樂園旁）',dates:'夏季開放（約6–9月，依公告為主），免費入場',hours:'開放時節 9:00–18:00',ticket:'完全免費！\n更衣室、沖洗設施齊全',note:'5歲 ✅，7大海洋生物造型戲水設施，綠蠵龜、萬里蟹、章魚，水深淺適合小小孩，旁邊還有熊猴森陸上遊樂場',tags:['玩水','免費','5歲✓','戶外'],pR:'free',lo:0,hi:8,p:0,mQ:'新北大都會公園 熊猴森樂園',url:'https://www.ntpc.gov.tw/'},
+{id:46,name:'鶯歌陶博館戲水區',region:'新北市',env:'outdoor',lat:24.8998,lng:121.3515,emoji:'💦',color:'#1DB9AA',addr:'新北市鶯歌區文化路200號（陶瓷博物館外廣場）',dates:'夏季開放（約6月底–8月底），免費入場',hours:'約 9:30–17:00（依公告）',ticket:'戶外戲水區完全免費！\n想進博物館吹冷氣：12歲以下及新北市民免費',note:'5歲 ✅，馬賽克戲水池、陶瓷球裝飾超美，旁有沙坑、淋浴間，玩累了進博物館免費吹冷氣，一舉兩得',tags:['玩水','免費','5歲✓','戶外'],pR:'free',lo:0,hi:8,p:0,mQ:'鶯歌陶瓷博物館 戲水區',url:'https://www.ceramics.ntpc.gov.tw/'},
+{id:47,name:'基隆暖暖親水公園',region:'基隆市',env:'outdoor',lat:25.1076,lng:121.7411,emoji:'🐘',color:'#52B788',addr:'基隆市暖暖區暖暖街（暖暖溪畔）',dates:'夏季戲水開放（約7–9月，依公告）\n全年可散步，溪畔吊橋全年開放',hours:'戲水區 9:00–18:00',ticket:'完全免費！\n有大象溜滑梯、彩虹戲水池、噴水步道',note:'5歲 ✅，水位淺適合小小孩，大象溜滑梯滑進水池超好玩，沿溪步道全長4公里景色漂亮，可推推車',tags:['玩水','免費','5歲✓','戶外'],pR:'free',lo:0,hi:8,p:0,mQ:'暖暖親水公園 基隆',url:'https://www.klook.com/zh-TW/blog/keelung-attractions/'},
+{id:48,name:'桃園龍潭大池戲水設施',region:'桃園市',env:'outdoor',lat:24.8650,lng:121.2116,emoji:'🐉',color:'#FFD93D',addr:'桃園市龍潭區龍元路164號（龍潭大池旁）',dates:'夏季開放（約6–9月），免費入場\n週一、週五清潔維護不開放',hours:'10:00–18:00',ticket:'完全免費！\n巨龍造型戲水區，龍口戲水池＋噴水柱＋磨石子溜滑梯',note:'5歲 ✅，超霸氣巨龍口就是戲水池！旁邊有大池可搭船、遛狗，附近還有美食，適合半日親子出遊',tags:['玩水','免費','5歲✓','戶外'],pR:'free',lo:0,hi:8,p:0,mQ:'龍潭大池 桃園',url:'https://travel.tycg.gov.tw/'},
+{id:49,name:'文山農場（採茶·賞螢·露營）',region:'新北市',env:'outdoor',lat:24.9521,lng:121.5284,emoji:'🍵',color:'#52B788',addr:'新北市新店區湖子內路100號（新店往烏來路上，捷運新店站轉849公車至伸丈板站）',dates:'全年開放 09:00–17:00\n⭐ 4–5月螢火蟲季（需預約賞螢場次）\n2–3月富士櫻盛開，11–12月楓香步道',hours:'09:00–17:00（全年無休）\n純賞螢：17:30前報到',ticket:'全票 $200 / 優待票 $125（13歲以下、65歲以上）/ 3歲以下免費\n⚠️ 僅收現金，停車場 $100/次（另有免費園外停車）',note:'5歲 ✅，百年製茶廠轉型的有機茶園，春賞櫻、夏涼爽、秋賞楓、夏季夜探螢火蟲，採茶DIY可帶茶葉回家，大草皮超適合野餐跑跳',tags:['動物農場','DIY體驗','戶外景點','5歲✓','戶外'],pR:'low',lo:0,hi:8,p:200,mQ:'新北市農會文山農場 新店',url:'https://www.wsfa.com.tw/'},
+{id:50,name:'台北小奈良（淡水親子農場）',region:'新北市',env:'outdoor',lat:25.1633,lng:121.4276,emoji:'🦌',color:'#FF9A3C',addr:'新北市淡水區（溫室棚包廂式，請查官網最新地址）',dates:'假日為主，平日部分開放，建議事前查粉專確認',hours:'約 10:00–17:00',ticket:'依活動方案不同，建議查詢官網或粉專最新票價',note:'3歲以上 ✅，餵梅花鹿、兔子等10種可愛動物，有大跳床、決明子沙池、撈魚區，溫室棚設計不怕下雨，親子農場好選擇',tags:['動物農場','5歲✓','戶外'],pR:'low',lo:3,hi:8,p:300,mQ:'台北小奈良 淡水親子農場',url:'https://www.facebook.com/narafarm.tamsui'},
+{id:51,name:'樂飛翔親子運動樂園',region:'新北市',env:'indoor',lat:25.0847,lng:121.4732,emoji:'🌊',color:'#3AAEDC',addr:'新北市蘆洲區重陽一街13號B1',dates:'全年開放，天天可玩',hours:'06:00–22:00',ticket:'3–12歲 $80 / 成人免費陪同\n含室內划水道、戲水設施',note:'3歲以上 ✅，全年開放室內水樂園！有划水道，不受天氣影響，早上六點開到晚上十點，新北蘆洲超方便，雨天玩水首選',tags:['玩水','3歲+','付費','室內'],pR:'free',lo:3,hi:8,p:80,mQ:'樂飛翔親子運動樂園 蘆洲',url:'https://www.dsc.ntpc.gov.tw/Tamsui/SiteInfo/A202104010011'},
+{id:52,name:'宜蘭積木博物館（樂色山）',region:'宜蘭',env:'indoor',lat:24.7574,lng:121.7528,emoji:'🧱',color:'#FF6B6B',addr:'宜蘭市（近羅東，詳細地址請查官網）',dates:'常態開放（週一休）',hours:'10:00–18:00',ticket:'全票 $250（折抵館內消費 $100）/ 90cm以下免費\n忍者村＋樂色山兩館套票 $360',note:'3歲以上 ✅，全台最多積木作品！14大展區超好拍，樂高迷必訪，不只看還能動手玩，尖叫步道踩積木超特別，積木夾娃娃機只要10元',tags:['博物館','DIY體驗','付費','室內'],pR:'low',lo:3,hi:8,p:250,mQ:'樂色山積木博物館 宜蘭',url:'https://www.lesoulmountain.com/'},
+{id:53,name:'新北消防局防災宣導主題館（八里）',region:'新北市',env:'indoor',lat:25.1508,lng:121.4121,emoji:'🚒',color:'#FF6B6B',addr:'新北市八里區（詳細地址請查官網，建議導航）',dates:'常態開放，須事先預約',hours:'依預約場次（建議查官網確認）',ticket:'免費！需事先線上預約\n⚠️ 前往前務必完成預約，未預約不開放入館',note:'5歲以上 ✅，免費體驗當小小消防員！穿消防衣、地震體驗、煙霧逃生、滅火器射水，寓教於樂，是北台灣親子防災教育首選，搭配十三行博物館一日遊超充實',tags:['科學教育','職業體驗','免費','室內'],pR:'free',lo:5,hi:8,p:0,mQ:'新北消防局防災宣導主題館 八里',url:'https://www.fire.ntpc.gov.tw/'},
+{id:54,name:'甲蟲秘境親子餐廳',region:'台北市',env:'indoor',lat:25.1018,lng:121.5269,emoji:'🪲',color:'#52B788',addr:'台北市士林區克強路28號（捷運芝山站步行約10分鐘）',dates:'全年開放',hours:'每日 11:00–21:00',ticket:'餐廳消費制，無入場費\n假日近距離摸甲蟲體驗，平日靜態展示',note:'3歲以上 ✅，森林系親子餐廳結合活體甲蟲館！可近距離觸摸獨角仙、鍬形蟲，比臉大的甲蟲造型鬆餅超好拍，餐點日式家常風味好吃，大孩子可自己玩，爸媽輕鬆用餐',tags:['昆蟲館','DIY體驗','3歲+','室內'],pR:'mid',lo:3,hi:8,p:400,mQ:'甲蟲秘境 士林 克強路',url:'https://www.facebook.com/BeetleSecret'},
+{id:55,name:'橘之鄉蜜餞形象館',region:'宜蘭',env:'indoor',lat:24.7768,lng:121.7476,emoji:'🍊',color:'#FF9A3C',addr:'宜蘭縣宜蘭市梅洲二路33號（免費停車場）',dates:'全年開放（每日）',hours:'08:30–17:30',ticket:'免費入園！\nDIY蜜餞體驗 $150/人（可自製帶回家）\n免費金棗茶試飲',note:'3歲以上 ✅，全台第一家蜜餞觀光工廠，免門票！巨人桌椅超好拍，AGRIOZ網美玻璃屋咖啡廳，可DIY金棗蜜餞，天然無添加金棗伴手禮必買，宜蘭雨天備案首選',tags:['DIY體驗','免費','3歲+','室內'],pR:'free',lo:3,hi:8,p:0,mQ:'橘之鄉蜜餞形象館 宜蘭',url:'https://www.agrioz.com.tw/'},
+{id:56,name:'虎牌米粉那個年代觀光工廠',region:'宜蘭',env:'indoor',lat:24.6963,lng:121.7878,emoji:'🍜',color:'#FF9A3C',addr:'宜蘭縣五結鄉利興三路5號（利澤國中旁，免費停車）',dates:'全年開放（僅除夕休館）',hours:'09:00–17:30（售票至16:30）',ticket:'全票 $200（含100元折抵消費＋DIY兌換券）\n12歲以下/65歲以上/宜蘭縣民 優惠票 $100\n3歲以下免費',note:'3歲以上 ✅，米粉免費吃到飽！1970年代台灣街景重現超好拍，超萌老虎巴士必合照，門票可折抵DIY（彩繪碗米粉、電鍋炒米粉），CP值爆表的宜蘭觀光工廠',tags:['博物館','DIY體驗','付費','室內'],pR:'low',lo:3,hi:8,p:200,mQ:'虎牌米粉觀光工廠 宜蘭 五結',url:'https://tigerfood.com.tw/'},
+{id:57,name:'木育森林（羅東林業文化園區）',region:'宜蘭',env:'indoor',lat:24.6771,lng:121.7656,emoji:'🌲',color:'#52B788',addr:'宜蘭縣羅東鎮中正北路118號（羅東林場內）',dates:'全年開放（園區全年；木育森林館每日09:00–18:00）',hours:'園區 08:00–17:00\n木育森林館 09:00–18:00',ticket:'園區完全免費！\n木育森林館免費\n停車場平日$30/小時、假日$50/小時',note:'0歲起 ✅，完全免費！羅東林場20公頃，貯木池、蒸汽火車頭、日式木造建築超好拍。木育森林館有各式原木玩具可免費玩，kids扣屋適合親子體驗，絕對能待上半天！',tags:['博物館','免費','戶外景點','室內'],pR:'free',lo:0,hi:8,p:0,mQ:'羅東林業文化園區 木育森林',url:'https://recreation.forest.gov.tw/'},
+{id:58,name:'桃園軌道願景館',region:'桃園市',env:'indoor',lat:24.9930,lng:121.3040,emoji:'🚂',color:'#FF6B6B',addr:'桃園市桃園區萬壽路三段245號（桃園火車站旁步行2分鐘）',dates:'常態開放（週一休館）',hours:'10:00–16:30',ticket:'完全免費！\n含小火車乘坐（每整點15分開放）、開捷運模擬體驗、積木軌道玩具',note:'3歲以上 ✅，全免費！桃園火車站旁，搭火車就能到。大人小孩都能搭的桃園號小火車、模擬開捷運超好玩，日治時代舊倉庫改建，雨天室內親子首選',tags:['科學教育','博物館','免費','室內'],pR:'free',lo:3,hi:8,p:0,mQ:'桃園軌道願景館 桃園火車站',url:'https://tyrp.tycg.gov.tw/'},
+{id:59,name:'桃園市土地公文化館',region:'桃園市',env:'indoor',lat:24.9976,lng:121.3058,emoji:'🏮',color:'#FF9A3C',addr:'桃園市桃園區三民路一段100號（地下室停車場）',dates:'常態開放（週一休館）',hours:'週二–日 09:00–17:00',ticket:'完全免費！免費停車（$30/小時）',note:'3歲以上 ✅，全台首座土地公主題博物館，免門票！展示各地土地公神像、廟會民俗文化，有互動螢幕遊戲，帶孩子認識台灣傳統信仰文化，距桃園軌道願景館3公里可搭配同遊',tags:['博物館','免費','室內'],pR:'free',lo:3,hi:8,p:0,mQ:'桃園土地公文化館 三民路',url:'https://www.taoyuantudigong.org.tw/'},
+{id:60,name:'永安海螺文化體驗園區',region:'桃園市',env:'outdoor',lat:25.0081,lng:121.1237,emoji:'🐚',color:'#3AAEDC',addr:'桃園市新屋區新港路85號（永安漁港旁，免費停車）',dates:'常態開放（週一休館）',hours:'09:00–17:00',ticket:'完全免費！\n海螺咖啡館另計費用',note:'3歲以上 ✅，全台唯一客家漁港旁的純白海螺造型建築，IG必拍！免門票，AR互動體驗認識海客文化，二樓觀景台可遠眺海景，對面就是永安漁港可吃新鮮海鮮，親子+網美兩相宜',tags:['戶外景點','免費','室內'],pR:'free',lo:3,hi:8,p:0,mQ:'永安海螺文化體驗園區 新屋',url:'https://www.hakka.tycg.gov.tw/'},
+{id:61,name:'馬祖新村眷村文創園區',region:'桃園市',env:'outdoor',lat:24.9601,lng:121.2208,emoji:'🏘️',color:'#9B72CF',addr:'桃園市中壢區龍吉二街155號',dates:'常態開放',hours:'週二–日 10:00–18:00（週一休）',ticket:'免費參觀！\n不定期有主題活動、市集',note:'3歲以上 ✅，1950年代眷村完整保留，曾是多部電影電視取景地，充滿復古氛圍，孩子可認識台灣眷村文化，不定期有文創市集，適合親子漫步下午',tags:['戶外景點','免費','戶外'],pR:'free',lo:3,hi:8,p:0,mQ:'馬祖新村眷村 中壢',url:'https://www.facebook.com/mazuvillage/'},
+{id:62,name:'雄獅文具想像力製造所',region:'桃園市',env:'indoor',lat:24.8561,lng:121.2108,emoji:'🎨',color:'#FF6B6B',addr:'桃園市龍潭區中原路二段188號（免費停車場）',dates:'常態開放（週三休館）',hours:'09:00–17:00',ticket:'全票 $500（含$100折抵券）/ 3歲以下或100cm以下免費\n套票（含DIY彩色筆課程）$850',note:'3歲以上 ✅，台灣文具品牌雄獅的超美觀光工廠！76,800隻彩色筆打造的彩虹牆必拍，夜光隧道、自由塗鴉牆、DIY彩色筆課程超好玩，雄獅小食堂餐點也讚，可玩一整天',tags:['DIY體驗','美術館','付費','室內'],pR:'mid',lo:3,hi:8,p:500,mQ:'雄獅文具想像力製造所 龍潭',url:'https://simbalionartstudio.com/'},
+/* ── 台中 ── */
+{id:63,name:'國立自然科學博物館（科博館）',region:'台中市',env:'indoor',lat:24.1417,lng:120.6670,emoji:'🦕',color:'#52B788',addr:'台中市北區館前路1號（捷運文心森林公園站步行10分鐘）',dates:'常態開放（週一休館）',hours:'週二–日 09:00–17:00',ticket:'常設展全票 $100 / 學生 $50 / 6歲以下免費\n植物園免費 / 特展另購',note:'3歲以上 ✅，6歲以下免費！台灣最大自然科學博物館，恐龍骨架、木乃伊、3D劇場，生命科學廳可互動，室內熱帶雨林植物園免費，親子必訪台中景點',tags:['博物館','科學教育','6歲下免費','室內'],pR:'low',lo:0,hi:8,p:100,mQ:'台中科博館 自然科學博物館',url:'https://www.nmns.edu.tw/'},
+{id:64,name:'麗寶樂園（探索世界）',region:'台中市',env:'outdoor',lat:24.3308,lng:120.7000,emoji:'🎢',color:'#FF6B6B',addr:'台中市后里區福容路8號',dates:'常態開放（不定期公休請查官網）',hours:'09:30–17:00（暑期延長）',ticket:'成人全票 $850 / 兒童 $680（120cm以下）\n線上購票更優惠，Klook常有折扣',note:'3歲以上 ✅，全台最大水陸樂園！探索世界遊樂設施豐富，夏季有馬拉灣水樂園，LINE熊大小鎮超可愛，全球前十大天空之夢摩天輪，親子一日遊首選',tags:['遊樂園','付費','戶外'],pR:'high',lo:3,hi:8,p:850,mQ:'麗寶樂園 台中 后里',url:'https://www.lihpao.com/'},
+{id:65,name:'921地震教育園區',region:'台中市',env:'indoor',lat:24.0826,lng:120.6794,emoji:'🏚️',color:'#FF9A3C',addr:'台中市霧峰區坑口里中正路156號',dates:'常態開放（週一休館）',hours:'週二–日 09:00–17:00（週六延長至20:00）',ticket:'全票 $100 / 6歲以下免費',note:'5歲以上 ✅，保留921大地震原址！真實斷層帶、傾斜校舍直接展示，地震體驗劇場震撼感十足，帶孩子認識台灣地震歷史，教育意義極深',tags:['博物館','科學教育','付費','室內'],pR:'low',lo:5,hi:8,p:100,mQ:'921地震教育園區 霧峰',url:'https://www.newtaipei921.tw/'},
+{id:66,name:'彩虹眷村',region:'台中市',env:'outdoor',lat:24.1234,lng:120.6399,emoji:'🌈',color:'#FFD93D',addr:'台中市南屯區春安路56巷（免費參觀）',dates:'全年開放',hours:'全天（建議白天前往）',ticket:'完全免費！',note:'3歲以上 ✅，黃爺爺一筆一筆手繪的眷村彩繪奇蹟！免費入場，繽紛色彩超好拍，孩子看了眼睛發亮，台中必去打卡景點，搭配春安路周邊逛逛',tags:['戶外景點','免費','戶外'],pR:'free',lo:0,hi:8,p:0,mQ:'彩虹眷村 台中 南屯',url:'https://www.facebook.com/RainbowVillage.tw/'},
+{id:67,name:'台中市兒童藝術館',region:'台中市',env:'indoor',lat:24.1480,lng:120.6730,emoji:'🎨',color:'#C77DFF',addr:'台中市西區英才路600號',dates:'常態開放（週一休館）',hours:'週二–日 09:00–17:00',ticket:'免費參觀！',note:'0歲起 ✅，完全免費！專為0-12歲設計，互動藝術裝置、創作工坊，啟發孩子藝術想像力，台中免費親子室內景點首選',tags:['美術館','免費','室內'],pR:'free',lo:0,hi:8,p:0,mQ:'台中市兒童藝術館',url:'https://caam.taichung.gov.tw/'},
+/* ── 南投 ── */
+{id:68,name:'九族文化村',region:'南投縣',env:'outdoor',lat:23.8616,lng:120.9108,emoji:'🎡',color:'#FF6B6B',addr:'南投縣魚池鄉大林村金天巷45號',dates:'常態開放（不定期公休請查官網）',hours:'09:30–17:00（暑期延長）',ticket:'全票 $880 / 兒童（110cm以下）$680\n線上購票更優惠',note:'3歲以上 ✅，南投最大主題樂園！原住民文化+遊樂設施+纜車，水樂園全年開放，春天賞櫻全台最美，適合親子兩日遊',tags:['遊樂園','付費','戶外'],pR:'high',lo:3,hi:8,p:880,mQ:'九族文化村 南投 日月潭',url:'https://www.nine.com.tw/'},
+{id:69,name:'日月潭（孩子的湖岸冒險）',region:'南投縣',env:'outdoor',lat:23.8617,lng:120.9178,emoji:'🚢',color:'#3AAEDC',addr:'南投縣魚池鄉日月村',dates:'全年開放',hours:'全天',ticket:'景區免費 / 遊湖船票另購約 $300\n自行車租借 $100–200/小時',note:'3歲以上 ✅，台灣最美高山湖泊！環湖步道推嬰兒車OK，日月潭纜車可俯瞰全景，騎自行車環湖超推，邵族文化村、玄光寺順遊',tags:['戶外景點','免費','戶外'],pR:'free',lo:0,hi:8,p:0,mQ:'日月潭 南投 孩子遊湖',url:'https://www.sunmoonlake.gov.tw/'},
+/* ── 彰化 ── */
+{id:70,name:'溪湖糖廠（五分車小火車）',region:'彰化縣',env:'outdoor',lat:23.9595,lng:120.4892,emoji:'🚂',color:'#FF9A3C',addr:'彰化縣溪湖鎮彰水路一段1號',dates:'常態開放（週一休館）',hours:'09:00–17:00',ticket:'園區免費 / 五分車小火車 $60–80',note:'3歲以上 ✅，超懷舊的五分車小火車！搭著小火車穿越甘蔗田，日治時期糖廠建築保存完整，台灣製糖歷史活教材，冰品也超好吃',tags:['博物館','科學教育','付費','戶外'],pR:'low',lo:3,hi:8,p:80,mQ:'溪湖糖廠 五分車 彰化',url:'https://www.taisugar.com.tw/'},
+/* ── 台南 ── */
+{id:71,name:'奇美博物館',region:'台南市',env:'indoor',lat:22.9709,lng:120.2277,emoji:'🏛️',color:'#9B72CF',addr:'台南市仁德區文華路二段66號（免費停車場）',dates:'常態開放（週一休館）',hours:'週二–日 09:30–17:30（最後入場16:30）',ticket:'全票 $200 / 學生 $150 / 6歲以下免費',note:'5歲以上 ✅，台灣最美私人博物館！歐式宮廷建築搭配護城河超夢幻，西洋藝術、兵器、樂器、自然史通通有，親子必訪南台灣景點，建議提早預購門票',tags:['博物館','美術館','付費','室內'],pR:'low',lo:0,hi:8,p:200,mQ:'奇美博物館 台南 仁德',url:'https://www.chimeimuseum.org/'},
+{id:72,name:'台南市立美術館（南美館）',region:'台南市',env:'indoor',lat:22.9927,lng:120.2008,emoji:'🖼️',color:'#C77DFF',addr:'台南市中西區忠義路二段1號（1館）/ 中正路1號（2館）',dates:'常態開放（週一休館）',hours:'週二–日 10:00–18:00（週六延長至21:00）',ticket:'常設展免費 / 特展另購',note:'3歲以上 ✅，常設展免費！兩館都值得逛，建築本身就是藝術，2館的親子藝術體驗空間很適合帶孩子，台南文化一日遊必訪',tags:['美術館','免費','室內'],pR:'free',lo:0,hi:8,p:0,mQ:'台南市立美術館 南美館',url:'https://www.tnam.museum/'},
+{id:73,name:'頑皮世界野生動物園',region:'台南市',env:'outdoor',lat:23.1972,lng:120.3047,emoji:'🦁',color:'#52B788',addr:'台南市學甲區三慶里頂洲75-25號',dates:'常態開放',hours:'09:00–17:00',ticket:'成人全票 $500 / 兒童（3-12歲）$350 / 3歲以下免費\n夏季水樂園綠洲水樂園另計',note:'3歲以上 ✅，南台灣最大動物園！長頸鹿、獅子、河馬近距離接觸，夏季有綠洲水樂園，一票雙享，親子南台灣首選，可玩一整天',tags:['動物園','遊樂園','付費','戶外'],pR:'mid',lo:0,hi:8,p:500,mQ:'頑皮世界 台南 學甲',url:'https://www.naughtyworld.com.tw/'},
+/* ── 高雄 ── */
+{id:74,name:'國立科學工藝博物館（科工館）',region:'高雄市',env:'indoor',lat:22.6397,lng:120.3089,emoji:'🔬',color:'#3AAEDC',addr:'高雄市三民區九如一路720號',dates:'常態開放（週一休館）',hours:'週二–日 09:00–17:00（週五六至20:00）',ticket:'常設展全票 $100 / 6歲以下免費',note:'3歲以上 ✅，6歲以下免費！台灣最大科技博物館，互動展示超豐富，兒童科學館有球池溜滑梯，太空探索、能源科技通通有，下雨天高雄必去',tags:['博物館','科學教育','6歲下免費','室內'],pR:'low',lo:0,hi:8,p:100,mQ:'科工館 高雄 科學工藝博物館',url:'https://www.nstm.gov.tw/'},
+{id:75,name:'壽山動物園',region:'高雄市',env:'outdoor',lat:22.6455,lng:120.2800,emoji:'🦒',color:'#52B788',addr:'高雄市鼓山區萬壽路350號',dates:'常態開放（週一休館）',hours:'09:00–17:00',ticket:'全票 $40 / 6-12歲 $20 / 6歲以下免費\n⭐ 全台最便宜動物園之一',note:'3歲以上 ✅，6歲以下免費！銅板價超值！長頸鹿、大象、猩猩都有，園區在壽山上視野好，可搭配壽山公園一起玩，高雄親子半日遊首選',tags:['動物園','6歲下免費','戶外'],pR:'free',lo:0,hi:8,p:40,mQ:'壽山動物園 高雄 鼓山',url:'https://www.kcg.gov.tw/'},
+{id:76,name:'駁二藝術特區',region:'高雄市',env:'outdoor',lat:22.6231,lng:120.2780,emoji:'🎭',color:'#FF9A3C',addr:'高雄市鹽埕區大勇路1號（捷運鹽埕埔站步行5分鐘）',dates:'常態開放',hours:'週二–五 11:00–20:00 / 週六日 10:00–21:00（週一休）',ticket:'部分展覽免費 / 特展另購',note:'3歲以上 ✅，廢棄倉庫改造的文創天堂！超多裝置藝術孩子愛，不定期有親子市集和活動，腳踏車道串聯哈瑪星，高雄文化親子一日遊必訪',tags:['戶外景點','免費','戶外'],pR:'free',lo:3,hi:8,p:0,mQ:'駁二藝術特區 高雄 鹽埕',url:'https://pier2.org/'},
+/* ── 屏東 ── */
+{id:77,name:'國立海洋生物博物館（海生館）',region:'屏東縣',ivyUrl:'https://candysweatlife.wordpress.com/2024/01/15/%e8%b5%b0%e5%90%a7%ef%bc%81%e5%a4%9c%e5%ae%bf%e5%b1%8f%e6%9d%b1%e6%b5%b7%e7%94%9f%e9%a4%a8/',env:'indoor',lat:21.9411,lng:120.7592,emoji:'🐋',color:'#3AAEDC',addr:'屏東縣車城鄉後灣村後灣路2號',dates:'常態開放',hours:'09:00–17:30（暑期延長至18:00）',ticket:'全票 $450 / 6-12歲 $300 / 3歲以下免費\n夜宿海生館另洽',note:'3歲以上 ✅，台灣最大海洋博物館！全台最長的海底隧道，鯨鯊、魟魚近距離！夜宿海生館是親子bucket list，珊瑚王國館超夢幻，南台灣親子必去',tags:['水族館','博物館','付費','室內'],pR:'mid',lo:0,hi:8,p:450,mQ:'海生館 屏東 海洋生物博物館',url:'https://www.nmmba.gov.tw/'},
+/* ── 花蓮 ── */
+{id:78,name:'遠雄海洋公園',region:'花蓮縣',env:'outdoor',lat:23.9789,lng:121.6204,emoji:'🐬',color:'#3AAEDC',addr:'花蓮縣壽豐鄉鹽寮村福德51號',dates:'常態開放（不定期公休請查官網）',hours:'09:00–17:00',ticket:'全票 $790 / 6-12歲 $590 / 3歲以下免費\n暑假12歲以下免費入園（期間限定）',note:'3歲以上 ✅，台灣最靠近太平洋的樂園！海豚秀、美人魚表演超精彩，纜車俯瞰花蓮海景壯觀，暑假期間12歲以下免費，親子花蓮必排',tags:['水族館','遊樂園','付費','戶外'],pR:'mid',lo:0,hi:8,p:790,mQ:'遠雄海洋公園 花蓮',url:'https://www.farglory-ocean-park.com.tw/'},
+{id:79,name:'花蓮太魯閣國家公園',region:'花蓮縣',env:'outdoor',lat:24.1547,lng:121.6205,emoji:'🏔️',color:'#52B788',addr:'花蓮縣秀林鄉（遊客中心：花蓮縣秀林鄉富世村富世291號）',dates:'全年開放（部分步道需預約）',hours:'全天',ticket:'免費！部分步道需線上預約\n燕子口、錐麓古道等需申請',note:'3歲以上 ✅，世界級峽谷美景，免門票！長春祠步道推嬰兒車OK，燕子口壯觀壯觀，砂卡礑步道清澈溪水，親子花蓮必排半日行程',tags:['戶外景點','免費','戶外'],pR:'free',lo:0,hi:8,p:0,mQ:'太魯閣國家公園 花蓮',url:'https://www.taroko.gov.tw/'},
+];
+
+let uLat=null,uLng=null;
+let radius=60,ageF='all',priceF='all',regF='all',envF='all',typeF='all',showAll=false,ivyF=false;
+let expanded={},saved=JSON.parse(localStorage.getItem('kr3')||'[]'),tab='nearby';
+
+function d2r(d){return d*Math.PI/180}
+function gD(la1,lo1,la2,lo2){const dLa=d2r(la2-la1),dLo=d2r(lo2-lo1);const a=Math.sin(dLa/2)**2+Math.cos(d2r(la1))*Math.cos(d2r(la2))*Math.sin(dLo/2)**2;return 6371*2*Math.atan2(Math.sqrt(a),Math.sqrt(1-a))}
+function fD(km){return km<1?Math.round(km*1000)+' m':km.toFixed(1)+' km'}
+
+function reqLoc(){
+  if(!navigator.geolocation){toast('瀏覽器不支援定位 😅');return}
+  sL('…');
+  navigator.geolocation.getCurrentPosition(
+    p=>{uLat=p.coords.latitude;uLng=p.coords.longitude;sL('on');render()},
+    ()=>{sL('x');toast('請允許定位權限後重試 🔓')},
+    {enableHighAccuracy:true,timeout:12000}
+  );
+}
+function useDemo(){uLat=25.0123;uLng=121.4686;sL('demo');render()}
+function sL(s){
+  document.getElementById('ld').className='ldot'+(s==='on'?' on':s==='demo'?' demo':'');
+  document.getElementById('lt').textContent={on:'定位成功',demo:'板橋示範','…':'定位中…',x:'定位失敗'}[s]||'開啟定位';
+}
+
+function tA(v){ageF=ageF===v?'all':v;render()}
+function tP(v){priceF=priceF===v?'all':v;render()}
+function tR(v){regF=regF===v?'all':v;render()}
+function tE(v){envF=envF===v?'all':v;render()}
+function tT(v){typeF=typeF===v?'all':v;render()}
+function setRad(v){radius=parseInt(v);showAll=false;const el=document.getElementById('rv');if(el)el.textContent=radius+' km';const btn=document.getElementById('allBtn');if(btn)btn.classList.remove('on');render()}
+function toggleIvy(){ivyF=!ivyF;render()}
+function toggleAll(){showAll=!showAll;const btn=document.getElementById('allBtn');if(btn)btn.classList.toggle('on',showAll);render()}
+
+function resetAll(){
+  ageF='all';priceF='all';regF='all';envF='all';typeF='all';ivyF=false;showAll=false;radius=60;
+  const rv=document.getElementById('rv');if(rv)rv.textContent='60 km';
+  const allBtn=document.getElementById('allBtn');if(allBtn)allBtn.classList.remove('on');
+  render();toast('✨ 已清除所有篩選條件！');
+}
+function applyF(arr){
+  if(ageF!=='all'){const[lo,hi]=ageF.split('-').map(Number);arr=arr.filter(a=>a.lo<=lo&&a.hi>=hi)}
+  if(priceF!=='all') arr=arr.filter(a=>a.pR===priceF);
+  if(regF!=='all') arr=arr.filter(a=>a.region===regF);
+  if(envF!=='all') arr=arr.filter(a=>a.env===envF);
+  if(typeF!=='all') arr=arr.filter(a=>a.tags.some(t=>t.includes(typeF)));
+  if(ivyF) arr=arr.filter(a=>a.ivyUrl);
+  return arr;
+}
+
+function render(){
+  if(tab==='saved'){rSaved();return}
+  if(tab==='info'){rInfo();return}
+  if(tab==='rest'){rRest();return}
+  if(tab==='stay'){rComing('🏨','住宿','精選親子友善住宿，依縣市推薦，附近景點一次搞定！');return}
+  if(tab==='goods'){rComing('🛍️','育兒好物','Ivy精選好物推薦，含媽媽包、玩具、外出神器！');return}
+  const mc=document.getElementById('mc');
+  if(!uLat){mc.innerHTML=`<div class="swrap"><span class="semi">🗺️</span><div class="stitle">找你附近的親子活動！</div><div class="stext">開啟定位後自動計算距離<br>幫你找出最近的活動 📍</div><button class="fbtn" onclick="reqLoc()">📍 開啟定位</button><button class="fbtn sec" onclick="useDemo()">🏠 板橋示範模式</button></div>`;return}
+  let items=showAll?D.map(a=>({...a,dist:gD(uLat,uLng,a.lat,a.lng)})):D.map(a=>({...a,dist:gD(uLat,uLng,a.lat,a.lng)})).filter(a=>a.dist<=radius);
+  items=applyF(items);
+  items.sort((a,b)=>a.dist-b.dist);
+  mc.innerHTML=bF()+`<div class="sbar"><span class="stxt">📌 由近到遠</span><span class="cnt">找到 ${items.length} 個 🎯</span></div>`+
+    (items.length?`<div class="clist">${items.map((a,i)=>bCard(a,i)).join('')}</div>`
+    :`<div class="swrap"><span class="semi">🔍</span><div class="stitle">沒有符合的活動</div><div class="stext">試試調整篩選條件或把距離調大 😊</div></div>`);
+}
+
+function bF(){
+  const activeCount=[ageF,priceF,regF,envF,typeF].filter(v=>v!=='all').length+(ivyF?1:0)+(showAll?1:0);
+  const resetBar=activeCount>0?`<div style="display:flex;align-items:center;justify-content:space-between;background:#fff3f3;border:2px solid #FF6B6B;border-radius:12px;padding:10px 14px;margin-bottom:12px"><span style="font-size:13px;color:#FF6B6B;font-weight:900">⚠️ 目前有 ${activeCount} 個篩選條件</span><button onclick="resetAll()" style="background:#FF6B6B;color:#fff;border:none;border-radius:8px;padding:6px 14px;font-size:12px;font-weight:900;cursor:pointer">✕ 全部清除</button></div>`:'';
+  const ages=[{v:'0-2',l:'0–2歲'},{v:'2-4',l:'2–4歲'},{v:'4-6',l:'4–6歲'},{v:'6-8',l:'6–8歲'}];
+  const prices=[{v:'free',l:'免費 🎁',c:'c-free'},{v:'low',l:'$300以下',c:'c-low'},{v:'mid',l:'$300–500',c:'c-mid'},{v:'high',l:'$500+',c:'c-high'}];
+  const regs=[{v:'台北市',l:'台北市'},{v:'新北市',l:'新北市'},{v:'桃園市',l:'桃園市'},{v:'基隆市',l:'基隆市'},{v:'新竹',l:'新竹'},{v:'宜蘭',l:'宜蘭'},{v:'台中市',l:'台中市'},{v:'南投縣',l:'南投'},{v:'彰化縣',l:'彰化'},{v:'台南市',l:'台南市'},{v:'高雄市',l:'高雄市'},{v:'屏東縣',l:'屏東'},{v:'花蓮縣',l:'花蓮'}];
+  const envs=[{v:'indoor',l:'🏠 室內'},{v:'outdoor',l:'🌳 戶外'}];
+  const types=[
+    {v:'水族館',l:'🐠 水族館'},{v:'昆蟲館',l:'🐛 昆蟲館'},
+    {v:'動物園',l:'🦁 動物園'},{v:'動物農場',l:'🐄 動物農場'},
+    {v:'美術館',l:'🎨 美術館'},{v:'博物館',l:'🏺 博物館'},
+    {v:'遊樂園',l:'🎡 遊樂園'},{v:'科學教育',l:'🔭 科學'},
+    {v:'親子影城',l:'🎬 親子影城'},{v:'職業體驗',l:'👨‍🍳 職業體驗'},
+    {v:'DIY體驗',l:'✂️ DIY手作'},{v:'圖書館',l:'📚 圖書館'},
+    {v:'玩水',l:'💧 玩水戲水'},{v:'戶外',l:'🌳 戶外景點'},
+  ];
+  return `<div class="fpanel">${resetBar}
+    <div class="fsec"><div class="ftitle"><div class="fdot" style="background:var(--lav)"></div>適合年齡</div>
+    <div class="chips">${ages.map(g=>`<div class="chip c-age ${ageF===g.v?'on':''}" onclick="tA('${g.v}')">${g.l}</div>`).join('')}</div></div>
+    <div class="fsec"><div class="ftitle"><div class="fdot" style="background:var(--mint)"></div>室內 / 戶外</div>
+    <div class="chips">${envs.map(g=>`<div class="chip c-loc ${envF===g.v?'on':''}" onclick="tE('${g.v}')">${g.l}</div>`).join('')}</div></div>
+    <div class="fsec"><div class="ftitle"><div class="fdot" style="background:var(--lav)"></div>景點類型</div>
+    <div class="chips">${types.map(g=>`<div class="chip c-age ${typeF===g.v?'on':''}" onclick="tT('${g.v}')">${g.l}</div>`).join('')}</div></div>
+    <div class="fsec"><div class="ftitle"><div class="fdot" style="background:var(--grass)"></div>票價區間</div>
+    <div class="chips">${prices.map(g=>`<div class="chip ${g.c} ${priceF===g.v?'on':''}" onclick="tP('${g.v}')">${g.l}</div>`).join('')}</div></div>
+    <div class="fsec"><div class="ftitle"><div class="fdot" style="background:var(--coral)"></div>地區</div>
+    <div class="chips">${regs.map(g=>`<div class="chip c-reg ${regF===g.v?'on':''}" onclick="tR('${g.v}')">${g.l}</div>`).join('')}</div></div>
+    <div class="fsec"><div class="ftitle"><div class="fdot" style="background:#FF69B4"></div>Ivy 分享</div><div class="chips"><div class="chip ${ivyF?'on':''}" onclick="toggleIvy()" style="background:${ivyF?'#FF69B4':'#fff0f5'};color:${ivyF?'#fff':'#FF69B4'};border:2px solid #FF69B4;font-weight:900">🌸 只看Ivy分享</div></div></div><div class="fsec"><div class="ftitle"><div class="fdot" style="background:var(--ocean)"></div>搜尋距離</div>
+    <div class="srow"><span class="slbl">5km</span><input type="range" min="5" max="80" step="5" value="${radius}" oninput="setRad(this.value)"><span class="slbl">80km</span><span class="sval" id="rv">${radius} km</span></div><div style="margin-top:8px"><div class="chip c-age ${showAll?'on':''}" id="allBtn" onclick="toggleAll()" style="font-size:13px">🌏 全台顯示</div></div></div>
+  </div>`;
+}
+
+function bCard(a,i){
+  const isSaved=saved.includes(a.id),isOpen=expanded[a.id];
+  const eCls=a.env==='indoor'?'tp-in':'tp-out',eLbl=a.env==='indoor'?'🏠 室內':'🌳 戶外';
+  const tagH=a.tags.map(t=>{
+    const c=t.includes('免費')?'tp-free':t.includes('付費')?'tp-paid':t.includes('歲')||t.includes('+')?'tp-age':t.includes('市')||t==='宜蘭'||t==='新竹'?'tp-reg':'tp-date';
+    return `<span class="tpill ${c}">${t}</span>`;
+  }).join('')+`<span class="tpill ${eCls}">${eLbl}</span>`;
+  const det=isOpen?`<div class="cdet show" id="d${a.id}">
+    <div class="drow"><span class="dico">📍</span><span class="dtxt">${a.addr}</span></div>
+    <div class="drow"><span class="dico">📅</span><span class="dtxt"><strong>${a.dates}</strong></span></div>
+    <div class="drow"><span class="dico">🕘</span><span class="dtxt">${a.hours}</span></div>
+    <div class="drow"><span class="dico">🎫</span><span class="dtxt" style="white-space:pre-line">${a.ticket}</span></div>
+    <div class="hbox"><strong>👶 0–8歲適合：</strong> ${a.note}</div>
+    <div class="abtns">
+      <a class="btngo" href="${a.url}" target="_blank" onclick="event.stopPropagation()">🔗 前往官網</a>
+      <a class="btngo" style="background:var(--ocean);border-bottom-color:#1a7fa8" href="https://maps.google.com/?q=${encodeURIComponent(a.mQ)}" target="_blank" onclick="event.stopPropagation()">🗺️ 地圖</a>
+      ${a.ivyUrl?`<a class="btngo" style="background:#FF69B4;border-bottom-color:#c44d8a" href="${a.ivyUrl}" target="_blank" onclick="event.stopPropagation()">🌸 Ivy分享</a>`:''}
+      <button class="btnstar ${isSaved?'on':''}" onclick="tSv(event,${a.id})">${isSaved?'⭐':'☆'}</button>
+    </div>
+  </div>`:`<div class="cdet" id="d${a.id}"></div>`;
+  return `<div class="acard" id="c${a.id}" style="animation-delay:${Math.min(i*55,280)}ms" onclick="tCard(${a.id})">
+    <div class="cstripe" style="background:${a.color}"></div>
+    <div class="cbody">
+      <div class="ctop"><div class="ctitle">${a.emoji} ${a.name}</div><div class="dbub">${fD(a.dist)}</div></div>
+      <div class="ctags">${tagH}</div>
+      <div class="cfoot"><span class="caddr">${a.addr.slice(0,15)}…</span><svg class="chev ${isOpen?'open':''}" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="4 6 8 10 12 6"/></svg></div>
+    </div>${det}</div>`;
+}
+
+function tCard(id){expanded[id]=!expanded[id];render();if(expanded[id])setTimeout(()=>{const el=document.getElementById('c'+id);if(el)el.scrollIntoView({behavior:'smooth',block:'nearest'})},60)}
+function tSv(e,id){e.stopPropagation();if(saved.includes(id)){saved=saved.filter(s=>s!==id);toast('取消收藏 😢')}else{saved.push(id);toast('收藏成功！⭐')}localStorage.setItem('kr3',JSON.stringify(saved));render()}
+
+function rSaved(){
+  const mc=document.getElementById('mc');
+  const items=D.filter(a=>saved.includes(a.id)).map(a=>({...a,dist:uLat?gD(uLat,uLng,a.lat,a.lng):0}));
+  if(!items.length){mc.innerHTML=`<div class="swrap"><span class="semi">⭐</span><div class="stitle">還沒有收藏活動</div><div class="stext">展開活動卡片點「☆ 收藏」<br>就會出現在這裡 😊</div></div>`;return}
+  mc.innerHTML=`<div class="sbar"><span class="stxt">⭐ 我的收藏</span><span class="cnt">${items.length} 個 🎯</span></div><div class="clist">${items.map((a,i)=>bCard(a,i)).join('')}</div>`;
+}
+
+function rInfo(){
+  document.getElementById('mc').innerHTML=`<div class="swrap" style="text-align:left;padding:20px 16px">
+    <div style="font-family:Nunito,sans-serif;font-size:19px;font-weight:900;text-align:center;margin-bottom:16px">💡 使用說明</div>
+    ${[['📍','開啟定位','右上角按鈕，自動計算距離由近到遠排序'],['👶','年齡篩選','0–2 / 2–4 / 4–6 / 6–8 歲四個區間，過濾適合活動'],['🏠','室內/戶外','下雨天選室內，好天氣選戶外，可同時搭配其他條件篩選'],['🎫','票價篩選','免費 / $300以下 / $300–500 / $500+ 四個區間'],['🗺️','Google Maps','展開活動卡片，點「導航」直接開地圖'],['🍽️','親子餐廳分頁','底部點「親子餐廳」，即時顯示 Google Maps 台北市／新北市親子餐廳，資料由 Google 自動更新'],['⭐','收藏','點☆收藏，關掉頁面也不消失，在「收藏」頁面查看']].map(([ic,t,d])=>`<div style="display:flex;gap:12px;margin-bottom:13px"><span style="font-size:20px;flex-shrink:0">${ic}</span><div><div style="font-family:Nunito,sans-serif;font-weight:900;font-size:14px;margin-bottom:2px">${t}</div><div style="font-size:12px;color:var(--muted);line-height:1.6">${d}</div></div></div>`).join('')}
+    <div style="margin-top:12px;padding:12px;background:var(--sky);border-radius:12px;font-size:12px;color:var(--muted);line-height:1.75">📋 <strong>涵蓋地區：台北市、新北市、基隆市、桃園市、新竹、宜蘭、台中、南投、彰化、台南、高雄、屏東、花蓮（共 ${D.length} 個景點）<br>📅 <strong>資料更新：2026/04/05<br>⚠️ 前往前請至官網再次確認最新資訊與票價</div>
+  </div>`;
+}
+
+function rComing(icon, title, desc){
+  const mc=document.getElementById('mc');
+  mc.innerHTML=`<div class="swrap" style="padding:60px 20px">
+    <span style="font-size:64px;display:block;margin-bottom:16px">${icon}</span>
+    <div class="stitle" style="font-size:22px;margin-bottom:12px">${title}</div>
+    <div style="background:#fff8e7;border:2px dashed #FFD93D;border-radius:16px;padding:20px;margin:16px 0;text-align:center">
+      <div style="font-size:28px;margin-bottom:8px">🚧</div>
+      <div style="font-family:Nunito,sans-serif;font-weight:900;font-size:16px;color:#FF9A3C;margin-bottom:8px">建構中，敬請期待！</div>
+      <div style="font-size:13px;color:#888;line-height:1.6">${desc}</div>
+    </div>
+    <div style="font-size:13px;color:#aaa;margin-top:8px">Coming Soon ✨</div>
+  </div>`;
+}
+function rRest(){
+  const mc=document.getElementById('mc');
+  const regions=[
+    {id:'tp',label:'📍 台北市',q:'台北市親子餐廳',lat:25.0330,lng:121.5654,zoom:13},
+    {id:'nt',label:'🌿 新北市',q:'新北市親子餐廳',lat:25.0169,lng:121.4627,zoom:12},
+  ];
+  let active=mc.dataset.restRegion||'tp';
+  const cur=regions.find(r=>r.id===active)||regions[0];
+  const mapSrc=`https://www.google.com/maps/embed/v1/search?key=AIzaSyD-9tSrke72PouQMnMX-a7eZSW0jkFmBWY&q=${encodeURIComponent(cur.q)}&center=${cur.lat},${cur.lng}&zoom=${cur.zoom}&language=zh-TW`;
+  mc.innerHTML=`
+    <div style="padding:12px 12px 8px;position:relative;z-index:1">
+      <div style="background:var(--cloud);border-radius:var(--r);padding:13px 14px;border:2px solid var(--border);box-shadow:0 4px 0 rgba(0,0,0,.05)">
+        <div style="font-family:Nunito,sans-serif;font-size:11px;font-weight:900;color:var(--muted);letter-spacing:.5px;margin-bottom:8px;display:flex;align-items:center;gap:5px">
+          <div style="width:7px;height:7px;border-radius:50%;background:var(--coral);flex-shrink:0"></div>選擇地區
+        </div>
+        <div style="display:flex;gap:6px;flex-wrap:wrap">
+          ${regions.map(r=>`<div onclick="switchRest('${r.id}')" style="padding:6px 14px;border-radius:999px;font-size:13px;font-weight:800;font-family:Nunito,sans-serif;cursor:pointer;transition:all .15s;user-select:none;${active===r.id?'background:var(--coral);color:#fff;border:2px solid var(--coral)':'background:var(--coral-lt);color:var(--coral-dk);border:2px solid #ffc0c0'}">${r.label}</div>`).join('')}
+        </div>
+        <div style="margin-top:10px;padding:8px 10px;background:var(--sky);border-radius:var(--r-sm);font-size:11px;color:var(--muted);line-height:1.7">
+          🔍 顯示 Google Maps 即時搜尋結果，資料由 Google 提供，評分、電話、照片都是最新的<br>
+          📌 點地圖上任一餐廳，可直接查看詳情或開啟導航
+        </div>
+      </div>
+    </div>
+    <div style="padding:0 12px 12px;position:relative;z-index:1">
+      <div style="border-radius:var(--r);overflow:hidden;border:2px solid var(--border);box-shadow:0 4px 0 rgba(0,0,0,.05)">
+        <iframe
+          id="rest-map"
+          src="${mapSrc}"
+          width="100%" height="520"
+          style="border:0;display:block"
+          allowfullscreen loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+      </div>
+      <div style="margin-top:10px;background:var(--cloud);border-radius:var(--r);padding:13px 14px;border:2px solid var(--border);box-shadow:0 4px 0 rgba(0,0,0,.05)">
+        <div style="font-family:Nunito,sans-serif;font-size:13px;font-weight:800;margin-bottom:8px;color:var(--text)">🍽️ 找親子餐廳小技巧</div>
+        ${[
+          ['🪑','有兒童座椅','搜尋時加上「兒童椅」「baby chair」'],
+          ['🎪','附設遊戲區','加上「遊戲室」「球池」「溜滑梯」'],
+          ['🍼','嬰兒友善','加上「哺乳室」「推車友善」'],
+          ['🌟','查評分','Google 評分 4.0 以上 + 近期留言有小孩照片的優先']
+        ].map(([ic,t,d])=>`<div style="display:flex;gap:10px;margin-bottom:9px;align-items:flex-start">
+          <span style="font-size:16px;flex-shrink:0">${ic}</span>
+          <div><div style="font-size:12px;font-weight:700;color:var(--text);margin-bottom:1px">${t}</div>
+          <div style="font-size:11px;color:var(--muted);line-height:1.55">${d}</div></div>
+        </div>`).join('')}
+        <div style="margin-top:10px;border-top:1.5px dashed var(--border);padding-top:10px">
+          <a href="https://www.google.com/maps/search/${encodeURIComponent(cur.q)}/" target="_blank"
+            style="display:block;text-align:center;padding:10px;background:var(--coral);color:#fff;border-radius:var(--r-sm);font-size:13px;font-weight:800;font-family:Nunito,sans-serif;text-decoration:none;border-bottom:3px solid var(--coral-dk)">
+            🗺️ 在 Google Maps App 完整搜尋
+          </a>
+        </div>
+      </div>
+    </div>`;
+  mc.dataset.restRegion=active;
+}
+
+function switchRest(id){
+  const mc=document.getElementById('mc');
+  mc.dataset.restRegion=id;
+  rRest();
+}
+
+function rHome(){
+  document.getElementById('mc').innerHTML=`<div class="swrap" style="text-align:left;padding:20px 16px">
+    <div style="text-align:center;margin-bottom:20px">
+      <div style="font-size:48px;margin-bottom:8px">🎈</div>
+      <div style="font-family:Nunito,sans-serif;font-size:22px;font-weight:900;color:var(--text)">親子活動雷達</div>
+      <div style="font-size:13px;color:var(--muted);margin-top:4px">北台灣 ${D.length} 個親子景點，隨時找到最近的好去處</div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px">
+      ${[
+        {ico:'📍',t:'附近景點',d:'開啟定位，找最近的親子活動',tab:'nearby',c:'var(--coral)'},
+        {ico:'⭐',t:'我的收藏',d:'查看你收藏的景點清單',tab:'saved',c:'var(--lav)'},
+        {ico:'📝',t:'部落格',d:'軟糖媽咪的親子日誌（即將上線）',tab:'blog',c:'var(--mint)'},
+        {ico:'💡',t:'使用說明',d:'了解如何使用雷達找景點',tab:'info',c:'var(--ocean)'},
+      ].map(b=>`<div onclick="${b.tab==='blog'?'goBlog()':'goTab(\''+b.tab+'\')'}" style="background:#fff;border-radius:16px;padding:16px;border:2px solid var(--border);box-shadow:0 4px 0 rgba(0,0,0,.05);cursor:pointer;transition:transform .15s" onmousedown="this.style.transform='scale(.97)'" onmouseup="this.style.transform=''">
+        <div style="font-size:24px;margin-bottom:8px">${b.ico}</div>
+        <div style="font-family:Nunito,sans-serif;font-weight:900;font-size:14px;color:${b.c};margin-bottom:4px">${b.t}</div>
+        <div style="font-size:11px;color:var(--muted);line-height:1.5">${b.d}</div>
+      </div>`).join('')}
+    </div>
+    <div style="background:linear-gradient(135deg,var(--coral-lt),var(--lav-lt));border-radius:16px;padding:16px;border:2px solid var(--border)">
+      <div style="font-family:Nunito,sans-serif;font-weight:900;font-size:14px;margin-bottom:8px">🌟 今日推薦</div>
+      <div style="font-size:12px;color:var(--muted);line-height:1.8">
+        📍 <strong>台北→附近景點</strong>點「附近」開啟定位<br>
+        🎉 <strong>長榮海事博物館</strong>4–6月全館免費！<br>
+        🌸 <strong>文山農場</strong>現在魯冰花盛開中<br>
+        💧 <strong>夏季玩水</strong>6月起戲水區陸續開放
+      </div>
+    </div>
+  </div>`;
+}
+
+function goTab(t){
+  tab=t;
+  ['nearby','saved','info'].forEach(x=>{
+    const el=document.getElementById('nb-'+x);
+    if(el)el.className='nbtn'+(x===t?' on':'');
+  });
+  render();
+}
+
+function goBlog(){
+  toast('部落格即將上線，敬請期待！📝');
+}
+
+function toast(msg){const el=document.getElementById('toast');el.textContent=msg;el.classList.add('show');setTimeout(()=>el.classList.remove('show'),2200)}
+render();
+</script>
+</body>
+</html>
