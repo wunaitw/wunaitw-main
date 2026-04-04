@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-<title>親子活動雷達 🎈</title>
+<title>軟糖媽咪Ivy育兒探索 🎈</title>
 <!-- Google AdSense -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4396964540234247" crossorigin="anonymous"></script>
 <!-- Google tag (gtag.js) -->
@@ -115,7 +115,7 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;heigh
   <div class="hdr-row">
     <div class="logo-wrap">
       <div class="logo-ball">🎈</div>
-      <div class="app-name">親子<b>活動</b>雷達</div>
+      <div class="app-name">軟糖媽咪<b>Ivy</b>育兒探索</div>
     </div>
     <div class="loc-pill" onclick="reqLoc()">
       <div class="ldot" id="ld"></div>
@@ -126,7 +126,7 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;heigh
 <div id="mc"></div>
 <div class="toast" id="toast"></div>
 <div class="bnav">
-  <button class="nbtn on" id="nb-nearby" onclick="goTab('nearby')"><span class="nico">📍</span><span class="nlbl">附近</span></button>
+  <button class="nbtn on" id="nb-nearby" onclick="goTab('nearby')"><span class="nico">📍</span><span class="nlbl">景點</span></button>
   <button class="nbtn" id="nb-rest" onclick="goTab('rest')"><span class="nico">🍽️</span><span class="nlbl">餐廳</span></button>
   <button class="nbtn" id="nb-stay" onclick="goTab('stay')"><span class="nico">🏨</span><span class="nlbl">住宿</span></button>
   <button class="nbtn" id="nb-goods" onclick="goTab('goods')"><span class="nico">🛍️</span><span class="nlbl">育兒好物</span></button>
@@ -227,7 +227,7 @@ const D=[
 ];
 
 let uLat=null,uLng=null;
-let radius=60,ageF='all',priceF='all',regF='all',envF='all',typeF='all',showAll=false,ivyF=false;
+let radius=60,ageF='all',priceF='all',regF='all',envF='all',typeF='all',showAll=true,ivyF=false;
 let expanded={},saved=JSON.parse(localStorage.getItem('kr3')||'[]'),tab='nearby';
 
 function d2r(d){return d*Math.PI/180}
@@ -238,12 +238,12 @@ function reqLoc(){
   if(!navigator.geolocation){toast('瀏覽器不支援定位 😅');return}
   sL('…');
   navigator.geolocation.getCurrentPosition(
-    p=>{uLat=p.coords.latitude;uLng=p.coords.longitude;sL('on');render()},
+    p=>{uLat=p.coords.latitude;uLng=p.coords.longitude;showAll=false;sL('on');render()},
     ()=>{sL('x');toast('請允許定位權限後重試 🔓')},
     {enableHighAccuracy:true,timeout:12000}
   );
 }
-function useDemo(){uLat=25.0123;uLng=121.4686;sL('demo');render()}
+function useDemo(){uLat=25.0123;uLng=121.4686;showAll=false;sL('demo');render()}
 function sL(s){
   document.getElementById('ld').className='ldot'+(s==='on'?' on':s==='demo'?' demo':'');
   document.getElementById('lt').textContent={on:'定位成功',demo:'板橋示範','…':'定位中…',x:'定位失敗'}[s]||'開啟定位';
@@ -281,7 +281,33 @@ function render(){
   if(tab==='stay'){rComing('🏨','住宿','精選親子友善住宿，依縣市推薦，附近景點一次搞定！');return}
   if(tab==='goods'){rComing('🛍️','育兒好物','Ivy精選好物推薦，含媽媽包、玩具、外出神器！');return}
   const mc=document.getElementById('mc');
-  if(!uLat){mc.innerHTML=`<div class="swrap"><span class="semi">🗺️</span><div class="stitle">找你附近的親子活動！</div><div class="stext">開啟定位後自動計算距離<br>幫你找出最近的活動 📍</div><button class="fbtn" onclick="reqLoc()">📍 開啟定位</button><button class="fbtn sec" onclick="useDemo()">🏠 板橋示範模式</button></div>`;return}
+  if(!uLat){
+    // 隨機挑5個景點當推薦
+    const picks=D.slice().sort(()=>Math.random()-0.5).slice(0,5);
+    const pickHTML=picks.map(a=>{
+      const pr=a.pR==='free'?'免費':'付費';
+      return '<div style="background:#fff;border-radius:14px;padding:12px 14px;margin-bottom:10px;border:2px solid var(--border);display:flex;align-items:center;gap:12px">'
+        +'<span style="font-size:24px">'+a.emoji+'</span>'
+        +'<div style="flex:1;min-width:0">'
+        +'<div style="font-family:Nunito,sans-serif;font-weight:900;font-size:14px;color:var(--text);margin-bottom:2px">'+a.name+'</div>'
+        +'<div style="font-size:11px;color:var(--muted)">'+a.region+' · '+a.dates.slice(0,15)+'</div>'
+        +'</div>'
+        +'<span style="font-size:11px;color:var(--muted);white-space:nowrap">'+pr+'</span>'
+        +'</div>';
+    }).join('');
+    mc.innerHTML=`
+      <div style="padding:16px 12px 0">
+        <div style="text-align:center;margin-bottom:16px">
+          <span style="font-size:48px;display:block;margin-bottom:8px">📍</span>
+          <div style="font-family:Nunito,sans-serif;font-weight:900;font-size:18px;color:var(--text);margin-bottom:6px">找你附近的親子活動！</div>
+          <div style="font-size:13px;color:var(--muted);margin-bottom:14px">開啟定位後自動計算距離，由近到遠排序</div>
+          <button class="fbtn" onclick="reqLoc()" style="width:100%;margin-bottom:8px">📍 開啟定位</button>
+          <button class="fbtn sec" onclick="useDemo()" style="width:100%">🏠 板橋示範模式</button>
+        </div>
+        <div style="font-family:Nunito,sans-serif;font-weight:900;font-size:14px;color:var(--text);margin-bottom:10px">✨ 今日隨機推薦</div>
+        ${pickHTML}
+      </div>`;
+    return}
   let items=showAll?D.map(a=>({...a,dist:gD(uLat,uLng,a.lat,a.lng)})):D.map(a=>({...a,dist:gD(uLat,uLng,a.lat,a.lng)})).filter(a=>a.dist<=radius);
   items=applyF(items);
   items.sort((a,b)=>a.dist-b.dist);
@@ -382,104 +408,132 @@ function rComing(icon, title, desc){
     <div style="font-size:13px;color:#aaa;margin-top:8px">Coming Soon ✨</div>
   </div>`;
 }
-function rRest(){
-  const mc=document.getElementById('mc');
-  const regions=[
-    {id:'tp',label:'📍 台北市',q:'台北市親子餐廳',lat:25.0330,lng:121.5654,zoom:13},
-    {id:'nt',label:'🌿 新北市',q:'新北市親子餐廳',lat:25.0169,lng:121.4627,zoom:12},
-  ];
-  let active=mc.dataset.restRegion||'tp';
-  const cur=regions.find(r=>r.id===active)||regions[0];
-  const mapSrc=`https://www.google.com/maps/embed/v1/search?key=AIzaSyD-9tSrke72PouQMnMX-a7eZSW0jkFmBWY&q=${encodeURIComponent(cur.q)}&center=${cur.lat},${cur.lng}&zoom=${cur.zoom}&language=zh-TW`;
-  mc.innerHTML=`
-    <div style="padding:12px 12px 8px;position:relative;z-index:1">
-      <div style="background:var(--cloud);border-radius:var(--r);padding:13px 14px;border:2px solid var(--border);box-shadow:0 4px 0 rgba(0,0,0,.05)">
-        <div style="font-family:Nunito,sans-serif;font-size:11px;font-weight:900;color:var(--muted);letter-spacing:.5px;margin-bottom:8px;display:flex;align-items:center;gap:5px">
-          <div style="width:7px;height:7px;border-radius:50%;background:var(--coral);flex-shrink:0"></div>選擇地區
-        </div>
-        <div style="display:flex;gap:6px;flex-wrap:wrap">
-          ${regions.map(r=>`<div onclick="switchRest('${r.id}')" style="padding:6px 14px;border-radius:999px;font-size:13px;font-weight:800;font-family:Nunito,sans-serif;cursor:pointer;transition:all .15s;user-select:none;${active===r.id?'background:var(--coral);color:#fff;border:2px solid var(--coral)':'background:var(--coral-lt);color:var(--coral-dk);border:2px solid #ffc0c0'}">${r.label}</div>`).join('')}
-        </div>
-        <div style="margin-top:10px;padding:8px 10px;background:var(--sky);border-radius:var(--r-sm);font-size:11px;color:var(--muted);line-height:1.7">
-          🔍 顯示 Google Maps 即時搜尋結果，資料由 Google 提供，評分、電話、照片都是最新的<br>
-          📌 點地圖上任一餐廳，可直接查看詳情或開啟導航
-        </div>
-      </div>
-    </div>
-    <div style="padding:0 12px 12px;position:relative;z-index:1">
-      <div style="border-radius:var(--r);overflow:hidden;border:2px solid var(--border);box-shadow:0 4px 0 rgba(0,0,0,.05)">
-        <iframe
-          id="rest-map"
-          src="${mapSrc}"
-          width="100%" height="520"
-          style="border:0;display:block"
-          allowfullscreen loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade">
-        </iframe>
-      </div>
-      <div style="margin-top:10px;background:var(--cloud);border-radius:var(--r);padding:13px 14px;border:2px solid var(--border);box-shadow:0 4px 0 rgba(0,0,0,.05)">
-        <div style="font-family:Nunito,sans-serif;font-size:13px;font-weight:800;margin-bottom:8px;color:var(--text)">🍽️ 找親子餐廳小技巧</div>
-        ${[
-          ['🪑','有兒童座椅','搜尋時加上「兒童椅」「baby chair」'],
-          ['🎪','附設遊戲區','加上「遊戲室」「球池」「溜滑梯」'],
-          ['🍼','嬰兒友善','加上「哺乳室」「推車友善」'],
-          ['🌟','查評分','Google 評分 4.0 以上 + 近期留言有小孩照片的優先']
-        ].map(([ic,t,d])=>`<div style="display:flex;gap:10px;margin-bottom:9px;align-items:flex-start">
-          <span style="font-size:16px;flex-shrink:0">${ic}</span>
-          <div><div style="font-size:12px;font-weight:700;color:var(--text);margin-bottom:1px">${t}</div>
-          <div style="font-size:11px;color:var(--muted);line-height:1.55">${d}</div></div>
-        </div>`).join('')}
-        <div style="margin-top:10px;border-top:1.5px dashed var(--border);padding-top:10px">
-          <a href="https://www.google.com/maps/search/${encodeURIComponent(cur.q)}/" target="_blank"
-            style="display:block;text-align:center;padding:10px;background:var(--coral);color:#fff;border-radius:var(--r-sm);font-size:13px;font-weight:800;font-family:Nunito,sans-serif;text-decoration:none;border-bottom:3px solid var(--coral-dk)">
-            🗺️ 在 Google Maps App 完整搜尋
-          </a>
-        </div>
-      </div>
-    </div>`;
-  mc.dataset.restRegion=active;
+const R=[
+{id:'r1',name:'甲蟲秘境親子餐廳',region:'台北市',lat:25.1018,lng:121.5269,emoji:'🪲',addr:'台北市士林區克強路28號1樓',hours:'週三–日 11:00–21:00（週一二休）',price:'餐廳消費制，無入場費',note:'3歲以上 ✅，甲蟲主題裝潢超特別！球池溜滑梯，甲蟲造型鬆餅必點，假日可近距離觸摸獨角仙鍬形蟲，爸媽可以悠閒用餐',tags:['昆蟲主題','球池','溜滑梯'],url:'https://www.facebook.com/BeetleSecret'},
+{id:'r2',name:'大樹先生的家 Mr.Tree',region:'台北市',lat:25.0547,lng:121.5446,emoji:'🌳',addr:'台北市大安區仁愛路四段300巷18號1樓',hours:'每日 10:00–18:00（分時段入場）',price:'兒童 $700 / 大人 $200（含低消）',note:'0歲起 ✅，超寬敞沙坑＋球池＋扮家家酒，常換主題佈置超好拍，明星爸媽最愛，辦抓周生日派對熱門選擇',tags:['沙坑','球池','0歲起'],url:'https://www.facebook.com/MrTreehouse'},
+{id:'r3',name:'童鍋親子火鍋餐廳',region:'台北市',lat:25.0420,lng:121.5340,emoji:'🍲',addr:'台北市大安區復興南路一段107巷5弄6號',hours:'每日 11:30–21:30',price:'火鍋套餐 $400起 / 兒童餐 $250起',note:'2歲以上 ✅，韓系白色風格，大球池＋溜滑梯，蔬菜熬製健康湯底寶寶也能喝，家長邊吃火鍋邊顧小孩，超輕鬆',tags:['火鍋','球池','溜滑梯'],url:'https://www.facebook.com/kidspot.hotpot'},
+
+{id:'r5',name:'象園咖啡 Elephant Garden',region:'台北市',lat:25.0815,lng:121.5779,emoji:'🐘',addr:'台北市內湖區碧湖路20號',hours:'每日 11:00–21:00',price:'大人低消 $200 / 兒童免低消',note:'2歲以上 ✅，碧湖公園對面湖景餐廳！戶外遊樂設施，大象造型雞蛋糕必吃，寵物友善，湖景超美拍照一流',tags:['湖景','戶外遊樂','寵物友善'],url:'https://www.facebook.com/ElephantGarden2015'},
+{id:'r6',name:'公主樂糕殿（樂高主題親子餐廳）',region:'新北市',lat:24.9753,lng:121.4456,emoji:'🧱',addr:'新北市土城區金城路二段247號',hours:'週二–五 11:00–20:00，週六日 10:00–20:00（週一休）',price:'兒童 $680 / 大人低消 $200 含樂高積木遊戲時間',note:'3歲以上 ✅，全台最大樂高親子餐廳！7000坪超大空間，餐廳、遊戲區全樂高元素，樂高迷必訪，假日建議預約',tags:['樂高主題','積木','大空間'],url:'https://www.facebook.com/PrincessLego'},
+{id:'r7',name:'BabyWonder Land 童話愛樂園',region:'新北市',lat:25.0125,lng:121.5145,emoji:'🏰',addr:'新北市永和區得和路10號',hours:'三時段：11:00、14:30、18:00（各2.5小時）',price:'2–12歲 $380 / 2歲以下 $100清潔費 12歲以上 $280低消',note:'0歲起 ✅，童話風格超夢幻！三時段入場制，換場全館消毒超安心，球池、溜滑梯、扮家家酒，捷運永安市場站可到',tags:['童話風','球池','0歲起'],url:'https://www.facebook.com/BabyWonderLand.TW'},
+{id:'r8',name:'森林島嶼親子餐廳',region:'新北市',lat:25.0169,lng:121.4627,emoji:'🌿',addr:'新北市板橋區新站路16號3樓（板橋車站附近）',hours:'每日 10:00–20:00',price:'兒童 $580 / 大人低消 $250 含遊戲時間，可延時加購',note:'1歲起 ✅，板橋車站旁超方便！叢林主題，大型溜滑梯＋攀爬區＋沙坑，幼童區有軟墊安全隔離，餐點評價不錯',tags:['叢林主題','溜滑梯','攀爬'],url:'https://www.facebook.com/ForestIslandKids'},
+{id:'r9',name:'淘憩時光親子餐廳',region:'台北市',lat:25.0478,lng:121.5170,emoji:'☕',addr:'台北市中山區（請查粉專確認最新地址）',hours:'每日 11:00–20:00',price:'大人低消 $200 / 未滿6歲無低消',note:'0歲起 ✅，6歲以下免低消！提供尿布、哺乳室，有寶寶粥兒童套餐，適合帶最小的寶寶來，常辦抓周生日派對',tags:['0歲起','哺乳室','尿布台'],url:'https://www.facebook.com/taochikids'},
+{id:'r10',name:'NICE TO MEET U newborn&cafe',region:'台北市',lat:25.0539,lng:121.5406,emoji:'👶',addr:'台北市松山區（請查粉專確認最新地址）',hours:'每日 10:00–18:00（週一休）',price:'輕食咖啡 $150起',note:'0歲起 ✅，新生兒最友善！Liwagon嬰兒床＋iPad監控，溫奶器消毒機尿布台一應俱全，還有寶寶副食品，帶新生兒出門的首選',tags:['新生兒友善','0歲起','哺乳室'],url:'https://www.facebook.com/NICETOMEETUTWN'},
+];
+
+function distR(a){if(!uLat)return 99999;return gD(uLat,uLng,a.lat,a.lng)}
+
+function bRestCard(a){
+  const dist=distR(a);
+  const tags=a.tags.map(t=>'<span class="tpill tp-date">'+t+'</span>').join('');
+  const distTxt=uLat?fD(dist):'📍';
+  const hrs=a.hours.split('（')[0];
+  const prc=a.price.split('\n')[0];
+  const mapUrl='https://maps.google.com/?q='+encodeURIComponent(a.name);
+  return '<div class="acard" style="margin-bottom:12px">'
+    +'<div class="cstripe" style="background:#FF69B4"></div>'
+    +'<div class="cbody">'
+    +'<div class="ctop"><div class="ctitle">'+a.emoji+' '+a.name+'</div><div class="dbub">'+distTxt+'</div></div>'
+    +'<div class="ctags">'+tags+'<span class="tpill tp-reg">'+a.region+'</span></div>'
+    +'<div style="font-size:12px;color:var(--muted);margin:6px 0">'+a.addr.slice(0,25)+'…</div>'
+    +'<div style="font-size:12px;color:var(--muted);margin-bottom:6px">⏰ '+hrs+'</div>'
+    +'<div style="font-size:12px;color:#FF9A3C;margin-bottom:8px;font-weight:700">🎫 '+prc+'</div>'
+    +'<div style="font-size:12px;color:var(--text);margin-bottom:10px;line-height:1.5">'+a.note+'</div>'
+    +'<div class="abtns">'
+    +'<a class="btngo" href="'+a.url+'" target="_blank" style="background:#FF69B4;border-bottom-color:#c44d8a">🔗 官網/粉專</a>'
+    +'<a class="btngo" style="background:var(--ocean);border-bottom-color:#1a7fa8" href="'+mapUrl+'" target="_blank">🗺️ 地圖</a>'
+    +'</div>'
+    +'</div>'
+    +'</div>';
 }
 
-function switchRest(id){
+let restRegF='all', restRadius=60, restShowAll=true;
+
+function rRestFilter(){
+  const regs=[
+    {v:'all',l:'全部'},
+    {v:'台北市',l:'台北市'},
+    {v:'新北市',l:'新北市'},
+  ];
+  const activeReg=restRegF;
+  const regHTML=regs.map(r=>{
+    const on=r.v===activeReg;
+    return '<div class="chip c-age'+(on?' on':'')+'" onclick="restRegF=\''+r.v+'\';rRest()" style="'+(on?'':'')+'">'+r.l+'</div>';
+  }).join('');
+
+  const showAllOn=restShowAll;
+  return '<div class="fpanel" style="margin-bottom:0">'
+    +'<div class="fsec"><div class="ftitle"><div class="fdot" style="background:var(--coral)"></div>地區</div>'
+    +'<div class="chips">'+regHTML+'</div></div>'
+    +'<div class="fsec"><div class="ftitle"><div class="fdot" style="background:var(--ocean)"></div>搜尋距離</div>'
+    +'<div class="srow"><span class="slbl">5km</span>'
+    +'<input type="range" min="5" max="80" step="5" value="'+restRadius+'" oninput="restRadius=parseInt(this.value);restShowAll=false;document.getElementById(\'rrv\').textContent=restRadius+\' km\';rRest()">'
+    +'<span class="slbl">80km</span><span class="sval" id="rrv">'+restRadius+' km</span></div>'
+    +'<div style="margin-top:8px"><div class="chip c-age'+(showAllOn?' on':'')+'" onclick="restShowAll=!restShowAll;rRest()" style="font-size:13px">🌏 全台顯示</div></div>'
+    +'</div></div>';
+}
+
+function rRest(){
   const mc=document.getElementById('mc');
-  mc.dataset.restRegion=id;
-  rRest();
+  let items=R.slice();
+
+  // 地區篩選
+  if(restRegF!=='all') items=items.filter(a=>a.region===restRegF);
+
+  // 距離篩選
+  if(uLat && !restShowAll){
+    items=items.map(a=>({...a,dist:distR(a)})).filter(a=>a.dist<=restRadius);
+  } else if(uLat){
+    items=items.map(a=>({...a,dist:distR(a)}));
+  }
+
+  // 排序
+  if(uLat) items.sort((a,b)=>(a.dist||99999)-(b.dist||99999));
+
+  const filterHTML=rRestFilter();
+  mc.innerHTML=filterHTML
+    +'<div class="sbar"><span class="stxt">🍽️ 親子餐廳</span><span class="cnt">共 '+items.length+' 間 🎯</span></div>'
+    +'<div style="padding:0 12px 8px;font-size:12px;color:var(--muted)">✅ 已收錄台北市、新北市親子餐廳，更多縣市陸續新增中！</div>'
+    +'<div class="clist">'+items.map(a=>bRestCard(a)).join('')+'</div>';
 }
 
 function rHome(){
-  document.getElementById('mc').innerHTML=`<div class="swrap" style="text-align:left;padding:20px 16px">
-    <div style="text-align:center;margin-bottom:20px">
-      <div style="font-size:48px;margin-bottom:8px">🎈</div>
-      <div style="font-family:Nunito,sans-serif;font-size:22px;font-weight:900;color:var(--text)">親子活動雷達</div>
-      <div style="font-size:13px;color:var(--muted);margin-top:4px">北台灣 ${D.length} 個親子景點，隨時找到最近的好去處</div>
-    </div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px">
-      ${[
-        {ico:'📍',t:'附近景點',d:'開啟定位，找最近的親子活動',tab:'nearby',c:'var(--coral)'},
-        {ico:'⭐',t:'我的收藏',d:'查看你收藏的景點清單',tab:'saved',c:'var(--lav)'},
-        {ico:'📝',t:'部落格',d:'軟糖媽咪的親子日誌（即將上線）',tab:'blog',c:'var(--mint)'},
-        {ico:'💡',t:'使用說明',d:'了解如何使用雷達找景點',tab:'info',c:'var(--ocean)'},
-      ].map(b=>`<div onclick="${b.tab==='blog'?'goBlog()':'goTab(\''+b.tab+'\')'}" style="background:#fff;border-radius:16px;padding:16px;border:2px solid var(--border);box-shadow:0 4px 0 rgba(0,0,0,.05);cursor:pointer;transition:transform .15s" onmousedown="this.style.transform='scale(.97)'" onmouseup="this.style.transform=''">
-        <div style="font-size:24px;margin-bottom:8px">${b.ico}</div>
-        <div style="font-family:Nunito,sans-serif;font-weight:900;font-size:14px;color:${b.c};margin-bottom:4px">${b.t}</div>
-        <div style="font-size:11px;color:var(--muted);line-height:1.5">${b.d}</div>
-      </div>`).join('')}
-    </div>
-    <div style="background:linear-gradient(135deg,var(--coral-lt),var(--lav-lt));border-radius:16px;padding:16px;border:2px solid var(--border)">
-      <div style="font-family:Nunito,sans-serif;font-weight:900;font-size:14px;margin-bottom:8px">🌟 今日推薦</div>
-      <div style="font-size:12px;color:var(--muted);line-height:1.8">
-        📍 <strong>台北→附近景點</strong>點「附近」開啟定位<br>
-        🎉 <strong>長榮海事博物館</strong>4–6月全館免費！<br>
-        🌸 <strong>文山農場</strong>現在魯冰花盛開中<br>
-        💧 <strong>夏季玩水</strong>6月起戲水區陸續開放
-      </div>
-    </div>
-  </div>`;
+  const btns=[
+    {ico:'📍',t:'附近景點',d:'開啟定位，找最近的親子活動',tab:'nearby',c:'var(--coral)'},
+    {ico:'⭐',t:'我的收藏',d:'查看你收藏的景點清單',tab:'saved',c:'var(--lav)'},
+    {ico:'📝',t:'部落格',d:'軟糖媽咪的親子日誌（即將上線）',tab:'blog',c:'var(--mint)'},
+    {ico:'💡',t:'使用說明',d:'了解如何使用雷達找景點',tab:'info',c:'var(--ocean)'},
+  ];
+  const btnsHTML=btns.map(b=>{
+    const fn=b.tab==='blog'?'goBlog()':("goTab('"+b.tab+"')");
+    return '<div onclick="'+fn+'" style="background:#fff;border-radius:16px;padding:16px;border:2px solid var(--border);box-shadow:0 4px 0 rgba(0,0,0,.05);cursor:pointer">'
+      +'<div style="font-size:24px;margin-bottom:8px">'+b.ico+'</div>'
+      +'<div style="font-family:Nunito,sans-serif;font-weight:900;font-size:14px;color:'+b.c+';margin-bottom:4px">'+b.t+'</div>'
+      +'<div style="font-size:11px;color:var(--muted);line-height:1.5">'+b.d+'</div>'
+      +'</div>';
+  }).join('');
+  document.getElementById('mc').innerHTML=''
+    +'<div class="swrap" style="text-align:left;padding:20px 16px">'
+    +'<div style="text-align:center;margin-bottom:20px">'
+    +'<div style="font-size:48px;margin-bottom:8px">🎈</div>'
+    +'<div style="font-family:Nunito,sans-serif;font-size:22px;font-weight:900;color:var(--text)">軟糖媽咪Ivy育兒探索</div>'
+    +'<div style="font-size:13px;color:var(--muted);margin-top:4px">全台 '+D.length+' 個親子景點，隨時找到最近的好去處</div>'
+    +'</div>'
+    +'<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px">'+btnsHTML+'</div>'
+    +'<div style="background:linear-gradient(135deg,var(--coral-lt),var(--lav-lt));border-radius:16px;padding:16px;border:2px solid var(--border)">'
+    +'<div style="font-family:Nunito,sans-serif;font-weight:900;font-size:14px;margin-bottom:8px">🌟 今日推薦</div>'
+    +'<div style="font-size:12px;color:var(--muted);line-height:1.8">'
+    +'📍 <strong>台北→附近景點</strong>點「景點」開啟定位<br>'
+    +'🎉 <strong>長榮海事博物館</strong>4–6月全館免費！<br>'
+    +'🌸 <strong>文山農場</strong>現在魯冰花盛開中<br>'
+    +'💧 <strong>夏季玩水</strong>6月起戲水區陸續開放'
+    +'</div></div></div>';
 }
+
 
 function goTab(t){
   tab=t;
-  ['nearby','saved','info'].forEach(x=>{
+  ['nearby','rest','stay','goods','saved','info'].forEach(x=>{
     const el=document.getElementById('nb-'+x);
     if(el)el.className='nbtn'+(x===t?' on':'');
   });
