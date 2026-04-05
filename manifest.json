@@ -1,0 +1,22 @@
+{
+  "name": "軟糖媽咪Ivy育兒探索",
+  "short_name": "軟糖媽咪Ivy",
+  "description": "全台親子景點、餐廳一站搜尋，軟糖媽咪Ivy精選推薦",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#ffffff",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

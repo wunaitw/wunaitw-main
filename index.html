@@ -3,6 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="軟糖媽咪Ivy">
+<meta name="theme-color" content="#ffffff">
+<link rel="manifest" href="/manifest.json">
+<link rel="apple-touch-icon" href="/icon-192.png">
 <title>軟糖媽咪Ivy育兒探索 🎈</title>
 <!-- Google AdSense -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4396964540234247" crossorigin="anonymous"></script>
@@ -131,7 +137,7 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;heigh
   <button class="nbtn" id="nb-stay" onclick="goTab('stay')"><span class="nico">🏨</span><span class="nlbl">住宿</span></button>
   <button class="nbtn" id="nb-goods" onclick="goTab('goods')"><span class="nico">🛍️</span><span class="nlbl">育兒好物</span></button>
   <button class="nbtn" id="nb-saved" onclick="goTab('saved')"><span class="nico">⭐</span><span class="nlbl">收藏</span></button>
-  <button class="nbtn" id="nb-info" onclick="goTab('info')"><span class="nico">💡</span><span class="nlbl">說明</span></button>
+  <button class="nbtn" id="nb-info" onclick="goTab('info')"><span class="nico">💡</span><span class="nlbl">說明/聯絡</span></button>
 </div>
 <script>
 const D=[
@@ -191,7 +197,7 @@ const D=[
 {id:51,name:'樂飛翔親子運動樂園',region:'新北市',env:'indoor',lat:25.0847,lng:121.4732,emoji:'🌊',color:'#3AAEDC',addr:'新北市蘆洲區重陽一街13號B1',dates:'全年開放，天天可玩',hours:'06:00–22:00',ticket:'3–12歲 $80 / 成人免費陪同\n含室內划水道、戲水設施',note:'3歲以上 ✅，全年開放室內水樂園！有划水道，不受天氣影響，早上六點開到晚上十點，新北蘆洲超方便，雨天玩水首選',tags:['玩水','3歲+','付費','室內'],pR:'free',lo:3,hi:8,p:80,mQ:'樂飛翔親子運動樂園 蘆洲',url:'https://www.dsc.ntpc.gov.tw/Tamsui/SiteInfo/A202104010011'},
 {id:52,name:'宜蘭積木博物館（樂色山）',region:'宜蘭',env:'indoor',lat:24.7574,lng:121.7528,emoji:'🧱',color:'#FF6B6B',addr:'宜蘭市（近羅東，詳細地址請查官網）',dates:'常態開放（週一休）',hours:'10:00–18:00',ticket:'全票 $250（折抵館內消費 $100）/ 90cm以下免費\n忍者村＋樂色山兩館套票 $360',note:'3歲以上 ✅，全台最多積木作品！14大展區超好拍，樂高迷必訪，不只看還能動手玩，尖叫步道踩積木超特別，積木夾娃娃機只要10元',tags:['博物館','DIY體驗','付費','室內'],pR:'low',lo:3,hi:8,p:250,mQ:'樂色山積木博物館 宜蘭',url:'https://www.lesoulmountain.com/'},
 {id:53,name:'新北消防局防災宣導主題館（八里）',region:'新北市',env:'indoor',lat:25.1508,lng:121.4121,emoji:'🚒',color:'#FF6B6B',addr:'新北市八里區（詳細地址請查官網，建議導航）',dates:'常態開放，須事先預約',hours:'依預約場次（建議查官網確認）',ticket:'免費！需事先線上預約\n⚠️ 前往前務必完成預約，未預約不開放入館',note:'5歲以上 ✅，免費體驗當小小消防員！穿消防衣、地震體驗、煙霧逃生、滅火器射水，寓教於樂，是北台灣親子防災教育首選，搭配十三行博物館一日遊超充實',tags:['科學教育','職業體驗','免費','室內'],pR:'free',lo:5,hi:8,p:0,mQ:'新北消防局防災宣導主題館 八里',url:'https://www.fire.ntpc.gov.tw/'},
-{id:54,name:'甲蟲秘境親子餐廳',region:'台北市',env:'indoor',lat:25.1018,lng:121.5269,emoji:'🪲',color:'#52B788',addr:'台北市士林區克強路28號（捷運芝山站步行約10分鐘）',dates:'全年開放',hours:'每日 11:00–21:00',ticket:'餐廳消費制，無入場費\n假日近距離摸甲蟲體驗，平日靜態展示',note:'3歲以上 ✅，森林系親子餐廳結合活體甲蟲館！可近距離觸摸獨角仙、鍬形蟲，比臉大的甲蟲造型鬆餅超好拍，餐點日式家常風味好吃，大孩子可自己玩，爸媽輕鬆用餐',tags:['昆蟲館','DIY體驗','3歲+','室內'],pR:'mid',lo:3,hi:8,p:400,mQ:'甲蟲秘境 士林 克強路',url:'https://www.facebook.com/BeetleSecret'},
+{id:54,name:'甲蟲秘境親子餐廳',region:'台北市',ivyUrl:'https://www.instagram.com/p/DWu0Jg9ktTu/',env:'indoor',lat:25.1018,lng:121.5269,emoji:'🪲',color:'#52B788',addr:'台北市士林區克強路28號（捷運芝山站步行約10分鐘）',dates:'全年開放',hours:'每日 11:00–21:00',ticket:'餐廳消費制，無入場費\n假日近距離摸甲蟲體驗，平日靜態展示',note:'3歲以上 ✅，森林系親子餐廳結合活體甲蟲館！可近距離觸摸獨角仙、鍬形蟲，比臉大的甲蟲造型鬆餅超好拍，餐點日式家常風味好吃，大孩子可自己玩，爸媽輕鬆用餐',tags:['昆蟲館','DIY體驗','3歲+','室內'],pR:'mid',lo:3,hi:8,p:400,mQ:'甲蟲秘境 士林 克強路',url:'https://www.facebook.com/BeetleSecret'},
 {id:55,name:'橘之鄉蜜餞形象館',region:'宜蘭',env:'indoor',lat:24.7768,lng:121.7476,emoji:'🍊',color:'#FF9A3C',addr:'宜蘭縣宜蘭市梅洲二路33號（免費停車場）',dates:'全年開放（每日）',hours:'08:30–17:30',ticket:'免費入園！\nDIY蜜餞體驗 $150/人（可自製帶回家）\n免費金棗茶試飲',note:'3歲以上 ✅，全台第一家蜜餞觀光工廠，免門票！巨人桌椅超好拍，AGRIOZ網美玻璃屋咖啡廳，可DIY金棗蜜餞，天然無添加金棗伴手禮必買，宜蘭雨天備案首選',tags:['DIY體驗','免費','3歲+','室內'],pR:'free',lo:3,hi:8,p:0,mQ:'橘之鄉蜜餞形象館 宜蘭',url:'https://www.agrioz.com.tw/'},
 {id:56,name:'虎牌米粉那個年代觀光工廠',region:'宜蘭',env:'indoor',lat:24.6963,lng:121.7878,emoji:'🍜',color:'#FF9A3C',addr:'宜蘭縣五結鄉利興三路5號（利澤國中旁，免費停車）',dates:'全年開放（僅除夕休館）',hours:'09:00–17:30（售票至16:30）',ticket:'全票 $200（含100元折抵消費＋DIY兌換券）\n12歲以下/65歲以上/宜蘭縣民 優惠票 $100\n3歲以下免費',note:'3歲以上 ✅，米粉免費吃到飽！1970年代台灣街景重現超好拍，超萌老虎巴士必合照，門票可折抵DIY（彩繪碗米粉、電鍋炒米粉），CP值爆表的宜蘭觀光工廠',tags:['博物館','DIY體驗','付費','室內'],pR:'low',lo:3,hi:8,p:200,mQ:'虎牌米粉觀光工廠 宜蘭 五結',url:'https://tigerfood.com.tw/'},
 {id:57,name:'木育森林（羅東林業文化園區）',region:'宜蘭',env:'indoor',lat:24.6771,lng:121.7656,emoji:'🌲',color:'#52B788',addr:'宜蘭縣羅東鎮中正北路118號（羅東林場內）',dates:'全年開放（園區全年；木育森林館每日09:00–18:00）',hours:'園區 08:00–17:00\n木育森林館 09:00–18:00',ticket:'園區完全免費！\n木育森林館免費\n停車場平日$30/小時、假日$50/小時',note:'0歲起 ✅，完全免費！羅東林場20公頃，貯木池、蒸汽火車頭、日式木造建築超好拍。木育森林館有各式原木玩具可免費玩，kids扣屋適合親子體驗，絕對能待上半天！',tags:['博物館','免費','戶外景點','室內'],pR:'free',lo:0,hi:8,p:0,mQ:'羅東林業文化園區 木育森林',url:'https://recreation.forest.gov.tw/'},
@@ -224,6 +230,20 @@ const D=[
 /* ── 花蓮 ── */
 {id:78,name:'遠雄海洋公園',region:'花蓮縣',env:'outdoor',lat:23.9789,lng:121.6204,emoji:'🐬',color:'#3AAEDC',addr:'花蓮縣壽豐鄉鹽寮村福德51號',dates:'常態開放（不定期公休請查官網）',hours:'09:00–17:00',ticket:'全票 $790 / 6-12歲 $590 / 3歲以下免費\n暑假12歲以下免費入園（期間限定）',note:'3歲以上 ✅，台灣最靠近太平洋的樂園！海豚秀、美人魚表演超精彩，纜車俯瞰花蓮海景壯觀，暑假期間12歲以下免費，親子花蓮必排',tags:['水族館','遊樂園','付費','戶外'],pR:'mid',lo:0,hi:8,p:790,mQ:'遠雄海洋公園 花蓮',url:'https://www.farglory-ocean-park.com.tw/'},
 {id:79,name:'花蓮太魯閣國家公園',region:'花蓮縣',env:'outdoor',lat:24.1547,lng:121.6205,emoji:'🏔️',color:'#52B788',addr:'花蓮縣秀林鄉（遊客中心：花蓮縣秀林鄉富世村富世291號）',dates:'全年開放（部分步道需預約）',hours:'全天',ticket:'免費！部分步道需線上預約\n燕子口、錐麓古道等需申請',note:'3歲以上 ✅，世界級峽谷美景，免門票！長春祠步道推嬰兒車OK，燕子口壯觀壯觀，砂卡礑步道清澈溪水，親子花蓮必排半日行程',tags:['戶外景點','免費','戶外'],pR:'free',lo:0,hi:8,p:0,mQ:'太魯閣國家公園 花蓮',url:'https://www.taroko.gov.tw/'},
+,
+{id:80,name:'歐樂沃築夢城堡',region:'嘉義縣',env:'outdoor',lat:23.5812,lng:120.4731,emoji:'🏰',color:'#FF69B4',addr:'嘉義縣大林鎮大埔美園區九路18號（免費停車場）',dates:'2025/8/1起試營運，常態開放',hours:'09:00-17:00（每日）',ticket:'全票 $250（含茶點兌換券+$25抵用券x2） 優待票 $200（3-12歲、65歲以上、嘉義縣市民） 90cm以下免費',note:'3歲以上 ✅，台版迪士尼！粉藍色歐式城堡超夢幻，巧克力主題觀光工廠，三大主題區：築夢城堡、普羅旺斯小鎮、瑪雅物語，旋轉木馬、許願池、DIY巧克力體驗，親子IG必打卡',tags:['遊樂園','DIY體驗','付費','戶外'],pR:'low',lo:3,hi:8,p:250,mQ:'歐樂沃築夢城堡 嘉義 大林',url:'https://www.otherworld.com.tw/'},
+{id:81,name:'看海美術館',region:'屏東縣',env:'outdoor',lat:22.0156,lng:120.6745,emoji:'🎨',color:'#3AAEDC',addr:'屏東縣車城鄉海口路1-12號（免費停車場）',dates:'常態開放（室內展覽週二休館）',hours:'10:00-18:00（戶外全天開放，晚上點燈至20:00）',ticket:'完全免費！ 戶外展覽隨時可參觀，室內展覽定期更換',note:'0歲起 ✅，免費！前身為海口港候船室改建，玻璃帷幕映著海景超美，屋頂吹風看海廊道視野絕佳，不定期有大型裝置藝術特展，就在海生館旁可搭配同遊，南台灣必打卡',tags:['美術館','免費','戶外景點','戶外'],pR:'free',lo:0,hi:8,p:0,mQ:'看海美術館 屏東 車城',url:'https://www.facebook.com/lsf.arts/'}
+,
+/* ── 新增景點 ── */
+{id:82,name:'台電南部展示館',region:'屏東縣',env:'indoor',lat:22.6748,lng:120.4881,emoji:'⚡',color:'#FFD93D',addr:'屏東市民生路101號',dates:'常態開放（週一休館）',hours:'週二–日 09:00–17:00',ticket:'完全免費！',note:'3歲以上 ✅，免費！台電打造的能源主題館，互動展示超豐富，核能、太陽能、風力發電原理都能在這裡玩中學，適合帶孩子認識能源議題',tags:['博物館','科學教育','免費','室內'],pR:'free',lo:3,hi:8,p:0,mQ:'台電南部展示館 屏東',url:'https://www.taipower.com.tw/'},
+{id:83,name:'六堆客家文化園區',region:'屏東縣',env:'outdoor',lat:22.6492,lng:120.5501,emoji:'🏮',color:'#FF9A3C',addr:'屏東縣內埔鄉信義路588號',dates:'常態開放（週一休園）',hours:'展覽設施 09:00–17:00 / 戶外 08:00–20:00',ticket:'完全免費！兒童探索空間需預約',note:'0歲起 ✅，免費！南台灣最大客家文化園區，30公頃超大空間，傘架造型建築超壯觀，兒童探索館、音樂水舞廣場、生態池，假日有DIY油紙傘體驗，是認識客家文化最好的地方',tags:['博物館','免費','戶外景點','戶外'],pR:'free',lo:0,hi:8,p:0,mQ:'六堆客家文化園區 屏東內埔',url:'https://thcdc.hakka.gov.tw/'},
+{id:84,name:'台北客家文化主題公園',region:'台北市',env:'outdoor',lat:25.0200,lng:121.5430,emoji:'🪭',color:'#FF9A3C',addr:'台北市中正區汀州路三段2號',dates:'常態開放（週一休館）',hours:'展館 09:00–21:00 / 週末至17:00',ticket:'完全免費！',note:'0歲起 ✅，免費！台北市中心的客家文化基地，有展覽館、演藝廳，戶外廣場常有客家音樂節慶活動，搭捷運古亭站步行可達，帶孩子認識客家文化好去處',tags:['博物館','免費','戶外景點','室內'],pR:'free',lo:0,hi:8,p:0,mQ:'台北客家文化主題公園 汀州路',url:'https://www.hakka.taipei/'},
+{id:85,name:'新北市客家文化園區',region:'新北市',env:'indoor',lat:25.0070,lng:121.4410,emoji:'🪭',color:'#FF9A3C',addr:'新北市中和區錦和路163號',dates:'常態開放（週一休館）',hours:'週二–日 09:00–17:00',ticket:'完全免費！',note:'3歲以上 ✅，免費！新北最大客家文化展示空間，常設展覽加互動體驗，認識客家飲食、服飾、建築文化，適合親子同遊',tags:['博物館','免費','室內'],pR:'free',lo:3,hi:8,p:0,mQ:'新北市客家文化園區 中和',url:'https://hakka.ntpc.gov.tw/'},
+{id:86,name:'坪林茶業博物館',region:'新北市',env:'indoor',lat:24.9338,lng:121.7119,emoji:'🍵',color:'#52B788',addr:'新北市坪林區水德里水聳淒坑19-1號',dates:'常態開放（週一休館）',hours:'週二–日 09:00–17:00',ticket:'全票 $80 / 學生 $40 / 6歲以下免費',note:'3歲以上 ✅，茶鄉秘境中的博物館！可模擬種茶採茶炒茶，水豚君泡湯超好拍，茶葉伴手禮必買，每季有不同展覽，搭配坪林老街、石碇千島湖一日遊超讚',tags:['博物館','DIY體驗','付費','室內'],pR:'low',lo:3,hi:8,p:80,mQ:'坪林茶業博物館 新北',url:'https://www.tea.ntpc.gov.tw/'},
+{id:87,name:'新北市立黃金博物館',region:'新北市',env:'outdoor',lat:25.1091,lng:121.8617,emoji:'🥇',color:'#FFD93D',addr:'新北市瑞芳區金光路8號（金瓜石）',dates:'常態開放（每月第一週一休館）',hours:'平日 09:30–17:00 / 週末 09:30–18:00',ticket:'園區免費 / 本山五坑坑道 $50 / 淘金體驗 $50',note:'5歲以上 ✅，園區免費！220公斤超大純金磚可以摸，180公尺礦工隧道探險超刺激，龍貓公車亭超可愛，搭配九份老街一日遊，九份黃金博物館最強親子路線',tags:['博物館','戶外景點','免費','戶外'],pR:'free',lo:5,hi:8,p:0,mQ:'新北市立黃金博物館 金瓜石',url:'https://www.gep.ntpc.gov.tw/'},
+{id:88,name:'舊草嶺生態隧道（福隆–石城）',region:'新北市',env:'outdoor',lat:25.0247,lng:121.9248,emoji:'🚴',color:'#52B788',addr:'新北市貢寮區福隆里（福隆車站旁出發）',dates:'全年開放',hours:'全天（建議白天騎乘）',ticket:'完全免費！腳踏車租借 $100–200/小時',note:'5歲以上 ✅，全長2.167公里的百年鐵路隧道改建自行車道！穿越隧道吹海風，終點石城有超美海景咖啡廳，可從福隆騎到石城，全程約1.5小時，親子單車旅遊首選',tags:['戶外景點','免費','戶外'],pR:'free',lo:5,hi:8,p:0,mQ:'舊草嶺隧道 福隆 石城',url:'https://www.necoast-nsa.gov.tw/'},
+{id:89,name:'77巧克力共和國',region:'桃園市',env:'indoor',lat:24.9648,lng:121.3226,emoji:'🍫',color:'#FF9A3C',addr:'桃園市八德區巧克力街177號',dates:'常態開放（週六日營業）',hours:'10:00–18:00（週六日）',ticket:'全票 $250（折抵 $150）/ 3歲以下免費',note:'3歲以上 ✅，全台最具規模巧克力主題觀光工廠！全球頂級巧克力品牌齊聚，巧克力DIY體驗超有趣，館內造景夢幻好拍，適合周末親子半日遊',tags:['DIY體驗','博物館','付費','室內'],pR:'low',lo:3,hi:8,p:250,mQ:'77巧克力共和國 桃園八德',url:'https://www.chocolate-republic.com.tw/'},
+{id:90,name:'卡司蒂拉樂園（金格觀光工廠）',region:'桃園市',env:'indoor',lat:25.0821,lng:121.3283,emoji:'🍰',color:'#FF69B4',addr:'桃園市蘆竹區大竹北路90-66號',dates:'常態開放（週一休館）',hours:'09:00–17:00',ticket:'全票 $250（折抵 $150）/ 3歲以下免費',note:'3歲以上 ✅，長崎蜂蜜蛋糕主題觀光工廠！烤餅乾DIY超好玩，歐式城堡外觀超夢幻，有室內小賽車場，孩子最愛，適合親子半日遊，旁邊有兒童美術館和XPARK可搭配',tags:['DIY體驗','付費','室內'],pR:'low',lo:3,hi:8,p:250,mQ:'卡司蒂拉樂園 桃園蘆竹',url:'https://www.castella.com.tw/'}
 ];
 
 let uLat=null,uLng=null;
@@ -278,7 +298,7 @@ function render(){
   if(tab==='saved'){rSaved();return}
   if(tab==='info'){rInfo();return}
   if(tab==='rest'){rRest();return}
-  if(tab==='stay'){rComing('🏨','住宿','精選親子友善住宿，依縣市推薦，附近景點一次搞定！');return}
+  if(tab==='stay'){rStay();return}
   if(tab==='goods'){rComing('🛍️','育兒好物','Ivy精選好物推薦，含媽媽包、玩具、外出神器！');return}
   const mc=document.getElementById('mc');
   if(!uLat){
@@ -321,7 +341,7 @@ function bF(){
   const resetBar=activeCount>0?`<div style="display:flex;align-items:center;justify-content:space-between;background:#fff3f3;border:2px solid #FF6B6B;border-radius:12px;padding:10px 14px;margin-bottom:12px"><span style="font-size:13px;color:#FF6B6B;font-weight:900">⚠️ 目前有 ${activeCount} 個篩選條件</span><button onclick="resetAll()" style="background:#FF6B6B;color:#fff;border:none;border-radius:8px;padding:6px 14px;font-size:12px;font-weight:900;cursor:pointer">✕ 全部清除</button></div>`:'';
   const ages=[{v:'0-2',l:'0–2歲'},{v:'2-4',l:'2–4歲'},{v:'4-6',l:'4–6歲'},{v:'6-8',l:'6–8歲'}];
   const prices=[{v:'free',l:'免費 🎁',c:'c-free'},{v:'low',l:'$300以下',c:'c-low'},{v:'mid',l:'$300–500',c:'c-mid'},{v:'high',l:'$500+',c:'c-high'}];
-  const regs=[{v:'台北市',l:'台北市'},{v:'新北市',l:'新北市'},{v:'桃園市',l:'桃園市'},{v:'基隆市',l:'基隆市'},{v:'新竹',l:'新竹'},{v:'宜蘭',l:'宜蘭'},{v:'台中市',l:'台中市'},{v:'南投縣',l:'南投'},{v:'彰化縣',l:'彰化'},{v:'台南市',l:'台南市'},{v:'高雄市',l:'高雄市'},{v:'屏東縣',l:'屏東'},{v:'花蓮縣',l:'花蓮'}];
+  const regs=[{v:'台北市',l:'台北市'},{v:'新北市',l:'新北市'},{v:'桃園市',l:'桃園市'},{v:'基隆市',l:'基隆市'},{v:'新竹',l:'新竹'},{v:'宜蘭',l:'宜蘭'},{v:'台中市',l:'台中市'},{v:'南投縣',l:'南投'},{v:'彰化縣',l:'彰化'},{v:'台南市',l:'台南市'},{v:'高雄市',l:'高雄市'},{v:'屏東縣',l:'屏東'},{v:'花蓮縣',l:'花蓮'},{v:'嘉義縣',l:'嘉義'}];
   const envs=[{v:'indoor',l:'🏠 室內'},{v:'outdoor',l:'🌳 戶外'}];
   const types=[
     {v:'水族館',l:'🐠 水族館'},{v:'昆蟲館',l:'🐛 昆蟲館'},
@@ -388,11 +408,48 @@ function rSaved(){
 }
 
 function rInfo(){
-  document.getElementById('mc').innerHTML=`<div class="swrap" style="text-align:left;padding:20px 16px">
-    <div style="font-family:Nunito,sans-serif;font-size:19px;font-weight:900;text-align:center;margin-bottom:16px">💡 使用說明</div>
-    ${[['📍','開啟定位','右上角按鈕，自動計算距離由近到遠排序'],['👶','年齡篩選','0–2 / 2–4 / 4–6 / 6–8 歲四個區間，過濾適合活動'],['🏠','室內/戶外','下雨天選室內，好天氣選戶外，可同時搭配其他條件篩選'],['🎫','票價篩選','免費 / $300以下 / $300–500 / $500+ 四個區間'],['🗺️','Google Maps','展開活動卡片，點「導航」直接開地圖'],['🍽️','親子餐廳分頁','底部點「親子餐廳」，即時顯示 Google Maps 台北市／新北市親子餐廳，資料由 Google 自動更新'],['⭐','收藏','點☆收藏，關掉頁面也不消失，在「收藏」頁面查看']].map(([ic,t,d])=>`<div style="display:flex;gap:12px;margin-bottom:13px"><span style="font-size:20px;flex-shrink:0">${ic}</span><div><div style="font-family:Nunito,sans-serif;font-weight:900;font-size:14px;margin-bottom:2px">${t}</div><div style="font-size:12px;color:var(--muted);line-height:1.6">${d}</div></div></div>`).join('')}
-    <div style="margin-top:12px;padding:12px;background:var(--sky);border-radius:12px;font-size:12px;color:var(--muted);line-height:1.75">📋 <strong>涵蓋地區：台北市、新北市、基隆市、桃園市、新竹、宜蘭、台中、南投、彰化、台南、高雄、屏東、花蓮（共 ${D.length} 個景點）<br>📅 <strong>資料更新：2026/04/05<br>⚠️ 前往前請至官網再次確認最新資訊與票價</div>
-  </div>`;
+  const mc=document.getElementById('mc');
+  const tips=[
+    ['📍','景點定位','開啟定位後自動計算距離，由近到遠排序'],
+    ['🌏','全台顯示','距離篩選器下方，點一下顯示全台所有景點'],
+    ['👶','年齡篩選','0–2 / 2–4 / 4–6 / 6–8 歲四個區間'],
+    ['🏠','室內/戶外','下雨天選室內，好天氣選戶外'],
+    ['🎫','票價篩選','免費 / $300以下 / $300–500 / $500+'],
+    ['🌸','Ivy分享','篩選出有軟糖媽咪親身分享的景點'],
+    ['⭐','收藏','點☆收藏，關掉頁面也不消失'],
+  ];
+  const tipsHTML=tips.map(([ic,t,d])=>'<div style="display:flex;gap:12px;margin-bottom:13px">'
+    +'<span style="font-size:20px;flex-shrink:0">'+ic+'</span>'
+    +'<div><div style="font-family:Nunito,sans-serif;font-weight:900;font-size:14px;margin-bottom:2px">'+t+'</div>'
+    +'<div style="font-size:12px;color:var(--muted);line-height:1.6">'+d+'</div></div></div>'
+  ).join('');
+
+  const contacts=[
+    {icon:'📸',label:'Instagram',color:'#dc2743',url:'https://www.instagram.com/ivyhuanglichia/'},
+    {icon:'🧵',label:'Threads',color:'#000000',url:'https://www.threads.com/@ivyhuanglichia'},
+    {icon:'💬',label:'Facebook',color:'#1877F2',url:'https://www.facebook.com/ivy.huanglichia'},
+    {icon:'✉️',label:'Email',color:'#EA4335',url:'mailto:wunai.learning@gmail.com'},
+  ];
+  const contactHTML=contacts.map(c=>'<a href="'+c.url+'" target="_blank" style="display:flex;align-items:center;gap:12px;padding:12px 14px;background:#fff;border-radius:14px;border:2px solid var(--border);text-decoration:none;margin-bottom:10px">'
+    +'<span style="font-size:22px">'+c.icon+'</span>'
+    +'<span style="font-family:Nunito,sans-serif;font-weight:900;font-size:15px;color:'+c.color+'">'+c.label+'</span>'
+    +'<span style="margin-left:auto;color:var(--muted);font-size:18px">›</span>'
+    +'</a>'
+  ).join('');
+
+  mc.innerHTML='<div style="padding:16px">'
+    +'<div style="font-family:Nunito,sans-serif;font-size:19px;font-weight:900;text-align:center;margin-bottom:16px">💡 使用說明</div>'
+    +tipsHTML
+    +'<div style="margin-top:4px;padding:12px;background:var(--sky);border-radius:12px;font-size:12px;color:var(--muted);line-height:1.75">'
+    +'📋 <strong>涵蓋地區：</strong>全台13縣市，共 '+D.length+' 個景點<br>'
+    +'📅 <strong>資料更新：</strong>2026/04/05<br>'
+    +'⚠️ 前往前請至官網再次確認最新資訊與票價'
+    +'</div>'
+    +'<div style="margin-top:20px">'
+    +'<div style="font-family:Nunito,sans-serif;font-size:17px;font-weight:900;margin-bottom:12px">🌸 聯絡軟糖媽咪Ivy</div>'
+    +contactHTML
+    +'</div>'
+    +'</div>';
 }
 
 function rComing(icon, title, desc){
@@ -409,7 +466,7 @@ function rComing(icon, title, desc){
   </div>`;
 }
 const R=[
-{id:'r1',name:'甲蟲秘境親子餐廳',region:'台北市',lat:25.1018,lng:121.5269,emoji:'🪲',addr:'台北市士林區克強路28號1樓',hours:'週三–日 11:00–21:00（週一二休）',price:'餐廳消費制，無入場費',note:'3歲以上 ✅，甲蟲主題裝潢超特別！球池溜滑梯，甲蟲造型鬆餅必點，假日可近距離觸摸獨角仙鍬形蟲，爸媽可以悠閒用餐',tags:['昆蟲主題','球池','溜滑梯'],url:'https://www.facebook.com/BeetleSecret'},
+{id:'r1',name:'甲蟲秘境親子餐廳',region:'台北市',ivyUrl:'https://www.instagram.com/p/DWu0Jg9ktTu/',lat:25.1018,lng:121.5269,emoji:'🪲',addr:'台北市士林區克強路28號1樓',hours:'週三–日 11:00–21:00（週一二休）',price:'餐廳消費制，無入場費',note:'3歲以上 ✅，甲蟲主題裝潢超特別！球池溜滑梯，甲蟲造型鬆餅必點，假日可近距離觸摸獨角仙鍬形蟲，爸媽可以悠閒用餐',tags:['昆蟲主題','球池','溜滑梯'],url:'https://www.facebook.com/BeetleSecret'},
 {id:'r2',name:'大樹先生的家 Mr.Tree',region:'台北市',lat:25.0547,lng:121.5446,emoji:'🌳',addr:'台北市大安區仁愛路四段300巷18號1樓',hours:'每日 10:00–18:00（分時段入場）',price:'兒童 $700 / 大人 $200（含低消）',note:'0歲起 ✅，超寬敞沙坑＋球池＋扮家家酒，常換主題佈置超好拍，明星爸媽最愛，辦抓周生日派對熱門選擇',tags:['沙坑','球池','0歲起'],url:'https://www.facebook.com/MrTreehouse'},
 {id:'r3',name:'童鍋親子火鍋餐廳',region:'台北市',lat:25.0420,lng:121.5340,emoji:'🍲',addr:'台北市大安區復興南路一段107巷5弄6號',hours:'每日 11:30–21:30',price:'火鍋套餐 $400起 / 兒童餐 $250起',note:'2歲以上 ✅，韓系白色風格，大球池＋溜滑梯，蔬菜熬製健康湯底寶寶也能喝，家長邊吃火鍋邊顧小孩，超輕鬆',tags:['火鍋','球池','溜滑梯'],url:'https://www.facebook.com/kidspot.hotpot'},
 
@@ -419,6 +476,10 @@ const R=[
 {id:'r8',name:'森林島嶼親子餐廳',region:'新北市',lat:25.0169,lng:121.4627,emoji:'🌿',addr:'新北市板橋區新站路16號3樓（板橋車站附近）',hours:'每日 10:00–20:00',price:'兒童 $580 / 大人低消 $250 含遊戲時間，可延時加購',note:'1歲起 ✅，板橋車站旁超方便！叢林主題，大型溜滑梯＋攀爬區＋沙坑，幼童區有軟墊安全隔離，餐點評價不錯',tags:['叢林主題','溜滑梯','攀爬'],url:'https://www.facebook.com/ForestIslandKids'},
 {id:'r9',name:'淘憩時光親子餐廳',region:'台北市',lat:25.0478,lng:121.5170,emoji:'☕',addr:'台北市中山區（請查粉專確認最新地址）',hours:'每日 11:00–20:00',price:'大人低消 $200 / 未滿6歲無低消',note:'0歲起 ✅，6歲以下免低消！提供尿布、哺乳室，有寶寶粥兒童套餐，適合帶最小的寶寶來，常辦抓周生日派對',tags:['0歲起','哺乳室','尿布台'],url:'https://www.facebook.com/taochikids'},
 {id:'r10',name:'NICE TO MEET U newborn&cafe',region:'台北市',lat:25.0539,lng:121.5406,emoji:'👶',addr:'台北市松山區（請查粉專確認最新地址）',hours:'每日 10:00–18:00（週一休）',price:'輕食咖啡 $150起',note:'0歲起 ✅，新生兒最友善！Liwagon嬰兒床＋iPad監控，溫奶器消毒機尿布台一應俱全，還有寶寶副食品，帶新生兒出門的首選',tags:['新生兒友善','0歲起','哺乳室'],url:'https://www.facebook.com/NICETOMEETUTWN'},
+{id:'r11',name:'貝里尼義式廚房',region:'台北市',lat:25.0453,lng:121.5438,emoji:'🍝',addr:'台北市各分店（信義/中山/天母等）',hours:'每日 11:30–21:30',price:'主餐 $380起 / 兒童餐 $280',note:'3歲以上 ✅，義式親子友善餐廳！空間寬敞舒適，兒童餐點豐富，推車可進入，服務親切，假日帶孩子吃義式料理首選',tags:['義式料理','親子友善','兒童餐'],url:'https://www.bellini.com.tw/'},
+{id:'r12',name:'大戶屋',region:'台北市',lat:25.0478,lng:121.5170,emoji:'🍱',addr:'台北市各分店（全台連鎖）',hours:'每日 11:00–21:30',price:'定食套餐 $280起 / 兒童餐 $180',note:'3歲以上 ✅，日式家庭料理！注重健康均衡，兒童餐附玩具，空間寬敞推車友善，全台多家分店方便，帶孩子吃健康日本定食首選',tags:['日式料理','親子友善','兒童餐'],url:'https://www.ootoya.com.tw/'},
+{id:'r13',name:'品田牧場',region:'台北市',lat:25.0530,lng:121.5180,emoji:'🥩',addr:'台北市各分店（全台連鎖）',hours:'每日 11:00–22:00',price:'豬排套餐 $350起 / 兒童餐 $250',note:'3歲以上 ✅，日式豬排名店！兒童餐份量適中，環境舒適，是帶孩子吃日式豬排的家庭餐廳好選擇，多個台北分店方便',tags:['日式料理','豬排','親子友善'],url:'https://www.pintien.com.tw/'},
+{id:'r14',name:'王品台塑牛排',region:'台北市',lat:25.0420,lng:121.5340,emoji:'🥩',addr:'台北市各分店（全台連鎖）',hours:'每日 11:30–21:30',price:'牛排套餐 $800起 / 兒童餐 $500',note:'5歲以上 ✅，台灣最具代表性的牛排館！精緻套餐含前菜甜點，服務細膩，適合帶孩子體驗西式正式餐廳禮儀，慶生家庭聚餐首選',tags:['牛排','西式料理','親子友善'],url:'https://www.wangsteak.com.tw/'}
 ];
 
 function distR(a){if(!uLat)return 99999;return gD(uLat,uLng,a.lat,a.lng)}
@@ -442,12 +503,13 @@ function bRestCard(a){
     +'<div class="abtns">'
     +'<a class="btngo" href="'+a.url+'" target="_blank" style="background:#FF69B4;border-bottom-color:#c44d8a">🔗 官網/粉專</a>'
     +'<a class="btngo" style="background:var(--ocean);border-bottom-color:#1a7fa8" href="'+mapUrl+'" target="_blank">🗺️ 地圖</a>'
+    +(a.ivyUrl?'<a class="btngo" style="background:#FF69B4;border-bottom-color:#c44d8a" href="'+a.ivyUrl+'" target="_blank">🌸 Ivy分享</a>':'')
     +'</div>'
     +'</div>'
     +'</div>';
 }
 
-let restRegF='all', restRadius=60, restShowAll=true;
+let restRegF='all', restRadius=60, restShowAll=true, restIvyF=false;
 
 function rRestFilter(){
   const regs=[
@@ -462,6 +524,7 @@ function rRestFilter(){
   }).join('');
 
   const showAllOn=restShowAll;
+  const ivyOn=restIvyF;
   return '<div class="fpanel" style="margin-bottom:0">'
     +'<div class="fsec"><div class="ftitle"><div class="fdot" style="background:var(--coral)"></div>地區</div>'
     +'<div class="chips">'+regHTML+'</div></div>'
@@ -469,9 +532,84 @@ function rRestFilter(){
     +'<div class="srow"><span class="slbl">5km</span>'
     +'<input type="range" min="5" max="80" step="5" value="'+restRadius+'" oninput="restRadius=parseInt(this.value);restShowAll=false;document.getElementById(\'rrv\').textContent=restRadius+\' km\';rRest()">'
     +'<span class="slbl">80km</span><span class="sval" id="rrv">'+restRadius+' km</span></div>'
-    +'<div style="margin-top:8px"><div class="chip c-age'+(showAllOn?' on':'')+'" onclick="restShowAll=!restShowAll;rRest()" style="font-size:13px">🌏 全台顯示</div></div>'
-    +'</div></div>';
+    +'<div style="margin-top:8px;display:flex;gap:8px">'
+    +'<div class="chip c-age'+(showAllOn?' on':'')+'" onclick="restShowAll=!restShowAll;rRest()" style="font-size:13px">🌏 全台顯示</div>'
+    +'<div class="chip'+(ivyOn?' on':'')+'" onclick="restIvyF=!restIvyF;rRest()" style="font-size:13px;background:'+(ivyOn?'#FF69B4':'#fff0f5')+';color:'+(ivyOn?'#fff':'#FF69B4')+';border:2px solid #FF69B4;border-radius:999px;padding:6px 14px;cursor:pointer">🌸 Ivy分享</div>'
+    +'</div></div></div>';
 }
+
+const H=[
+{id:'h1',name:'新竹煙波湖濱館',region:'新竹',lat:24.7859,lng:121.0057,emoji:'🏨',addr:'新竹市香山區五福路二段171號',price:'平日約$3,500起 / 假日約$5,000起',note:'親子設施齊全！大型游泳池、兒童戲水區，湖景絕美，早餐豐盛，交通方便，是新竹親子首選飯店',tags:['游泳池','早餐','湖景'],ivyUrl:'',url:'https://www.lakeshore.com.tw/'},
+{id:'h2',name:'新竹關西六福莊生態渡假旅館',region:'新竹',lat:24.7983,lng:121.1719,emoji:'🦁',addr:'新竹縣關西鎮仁安里拱子溝60號',price:'平日約$6,000起 / 假日約$8,000起',note:'六福村旁！住宿可搭配遊樂園，非洲主題造景超夢幻，大型泳池，動物近距離接觸，親子兩日遊最強選擇',tags:['主題飯店','泳池','遊樂園'],ivyUrl:'',url:'https://www.leofoovillage.com.tw/'},
+{id:'h3',name:'苗栗尚順君樂飯店',region:'苗栗',lat:24.5686,lng:120.8185,emoji:'🏨',addr:'苗栗縣頭份市成功路8號',price:'平日約$3,000起 / 假日約$4,500起',note:'苗栗最大商務飯店，親子房型設備完善，室內游泳池，交通便利，是探索苗栗景點的好基地',tags:['游泳池','早餐','交通便利'],ivyUrl:'',url:'https://www.sunroyal.com.tw/'},
+{id:'h4',name:'大溪威斯汀度假酒店',region:'桃園市',lat:24.8850,lng:121.2880,emoji:'⭐',addr:'桃園市大溪區員林路二段1號',price:'平日約$5,000起 / 假日約$7,000起',note:'大溪湖景第一排！五星飯店，超大室外泳池，兒童設施完善，早餐豐盛，就在大溪老街旁，桃園最豪華親子住宿',tags:['五星飯店','湖景','泳池'],ivyUrl:'',url:'https://www.marriott.com/'},
+{id:'h5',name:'台中想窩11餐旅館',region:'台中市',lat:24.1680,lng:120.6467,emoji:'🎠',addr:'台中市西屯區福科路611號',price:'平日約$4,000起 / 假日約$6,000起',note:'台中最夯親子飯店！住宿含使用室內遊樂場，溜滑梯、球池、沙坑、家家酒一應俱全，餐廳美味，孩子住過一次就上癮，強烈建議提前預訂',tags:['室內遊樂場','溜滑梯','球池'],ivyUrl:'',url:'https://www.wantsmore11.com.tw/'},
+];
+
+let stayRegF='all', stayRadius=60, stayShowAll=true, stayIvyF=false;
+
+function distH(a){if(!uLat)return 99999;return gD(uLat,uLng,a.lat,a.lng)}
+
+function bStayCard(a){
+  const dist=distH(a);
+  const tags=a.tags.map(t=>'<span class="tpill tp-date">'+t+'</span>').join('');
+  const distTxt=uLat?fD(dist):'📍';
+  const mapUrl='https://maps.google.com/?q='+encodeURIComponent(a.name);
+  const ivyBtn=a.ivyUrl?'<a class="btngo" style="background:#FF69B4;border-bottom-color:#c44d8a" href="'+a.ivyUrl+'" target="_blank">🌸 Ivy分享</a>':'';
+  return '<div class="acard" style="margin-bottom:12px">'
+    +'<div class="cstripe" style="background:#9B72CF"></div>'
+    +'<div class="cbody">'
+    +'<div class="ctop"><div class="ctitle">'+a.emoji+' '+a.name+'</div><div class="dbub">'+distTxt+'</div></div>'
+    +'<div class="ctags">'+tags+'<span class="tpill tp-reg">'+a.region+'</span></div>'
+    +'<div style="font-size:12px;color:var(--muted);margin:6px 0">'+a.addr.slice(0,25)+'…</div>'
+    +'<div style="font-size:12px;color:#9B72CF;margin-bottom:8px;font-weight:700">💰 '+a.price+'</div>'
+    +'<div style="font-size:12px;color:var(--text);margin-bottom:10px;line-height:1.5">'+a.note+'</div>'
+    +'<div class="abtns">'
+    +'<a class="btngo" href="'+a.url+'" target="_blank" style="background:#9B72CF;border-bottom-color:#7a5ba8">🔗 官網訂房</a>'
+    +'<a class="btngo" style="background:var(--ocean);border-bottom-color:#1a7fa8" href="'+mapUrl+'" target="_blank">🗺️ 地圖</a>'
+    +ivyBtn
+    +'</div>'
+    +'</div>'
+    +'</div>';
+}
+
+function stayFilterHTML(){
+  const regs=[{v:'all',l:'全部'},{v:'台北市',l:'台北市'},{v:'新北市',l:'新北市'},{v:'桃園市',l:'桃園市'},{v:'新竹',l:'新竹'},{v:'苗栗',l:'苗栗'},{v:'台中市',l:'台中市'}];
+  const regHTML=regs.map(r=>{
+    const on=r.v===stayRegF;
+    return '<div class="chip c-age'+(on?' on':'')+'" onclick="stayRegF=\''+r.v+'\';rStay()">'+r.l+'</div>';
+  }).join('');
+  const ivyOn=stayIvyF;
+  return '<div class="fpanel" style="margin-bottom:0">'
+    +'<div class="fsec"><div class="ftitle"><div class="fdot" style="background:var(--coral)"></div>地區</div>'
+    +'<div class="chips">'+regHTML+'</div></div>'
+    +'<div class="fsec"><div class="ftitle"><div class="fdot" style="background:var(--ocean)"></div>搜尋距離</div>'
+    +'<div class="srow"><span class="slbl">5km</span>'
+    +'<input type="range" min="5" max="80" step="5" value="'+stayRadius+'" oninput="stayRadius=parseInt(this.value);stayShowAll=false;document.getElementById(\'srv\').textContent=stayRadius+\' km\';rStay()">'
+    +'<span class="slbl">80km</span><span class="sval" id="srv">'+stayRadius+' km</span></div>'
+    +'<div style="margin-top:8px;display:flex;gap:8px">'
+    +'<div class="chip c-age'+(stayShowAll?' on':'')+'" onclick="stayShowAll=!stayShowAll;rStay()" style="font-size:13px">🌏 全台顯示</div>'
+    +'<div class="chip'+(ivyOn?' on':'')+'" onclick="stayIvyF=!stayIvyF;rStay()" style="font-size:13px;background:'+(ivyOn?'#FF69B4':'#fff0f5')+';color:'+(ivyOn?'#fff':'#FF69B4')+';border:2px solid #FF69B4;border-radius:999px;padding:6px 14px;cursor:pointer">🌸 Ivy分享</div>'
+    +'</div></div></div>';
+}
+
+function rStay(){
+  const mc=document.getElementById('mc');
+  let items=H.slice();
+  if(stayRegF!=='all') items=items.filter(a=>a.region===stayRegF);
+  if(stayIvyF) items=items.filter(a=>a.ivyUrl);
+  if(uLat && !stayShowAll){
+    items=items.map(a=>({...a,dist:distH(a)})).filter(a=>a.dist<=stayRadius);
+  } else if(uLat){
+    items=items.map(a=>({...a,dist:distH(a)}));
+  }
+  if(uLat) items.sort((a,b)=>(a.dist||99999)-(b.dist||99999));
+  mc.innerHTML=stayFilterHTML()
+    +'<div class="sbar"><span class="stxt">🏨 親子住宿</span><span class="cnt">共 '+items.length+' 間 🎯</span></div>'
+    +'<div style="padding:0 12px 8px;font-size:12px;color:var(--muted)">✅ 已收錄精選親子友善住宿，更多縣市陸續新增中！</div>'
+    +'<div class="clist">'+items.map(a=>bStayCard(a)).join('')+'</div>';
+}
+
 
 function rRest(){
   const mc=document.getElementById('mc');
@@ -479,6 +617,7 @@ function rRest(){
 
   // 地區篩選
   if(restRegF!=='all') items=items.filter(a=>a.region===restRegF);
+  if(restIvyF) items=items.filter(a=>a.ivyUrl);
 
   // 距離篩選
   if(uLat && !restShowAll){
@@ -547,5 +686,7 @@ function goBlog(){
 function toast(msg){const el=document.getElementById('toast');el.textContent=msg;el.classList.add('show');setTimeout(()=>el.classList.remove('show'),2200)}
 render();
 </script>
+
+
 </body>
 </html>
