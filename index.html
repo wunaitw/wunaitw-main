@@ -417,7 +417,7 @@ function bCard(a,i){
       <a class="btngo" href="${a.url}" target="_blank" onclick="event.stopPropagation()">🔗 前往官網</a>
       <a class="btngo" style="background:var(--ocean);border-bottom-color:#1a7fa8" href="https://maps.google.com/?q=${encodeURIComponent(a.mQ)}" target="_blank" onclick="event.stopPropagation()">🗺️ 地圖</a>
       ${a.ivyUrl?`<a class="btngo" style="background:#FF69B4;border-bottom-color:#c44d8a" href="${a.ivyUrl}" target="_blank" onclick="event.stopPropagation()">🌸 Ivy分享</a>`:''}
-      ${a.buyUrl?`<a class="btngo" style="background:#FF9A3C;border-bottom-color:#cc7a00" href="${a.buyUrl}" target="_blank" onclick="event.stopPropagation()">🎟️ 購票優惠</a>`:''}
+      ${a.buyUrl?`<a class="btngo" style="background:#FF9A3C;border-bottom-color:#cc7a00" href="${a.buyUrl}" target="_blank" onclick="event.stopPropagation()">🎟️ 購票連結</a>`:''}
       <button class="btnstar ${isSaved?'on':''}" onclick="tSv(event,${a.id})">${isSaved?'⭐':'☆'}</button>
     </div>
   </div>`:`<div class="cdet" id="d${a.id}"></div>`;
