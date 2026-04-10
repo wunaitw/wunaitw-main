@@ -112,6 +112,8 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;heigh
 .nlbl{font-size:9px;font-weight:800}
 .toast{position:fixed;bottom:95px;left:50%;transform:translateX(-50%) translateY(10px);background:#222;color:#fff;padding:10px 20px;border-radius:999px;font-size:13px;font-weight:700;font-family:'Nunito',sans-serif;opacity:0;transition:all .22s;pointer-events:none;z-index:999;white-space:nowrap}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.top-btn{position:fixed;right:16px;bottom:100px;width:44px;height:44px;border-radius:50%;background:var(--coral);color:#fff;border:none;border-bottom:3px solid var(--coral-dk);font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:199;box-shadow:0 4px 12px rgba(0,0,0,.18);opacity:0;pointer-events:none;transition:opacity .25s,transform .25s;transform:translateY(12px)}
+.top-btn.show{opacity:1;pointer-events:auto;transform:translateY(0)}
 </style>
 </head>
 <body>
@@ -131,6 +133,7 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;heigh
 </div>
 <div id="mc"></div>
 <div class="toast" id="toast"></div>
+<button class="top-btn" id="topBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="回頂部">↑</button>
 <div class="bnav">
   <button class="nbtn on" id="nb-nearby" onclick="goTab('nearby')"><span class="nico">📍</span><span class="nlbl">景點</span></button>
   <button class="nbtn" id="nb-rest" onclick="goTab('rest')"><span class="nico">🍽️</span><span class="nlbl">餐廳</span></button>
@@ -576,7 +579,7 @@ function rAbout(){
     +'<div style="font-family:Nunito,sans-serif;font-weight:900;font-size:14px;margin-bottom:10px">🗺️ 目前收錄</div>'
     +'<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;text-align:center">'
     +'<div><div style="font-family:Nunito,sans-serif;font-size:26px;font-weight:900;color:var(--coral)">'+D.length+'</div><div style="font-size:11px;color:var(--muted)">親子景點</div></div>'
-    +'<div><div style="font-family:Nunito,sans-serif;font-size:26px;font-weight:900;color:#FF69B4">13</div><div style="font-size:11px;color:var(--muted)">親子餐廳</div></div>'
+    +'<div><div style="font-family:Nunito,sans-serif;font-size:26px;font-weight:900;color:#FF69B4">84</div><div style="font-size:11px;color:var(--muted)">親子餐廳</div></div>'
     +'<div><div style="font-family:Nunito,sans-serif;font-size:26px;font-weight:900;color:#9B72CF">5</div><div style="font-size:11px;color:var(--muted)">親子住宿</div></div>'
     +'</div>'
     +'</div>'
@@ -692,22 +695,151 @@ function rComing(icon, title, desc){
   </div>`;
 }
 const R=[
-{id:'r1',name:'甲蟲秘境親子餐廳',region:'台北市',ivyUrl:'https://www.instagram.com/p/DWu0Jg9ktTu/',lat:25.1018,lng:121.5269,emoji:'🪲',addr:'台北市士林區克強路28號1樓',hours:'週三–日 11:00–21:00（週一二休）',price:'餐廳消費制，無入場費',rating:4.7,priceLevel:'$$',note:'3歲以上 ✅，甲蟲主題裝潢超特別！球池溜滑梯，甲蟲造型鬆餅必點，假日可近距離觸摸獨角仙鍬形蟲，爸媽可以悠閒用餐',tags:['昆蟲主題','球池','溜滑梯'],url:'https://www.facebook.com/BeetleSecret'},
-{id:'r2',name:'大樹先生的家 Mr.Tree',region:'台北市',lat:25.0547,lng:121.5446,emoji:'🌳',addr:'台北市大安區仁愛路四段300巷18號1樓',hours:'每日 10:00–18:00（分時段入場）',price:'兒童 $700 / 大人 $200（含低消）',rating:4.6,priceLevel:'$$',note:'0歲起 ✅，超寬敞沙坑＋球池＋扮家家酒，常換主題佈置超好拍，明星爸媽最愛，辦抓周生日派對熱門選擇',tags:['沙坑','球池','0歲起'],url:'https://www.facebook.com/MrTreehouse'},
-{id:'r3',name:'童鍋親子火鍋餐廳',region:'台北市',lat:25.0420,lng:121.5340,emoji:'🍲',addr:'台北市大安區復興南路一段107巷5弄6號',hours:'每日 11:30–21:30',price:'火鍋套餐 $400起 / 兒童餐 $250起',rating:4.5,priceLevel:'$$',note:'2歲以上 ✅，韓系白色風格，大球池＋溜滑梯，蔬菜熬製健康湯底寶寶也能喝，家長邊吃火鍋邊顧小孩，超輕鬆',tags:['火鍋','球池','溜滑梯'],url:'https://www.facebook.com/kidspot.hotpot'},
+{id:'r1',name:'甲蟲秘境親子餐廳',region:'台北市',ivyUrl:'https://www.instagram.com/p/DWu0Jg9ktTu/',lat:25.1018,lng:121.5269,emoji:'🪲',addr:'台北市士林區克強路28號1樓',hours:'週三–日 11:00–21:00（週一二休）',price:'餐廳消費制，無入場費',rating:4.7,priceLevel:'$$',note:'3歲以上 ✅，甲蟲主題裝潢超特別！球池溜滑梯，甲蟲造型鬆餅必點，假日可近距離觸摸獨角仙鍬形蟲，爸媽可以悠閒用餐',tags:['昆蟲主題','球池','溜滑梯'],url:'https://www.facebook.com/BEETLESINWONDERLANDZHISHAN'},
+{id:'r2',name:'大樹先生的家 Mr.Tree',region:'台北市',lat:25.0547,lng:121.5446,emoji:'🌳',addr:'台北市大安區仁愛路四段300巷18號1樓',hours:'每日 10:00–18:00（分時段入場）',price:'兒童 $700 / 大人 $200（含低消）',rating:4.6,priceLevel:'$$',note:'0歲起 ✅，超寬敞沙坑＋球池＋扮家家酒，常換主題佈置超好拍，明星爸媽最愛，辦抓周生日派對熱門選擇',tags:['沙坑','球池','0歲起'],url:'https://www.facebook.com/mr.tree38'},
+{id:'r3',name:'童鍋親子火鍋餐廳',region:'新北市',lat:24.9753,lng:121.4456,emoji:'🍲',addr:'238新北市樹林區樹新路40-6號6樓',hours:'週六日 11:00–22:00，週一-五 11:00–15:00, 17:30–22:00 ',price:'火鍋套餐 $400起 / 兒童餐 $250起',rating:4.5,priceLevel:'$$',note:'2歲以上 ✅，韓系白色風格，大球池＋溜滑梯，蔬菜熬製健康湯底寶寶也能喝，家長邊吃火鍋邊顧小孩，超輕鬆',tags:['火鍋','球池','溜滑梯'],url:'https://www.facebook.com/Tonghealthyhotpot'},
 
-{id:'r5',name:'象園咖啡 Elephant Garden',region:'台北市',lat:25.0815,lng:121.5779,emoji:'🐘',addr:'台北市內湖區碧湖路20號',hours:'每日 11:00–21:00',price:'大人低消 $200 / 兒童免低消',rating:4.4,priceLevel:'$$',note:'2歲以上 ✅，碧湖公園對面湖景餐廳！戶外遊樂設施，大象造型雞蛋糕必吃，寵物友善，湖景超美拍照一流',tags:['湖景','戶外遊樂','寵物友善'],url:'https://www.facebook.com/ElephantGarden2015'},
-{id:'r6',name:'公主樂糕殿（樂高主題親子餐廳）',region:'新北市',lat:24.9753,lng:121.4456,emoji:'🧱',addr:'新北市土城區金城路二段247號',hours:'週二–五 11:00–20:00，週六日 10:00–20:00（週一休）',price:'兒童 $680 / 大人低消 $200 含樂高積木遊戲時間',rating:4.5,priceLevel:'$$',note:'3歲以上 ✅，全台最大樂高親子餐廳！7000坪超大空間，餐廳、遊戲區全樂高元素，樂高迷必訪，假日建議預約',tags:['樂高主題','積木','大空間'],url:'https://www.facebook.com/PrincessLego'},
-{id:'r7',name:'BabyWonder Land 童話愛樂園',region:'新北市',lat:25.0125,lng:121.5145,emoji:'🏰',addr:'新北市永和區得和路10號',hours:'三時段：11:00、14:30、18:00（各2.5小時）',price:'2–12歲 $380 / 2歲以下 $100清潔費 12歲以上 $280低消',rating:4.3,priceLevel:'$$',note:'0歲起 ✅，童話風格超夢幻！三時段入場制，換場全館消毒超安心，球池、溜滑梯、扮家家酒，捷運永安市場站可到',tags:['童話風','球池','0歲起'],url:'https://www.facebook.com/BabyWonderLand.TW'},
-{id:'r8',name:'森林島嶼親子餐廳',region:'新北市',lat:25.0169,lng:121.4627,emoji:'🌿',addr:'新北市板橋區新站路16號3樓（板橋車站附近）',hours:'每日 10:00–20:00',price:'兒童 $580 / 大人低消 $250 含遊戲時間，可延時加購',rating:4.4,priceLevel:'$$',note:'1歲起 ✅，板橋車站旁超方便！叢林主題，大型溜滑梯＋攀爬區＋沙坑，幼童區有軟墊安全隔離，餐點評價不錯',tags:['叢林主題','溜滑梯','攀爬'],url:'https://www.facebook.com/ForestIslandKids'},
-{id:'r9',name:'淘憩時光親子餐廳',region:'台北市',lat:25.0478,lng:121.5170,emoji:'☕',addr:'台北市中山區（請查粉專確認最新地址）',hours:'每日 11:00–20:00',price:'大人低消 $200 / 未滿6歲無低消',rating:4.5,priceLevel:'$',note:'0歲起 ✅，6歲以下免低消！提供尿布、哺乳室，有寶寶粥兒童套餐，適合帶最小的寶寶來，常辦抓周生日派對',tags:['0歲起','哺乳室','尿布台'],url:'https://www.facebook.com/taochikids'},
-{id:'r10',name:'NICE TO MEET U newborn&cafe',region:'台北市',lat:25.0539,lng:121.5406,emoji:'👶',addr:'台北市松山區（請查粉專確認最新地址）',hours:'每日 10:00–18:00（週一休）',price:'輕食咖啡 $150起',rating:4.6,priceLevel:'$',note:'0歲起 ✅，新生兒最友善！Liwagon嬰兒床＋iPad監控，溫奶器消毒機尿布台一應俱全，還有寶寶副食品，帶新生兒出門的首選',tags:['新生兒友善','0歲起','哺乳室'],url:'https://www.facebook.com/NICETOMEETUTWN'},
+{id:'r5',name:'象園咖啡 Elephant Garden',region:'台北市',lat:25.0815,lng:121.5779,emoji:'🐘',addr:'台北市內湖區碧湖路20號',hours:'每日 11:00–21:00',price:'大人低消 $200 / 兒童免低消',rating:4.4,priceLevel:'$$',note:'2歲以上 ✅，碧湖公園對面湖景餐廳！戶外遊樂設施，大象造型雞蛋糕必吃，寵物友善，湖景超美拍照一流',tags:['湖景','戶外遊樂','寵物友善'],url:'https://www.facebook.com/elephantgardencafe'},
+{id:'r6',name:'公主樂糕殿（樂高主題親子餐廳）',region:'新北市',lat:24.9753,lng:121.4456,emoji:'🧱',addr:'新北市土城區金城路二段247號',hours:'週二–五 11:00–20:00，週六日 10:00–20:00（週一休）',price:'兒童 $680 / 大人低消 $200 含樂高積木遊戲時間',rating:4.5,priceLevel:'$$',note:'3歲以上 ✅，全台最大樂高親子餐廳！7000坪超大空間，餐廳、遊戲區全樂高元素，樂高迷必訪，假日建議預約',tags:['樂高主題','積木','大空間'],url:'https://www.princessbrick.com'},
+{id:'r7',name:'BabyWonder Land 童話愛樂園',region:'新北市',lat:25.0125,lng:121.5145,emoji:'🏰',addr:'新北市中和區安平路55號',hours:'11:00-20:30 週二公休',price:'2–12歲 $380 / 2歲以下 $100清潔費 12歲以上 $280低消',rating:4.3,priceLevel:'$$',note:'0歲起 ✅，童話風格超夢幻！換場全館消毒超安心，球池、溜滑梯、扮家家酒',tags:['童話風','球池','0歲起'],url:'https://www.facebook.com/p/Babywonderland-童話愛樂園-61576822023994/'},
+{id:'r8',name:'小島3.5度親子餐廳-Island Aurora 台中冒險館',region:'台中市',lat:25.0169,lng:121.4627,emoji:'🌿',addr:'台中市北屯區經貿三路二段82號',hours:'每日 11:00–20:30',price:'80公分以下 不收費 / 大人低消 $480' ,priceLevel:'$$',note:'1歲起 ✅，二樓遊戲區不限制時間，16:00:16:30 清潔跟消毒。有包廂',tags:['遊戲區'],url:'https://www.facebook.com/islandAurora'},
+{id:'r9',name:'淘憩時光親子餐廳',region:'台北市',lat:25.0478,lng:121.5170,emoji:'☕',addr:'台北市中山區松江路69巷5號',hours:'每日 11:00–20:00',price:'大人低消 $200 / 未滿6歲無低消',rating:4.5,priceLevel:'$',note:'0歲起 ✅，6歲以下免低消！提供尿布、哺乳室，有寶寶粥兒童套餐，適合帶最小的寶寶來，常辦抓周生日派對',tags:['0歲起','哺乳室','尿布台'],url:'https://www.facebook.com/cozytaipei'},
+{id:'r10',name:'NICE TO MEET U newborn&cafe',region:'台北市',lat:25.0539,lng:121.5406,emoji:'👶',addr:'台北市士林區忠誠路二段166巷28弄1號',hours:'每日 10:00–20:00（週一二休）',price:'輕食咖啡 $150起',rating:4.1,priceLevel:'$',note:'0歲起 ✅，新生兒最友善！Yamatoya嬰兒床，溫奶器消毒機尿布台一應俱全，還有由營養師打造餐點，供應4個月以上寶寶副食品，帶新生兒出門的首選',tags:['新生兒友善','0歲起','哺乳室'],url:'https://www.facebook.com/NTMU.NewbornCafe'},
 {id:'r11',name:'貝里尼義式廚房',region:'台北市',lat:25.0453,lng:121.5438,emoji:'🍝',addr:'台北市各分店（信義/中山/天母等）',hours:'每日 11:30–21:30',price:'主餐 $380起 / 兒童餐 $280',rating:4.2,priceLevel:'$$',note:'3歲以上 ✅，義式親子友善餐廳！空間寬敞舒適，兒童餐點豐富，推車可進入，服務親切，假日帶孩子吃義式料理首選',tags:['義式料理','親子友善','兒童餐'],url:'https://www.bellini.com.tw/'},
 {id:'r12',name:'大戶屋',region:'台北市',lat:25.0478,lng:121.5170,emoji:'🍱',addr:'台北市各分店（全台連鎖）',hours:'每日 11:00–21:30',price:'定食套餐 $280起 / 兒童餐 $180',rating:4.1,priceLevel:'$$',note:'3歲以上 ✅，日式家庭料理！注重健康均衡，兒童餐附玩具，空間寬敞推車友善，全台多家分店方便，帶孩子吃健康日本定食首選',tags:['日式料理','親子友善','兒童餐'],url:'https://www.ootoya.com.tw/'},
 {id:'r13',name:'品田牧場',region:'台北市',lat:25.0530,lng:121.5180,emoji:'🥩',addr:'台北市各分店（全台連鎖）',hours:'每日 11:00–22:00',price:'豬排套餐 $350起 / 兒童餐 $250',rating:4.0,priceLevel:'$$',note:'3歲以上 ✅，日式豬排名店！兒童餐份量適中，環境舒適，是帶孩子吃日式豬排的家庭餐廳好選擇，多個台北分店方便',tags:['日式料理','豬排','親子友善'],url:'https://www.pintien.com.tw/'},
 {id:'r14',name:'王品台塑牛排',region:'台北市',lat:25.0420,lng:121.5340,emoji:'🥩',addr:'台北市各分店（全台連鎖）',hours:'每日 11:30–21:30',price:'牛排套餐 $800起 / 兒童餐 $500',rating:4.3,priceLevel:'$$$',note:'5歲以上 ✅，台灣最具代表性的牛排館！精緻套餐含前菜甜點，服務細膩，適合帶孩子體驗西式正式餐廳禮儀，慶生家庭聚餐首選',tags:['牛排','西式料理','親子友善'],url:'https://www.wangsteak.com.tw/'},
 {id:'r15',name:'豹豹咖啡觀音山森林館',region:'新北市',lat:25.1158,lng:121.4082,emoji:'🐆',addr:'新北市五股區凌雲路三段130號（觀音山遊客中心旁）',hours:'平日 10:00–17:00 / 假日 09:00–18:00（週二公休）',price:'低消制，飲料 $150起，無入場費',rating:4.5,priceLevel:'$',note:'0歲起 ✅，觀音山上貓咖啡！平日貓店員出沒超療癒，爬完林稍步道來喝咖啡最舒服，提供義大利麵輕食，森林系環境放鬆，搭配觀音山步道半日遊',tags:['景觀咖啡','森林系','寵物友善'],url:'https://www.facebook.com/boBoCafe/'},
-{id:'r16',name:'蘇維拉莊園餐廳',region:'苗栗',lat:24.5912,lng:120.9782,emoji:'🍄',addr:'苗栗縣南庄鄉田美村16鄰四灣92號',hours:'平日 09:30–18:00 / 假日 09:00–18:00',price:'入園費 $200 (可折抵餐飲 $100)',rating:4.2,priceLevel:'$$',note:'2歲以上 ✅，森林系景觀餐廳！除了有全台最長的森林溜滑梯與精靈蘑菇屋，餐廳提供義大利麵、燉飯與下午茶。環境開闊能俯瞰南庄山景，是南庄最高人氣的親子景觀餐廳，適合搭配莊園內遊樂設施一日遊',tags:['景觀咖啡','森林系','長溜滑梯'],url:'https://www.sudvista.com'}
+{id:'r16',name:'蘇維拉莊園餐廳',region:'苗栗',lat:24.5912,lng:120.9782,emoji:'🍄',addr:'苗栗縣南庄鄉田美村16鄰四灣92號',hours:'平日 09:30–18:00 / 假日 09:00–18:00',price:'入園費 $200 (可折抵餐飲 $100)',rating:4.2,priceLevel:'$$',note:'2歲以上 ✅，森林系景觀餐廳！除了有全台最長的森林溜滑梯與精靈蘑菇屋，餐廳提供義大利麵、燉飯與下午茶。環境開闊能俯瞰南庄山景，是南庄最高人氣的親子景觀餐廳，適合搭配莊園內遊樂設施一日遊',tags:['景觀咖啡','森林系','長溜滑梯'],url:'https://www.sudvista.com'},
+
+
+  {id:'r17',name:'農人餐桌 親子餐廳',region:'台北市',lat:25.0305,lng:121.5175,emoji:'🥗',addr:'台北市中正區重慶南路二段51號B1',hours:'每日 11:00–20:30',price:'成人低消 $300 / 兒童 2歲以上低消 $150',rating:4.1,priceLevel:'$$',note:'0歲起 ✅，信誼基金會旗下。強調有機食材與產地直送，木質調北歐風，設有高品質木製廚具遊戲區，是台北質感親子餐飲指標',tags:['產地直送','木製教具','健康料理'],url:'https://www.facebook.com/afarmtable/'},
+
+  {id:'r18',name:'Money Jump 親子餐廳',region:'台北市',lat:25.0602,lng:121.5745,emoji:'🎠',addr:'台北市內湖區民善街127號2樓',hours:'時段制 11:00–13:30 / 14:00–17:00 / 17:30–20:00',price:'平日低消 $300起 / 假日 $500起',rating:4.0,priceLevel:'$$$',note:'0歲起 ✅，夢幻室內旋轉木馬是標誌！還有五星主廚料理、躲貓貓隧道與科技互動球池，裝潢極具設計感，適合拍照與高標餐飲需求',tags:['旋轉木馬','室內球池','精緻排餐'],url:'https://moneyjump.com.tw/'},
+
+  {id:'r19',name:'富爸爸餐飲會所 Rich Daddy',region:'台北市',lat:25.0445,lng:121.5298,emoji:'🍷',addr:'台北市中正區金山北路1號2樓',hours:'時段制 11:00–14:00 / 14:30–17:30 / 18:00–21:00',price:'平日低消 $350 / 假日 $500',rating:4.2,priceLevel:'$$$',note:'1歲起 ✅，華山文創旁。木質風格遊樂區與餐飲區視線零死角，家長能一邊享用精緻義法料理一邊看顧孩子，環境非常優雅舒適',tags:['華山周邊','木造遊具','高質感'],url:'https://www.facebook.com/RichDaddyCafe/'},
+
+  
+  {id:'r20',name:'小島泰式料理',region:'新北市',lat:25.0845,lng:121.4825,emoji:'🐘',addr:'新北市八里區觀海大道91號',hours:'11:00–23:00',price:'低消為每人一樣餐點或飲品',rating:4.7,priceLevel:'$$',note:'設有露台的海景餐廳，採用色彩繽紛的裝潢，供應傳統泰式料理。',tags:['泰國菜','海盜船球池','高CP值'],url:'https://www.facebook.com/island91'}
+,
+/* ── 連鎖餐廳各分店 ── */
+/* 鼎泰豐 */
+{id:'r21',name:'鼎泰豐（信義店）',region:'台北市',lat:25.0330,lng:121.5301,emoji:'🥟',addr:'台北市大安區信義路二段194號（捷運東門站5號出口）',hours:'平日 11:00–20:30 / 假日 10:30–20:30',price:'小籠包$220起 / 人均約$450',rating:4.8,priceLevel:'$$',note:'3歲以上 ✅，世界十大餐廳！18摺黃金小籠包、排骨蛋炒飯必點，服務細膩，桌邊服務讓孩子感受正式用餐禮儀。假日人多建議提前訂位',tags:['小籠包','精緻中餐','親子聚餐'],phone:'02-2321-8928',url:'https://www.dintaifung.com.tw/',reserveUrl:'https://www.dintaifung.tw/Queue/'},
+{id:'r22',name:'鼎泰豐（101店）',region:'台北市',lat:25.0336,lng:121.5654,emoji:'🥟',addr:'台北市信義區市府路45號B1（台北101購物中心）',hours:'每日 11:00–20:30',price:'小籠包$220起 / 人均約$450',rating:4.8,priceLevel:'$$',note:'3歲以上 ✅，逛台北101必訪！位於B1，採購伴手禮兼享美食超方便，假日人潮多建議現場抽號碼牌或平日前往',tags:['小籠包','精緻中餐','101'],phone:'02-8101-7799',url:'https://www.dintaifung.com.tw/',reserveUrl:'https://www.dintaifung.tw/Queue/'},
+{id:'r23',name:'鼎泰豐（復興SOGO店）',region:'台北市',lat:25.0420,lng:121.5481,emoji:'🥟',addr:'台北市大安區忠孝東路三段300號B2（SOGO復興館）',hours:'每日 10:00–21:00',price:'小籠包$220起 / 人均約$450',rating:4.8,priceLevel:'$$',note:'3歲以上 ✅，東區逛街好選擇！位於忠孝復興SOGO，結合購物一日遊最方便',tags:['小籠包','精緻中餐','東區'],phone:'02-8772-0528',url:'https://www.dintaifung.com.tw/',reserveUrl:'https://www.dintaifung.tw/Queue/'},
+{id:'r24',name:'鼎泰豐（南西店）',region:'台北市',lat:25.0524,lng:121.5229,emoji:'🥟',addr:'台北市中山區南京西路12號B2（新光三越南西店1館）',hours:'週日–四 11:00–20:30 / 週五六 11:00–21:00',price:'小籠包$220起 / 人均約$450',rating:4.8,priceLevel:'$$',note:'3歲以上 ✅，中山南西商圈逛街首選，鄰近新光三越，捷運中山站步行可達',tags:['小籠包','精緻中餐','中山'],phone:'02-2511-1555',url:'https://www.dintaifung.com.tw/',reserveUrl:'https://www.dintaifung.tw/Queue/'},
+{id:'r25',name:'鼎泰豐（板橋店）',region:'新北市',lat:25.0142,lng:121.4644,emoji:'🥟',addr:'新北市板橋區新站路28號B1（大遠百板橋店）',hours:'每日 11:00–21:00',price:'小籠包$220起 / 人均約$450',rating:4.8,priceLevel:'$$',note:'3歲以上 ✅，新北板橋首選！位於大遠百B1，假日逛街吃飯一站搞定',tags:['小籠包','精緻中餐','板橋'],phone:'02-8951-2222',url:'https://www.dintaifung.com.tw/',reserveUrl:'https://www.dintaifung.tw/Queue/'},
+{id:'r26',name:'鼎泰豐（新竹店）',region:'新竹',lat:24.8028,lng:120.9721,emoji:'🥟',addr:'新竹市西大路323號B1（大遠百新竹店）',hours:'週日–四 11:00–20:30 / 週五六 11:00–21:00',price:'小籠包$220起 / 人均約$450',rating:4.8,priceLevel:'$$',note:'3歲以上 ✅，新竹唯一鼎泰豐！大遠百B1，親子逛街用餐一條龍',tags:['小籠包','精緻中餐','新竹'],phone:'03-523-6222',url:'https://www.dintaifung.com.tw/',reserveUrl:'https://www.dintaifung.tw/Queue/'},
+{id:'r27',name:'鼎泰豐（台中店）',region:'台中市',lat:24.1581,lng:120.6473,emoji:'🥟',addr:'台中市西屯區台灣大道三段301號B1（新光三越台中中港店）',hours:'平日 11:00–21:00 / 假日 10:30–21:00',price:'小籠包$220起 / 人均約$450',rating:4.8,priceLevel:'$$',note:'3歲以上 ✅，台中唯一鼎泰豐，台灣大道商圈親子用餐首選',tags:['小籠包','精緻中餐','台中'],phone:'04-2255-6868',url:'https://www.dintaifung.com.tw/',reserveUrl:'https://www.dintaifung.tw/Queue/'},
+
+/* 海底撈 */
+{id:'r30',name:'海底撈（信義ATT店）',region:'台北市',lat:25.0367,lng:121.5631,emoji:'🍲',addr:'台北市信義區松壽路12號6樓（ATT 4 FUN）',hours:'每日 11:00–04:00',price:'人均約$600–900 / 鍋底$199起',rating:4.5,priceLevel:'$$',note:'3歲以上 ✅，服務天花板！等位有哈根達斯、美甲、按摩椅全免費。有兒童遊戲室，小孩玩大人吃超放鬆。可線上訂位省等待時間',tags:['火鍋','兒童遊戲室','等位免費服務'],phone:'02-7743-1855',url:'https://haidilaotaiwan.com.tw/',reserveUrl:'https://haidilaotaiwan.com.tw/'},
+{id:'r31',name:'海底撈（京站店）',region:'台北市',lat:25.0481,lng:121.5165,emoji:'🍲',addr:'台北市大同區承德路一段1號4樓（台北車站京站時尚廣場）',hours:'每日 11:00–04:00',price:'人均約$600–900',rating:4.4,priceLevel:'$$',note:'3歲以上 ✅，台北車站超方便！交通便利，帶孩子搭高鐵前後都能吃，等位服務同樣免費又豐盛',tags:['火鍋','兒童遊戲室','台北車站'],phone:'02-2559-0125',url:'https://haidilaotaiwan.com.tw/',reserveUrl:'https://haidilaotaiwan.com.tw/'},
+{id:'r32',name:'海底撈（慶城店）',region:'台北市',lat:25.0521,lng:121.5596,emoji:'🍲',addr:'台北市松山區慶城街1號3樓（捷運南京復興站）',hours:'每日 11:00–04:00',price:'人均約$600–900',rating:4.4,priceLevel:'$$',note:'3歲以上 ✅，南京復興商圈，平日商業午餐九宮格$520超划算，有兒童遊戲室可安心用餐',tags:['火鍋','兒童遊戲室','商業午餐'],phone:'02-2719-3155',url:'https://haidilaotaiwan.com.tw/',reserveUrl:'https://haidilaotaiwan.com.tw/'},
+{id:'r33',name:'海底撈（板橋店）',region:'新北市',lat:25.0142,lng:121.4644,emoji:'🍲',addr:'新北市板橋區新站路28號5樓（大遠百板橋店）',hours:'每日 11:00–04:00',price:'人均約$600–900',rating:4.4,priceLevel:'$$',note:'3歲以上 ✅，板橋大遠百5樓，新北親子聚餐首選，等位有遊戲區和按摩椅',tags:['火鍋','兒童遊戲室','板橋'],phone:'02-2964-1327',url:'https://haidilaotaiwan.com.tw/',reserveUrl:'https://haidilaotaiwan.com.tw/'},
+{id:'r34',name:'海底撈（台中中友店）',region:'台中市',lat:24.1502,lng:120.6843,emoji:'🍲',addr:'台中市北區三民路三段161號A棟14樓（中友百貨）',hours:'每日 11:00–04:00',price:'人均約$600–900',rating:4.4,priceLevel:'$$',note:'3歲以上 ✅，中友百貨14樓，台中人氣最旺的海底撈，假日建議提前線上訂位，兒童遊戲室和美甲都免費',tags:['火鍋','兒童遊戲室','中友'],phone:'04-2222-0515',url:'https://haidilaotaiwan.com.tw/',reserveUrl:'https://haidilaotaiwan.com.tw/'},
+{id:'r35',name:'海底撈（台南南紡店）',region:'台南市',lat:22.9906,lng:120.2233,emoji:'🍲',addr:'台南市東區中華東路一段358號5樓（南紡購物中心）',hours:'每日 11:00–04:00',price:'人均約$600–900',rating:4.3,priceLevel:'$$',note:'3歲以上 ✅，台南唯一海底撈，南紡購物中心5樓，南部親子自駕必訪',tags:['火鍋','兒童遊戲室','台南'],phone:'06-208-1831',url:'https://haidilaotaiwan.com.tw/',reserveUrl:'https://haidilaotaiwan.com.tw/'},
+
+/* 貳樓 Second Floor - 代表性分店 */
+{id:'r40',name:'貳樓餐廳（敦南店）',region:'台北市',lat:25.0395,lng:121.5513,emoji:'🥞',addr:'台北市大安區敦化南路一段245巷10號',hours:'每日 08:00–21:30',price:'早午餐$280起 / 主餐$380起',rating:4.5,priceLevel:'$$',note:'3歲以上 ✅，兒童超友善！訂位時告知有幼兒，貼心準備兒童餐具、畫紙畫筆，推車可進，寵物友善，份量大、選擇多。用餐2小時，建議訂位',tags:['早午餐','兒童友善','寵物友善'],phone:'02-2778-8110',url:'https://www.secondfloorcafe.com/',reserveUrl:'https://inline.app/booking/-KXKjbMyZzEgAYIwbVnO:inline-live-2ndfloor'},
+{id:'r41',name:'貳樓餐廳（仁愛店）',region:'台北市',lat:25.0348,lng:121.5200,emoji:'🥞',addr:'台北市中正區仁愛路二段108號',hours:'每日 10:00–21:00',price:'早午餐$280起 / 主餐$380起',rating:4.5,priceLevel:'$$',note:'3歲以上 ✅，仁愛路鬧中取靜，空間舒適，10歲以下兒童超暖心，寵物友善，是台北CP值最高的美式早午餐之一',tags:['早午餐','兒童友善','寵物友善'],phone:'02-2357-9222',url:'https://www.secondfloorcafe.com/',reserveUrl:'https://inline.app/booking/-KXKjbMyZzEgAYIwbVnO:inline-live-2ndfloor'},
+{id:'r42',name:'貳樓餐廳（微風台北車站店）',region:'台北市',lat:25.0478,lng:121.5170,emoji:'🥞',addr:'台北市中正區北平西路3號2樓（微風台北車站）',hours:'每日 10:00–22:00',price:'早午餐$280起 / 主餐$380起',rating:4.4,priceLevel:'$$',note:'3歲以上 ✅，台北車站超方便！搭高鐵前後都能吃，平日可提前1個月訂位，假日不接受預約',tags:['早午餐','台北車站','親子友善'],phone:'02-2361-0861',url:'https://www.secondfloorcafe.com/',reserveUrl:'https://inline.app/booking/-KXKjbMyZzEgAYIwbVnO:inline-live-2ndfloor'},
+{id:'r43',name:'貳樓餐廳（板橋店）',region:'新北市',lat:25.0133,lng:121.4601,emoji:'🥞',addr:'新北市板橋區遠東路二段15號（亞東醫院站）',hours:'每日 10:00–21:30',price:'早午餐$280起 / 主餐$380起',rating:4.4,priceLevel:'$$',note:'3歲以上 ✅，新北板橋親子早午餐首選，停車方便，寵物友善，提供兒童餐具',tags:['早午餐','兒童友善','板橋'],phone:'02-8951-0900',url:'https://www.secondfloorcafe.com/',reserveUrl:'https://inline.app/booking/-KXKjbMyZzEgAYIwbVnO:inline-live-2ndfloor'},
+
+/* 稻舍食館 */
+{id:'r50',name:'稻舍食館 Rice & Shine',region:'台北市',lat:25.0618,lng:121.5082,emoji:'🍚',addr:'台北市大同區迪化街一段329號（捷運大橋頭站步行5分鐘）',hours:'12:00–15:00 / 17:30–21:00（週一休）',price:'客飯套餐$350起 / 低消$120',rating:4.6,priceLevel:'$$',note:'3歲以上 ✅，百年米倉老屋餐廳！台灣好米現碾現煮，豬油拌飯古早味超香，二樓包廂適合家庭聚餐，迪化街旅遊必排行程，假日強烈建議線上訂位',tags:['台式料理','百年老屋','迪化街'],phone:'02-2550-6607',url:'https://www.facebook.com/ricenshine329',reserveUrl:'https://inline.app/booking/-LMGeAj-quteyNDB4Yxe:inline-live-2a466'},
+
+/* 旭集和食集錦 */
+{id:'r51',name:'旭集和食集錦（信義A13）',region:'台北市',lat:25.0412,lng:121.5653,emoji:'🍱',addr:'台北市信義區松仁路58號9樓（遠百信義A13）',hours:'午餐11:30–14:00 / 下午茶14:30–16:30 / 晚餐17:30–21:30',price:'午餐$1090起 / 晚餐$1690起（另加10%服務費）',rating:4.7,priceLevel:'$$$',note:'6歲以上 ✅，台北最搶手的日式吃到飽！壽司師傅現握、香煎干貝、帝王蟹4小時慢慢吃。每月1日上午9:00開放下月訂位，要搶！需預付定金$500/人',tags:['日式吃到飽','頂級食材','需提前訂位'],phone:'02-8780-3366',url:'https://www.xujisunrise.com.tw/',reserveUrl:'https://www.xujisunrise.com.tw/zh-TW/booking'},
+{id:'r52',name:'旭集和食集錦（天母大葉高島屋）',region:'台北市',lat:25.1017,lng:121.5285,emoji:'🍱',addr:'台北市士林區中山北路六段77號5樓（大葉高島屋）',hours:'午餐11:30–14:00 / 下午茶14:30–16:30 / 晚餐17:30–21:30',price:'午餐$1090起 / 晚餐$1690起（另加10%服務費）',rating:4.7,priceLevel:'$$$',note:'6歲以上 ✅，旭集最大間！全台旭集裡面坪數最大，動線較順暢，天母居家感濃，需預付定金$500/人，每月1日上午9:00開放訂位',tags:['日式吃到飽','頂級食材','天母'],phone:'02-2831-9388',url:'https://www.xujisunrise.com.tw/',reserveUrl:'https://www.xujisunrise.com.tw/zh-TW/booking'},
+{id:'r53',name:'旭集和食集錦（桃園中茂新天地）',region:'桃園市',lat:24.9791,lng:121.2983,emoji:'🍱',addr:'桃園市中壢區中山東路三段20號7樓（中茂新天地）',hours:'午餐11:30–14:00 / 下午茶14:30–16:30 / 晚餐17:30–21:30',price:'午餐$1090起 / 晚餐$1690起',rating:4.6,priceLevel:'$$$',note:'6歲以上 ✅，桃園地區最方便的旭集，交通方便，需預付定金$500/人',tags:['日式吃到飽','頂級食材','桃園'],phone:'03-265-5988',url:'https://www.xujisunrise.com.tw/',reserveUrl:'https://www.xujisunrise.com.tw/zh-TW/booking'},
+
+/* 小小樹食 */
+{id:'r54',name:'小小樹食（大安店）',region:'台北市',lat:25.0439,lng:121.5448,emoji:'🌱',addr:'台北市大安區大安路一段116巷17號（捷運忠孝復興站）',hours:'每日 12:00–21:00（最後一個週一公休）',price:'低消$500/人 / 下午茶$300/人',rating:4.7,priceLevel:'$$',note:'3歲以上 ✅，米其林必比登綠星！精緻蔬食讓全家吃好又健康，10歲以下兒童無低消，巷弄裡的秘境餐廳。強烈建議提前預約',tags:['蔬食','米其林','兒童友善'],phone:'02-2778-2277',url:'https://www.littletreefood.com/',reserveUrl:'https://www.littletreefood.com/contactus'},
+{id:'r55',name:'小小樹食（敦南店）',region:'台北市',lat:25.0368,lng:121.5526,emoji:'🌱',addr:'台北市大安區敦化南路二段39-1號（捷運信義安和站）',hours:'每日 11:30–21:00',price:'低消$500/人 / 下午茶$300/人',rating:4.7,priceLevel:'$$',note:'3歲以上 ✅，超美室內大樹！挑高落地窗採光絕佳，蔬食創意滿點，鄰近東區商圈，韓式炸雞也是蔬食做的，小孩超愛',tags:['蔬食','米其林','東區'],phone:'02-2700-0313',url:'https://www.littletreefood.com/',reserveUrl:'https://www.littletreefood.com/contactus'},
+{id:'r56',name:'小小樹食（台中勤美術館店）',region:'台中市',lat:24.1528,lng:120.6472,emoji:'🌱',addr:'台中市西區公益路68號（勤美術館）',hours:'每日 11:30–21:00',price:'低消$500/人',rating:4.6,priceLevel:'$$',note:'3歲以上 ✅，台中唯一小小樹食，勤美誠品旁，逛完美術館來用餐最完美，蔬食精緻好吃',tags:['蔬食','米其林','台中'],phone:'04-2329-9036',url:'https://www.littletreefood.com/',reserveUrl:'https://www.littletreefood.com/contactus'},
+
+/* 勝博殿 */
+{id:'r60',name:'勝博殿（新光三越站前店）',region:'台北市',lat:25.0454,lng:121.5109,emoji:'🐷',addr:'台北市中正區忠孝西路一段66號12樓（新光三越台北站前店）',hours:'每日 11:00–22:00',price:'定食套餐$330起 / 兒童餐$230',rating:4.3,priceLevel:'$$',note:'3歲以上 ✅，日本第一豬排連鎖！高麗菜絲、味噌湯可續，使用台灣本土豬肉，兒童餐附玩具，空間寬敞推車友善，歡迎線上訂位',tags:['日式豬排','兒童餐','親子友善'],phone:'02-2371-0828',url:'https://www.saboten.com.tw/',reserveUrl:'https://inline.app/booking/-KuUwaEhVKljatiaBnAM:inline-live-2a466'},
+
+/* 黑毛屋 */
+{id:'r61',name:'黑毛屋（信義ATT店）',region:'台北市',lat:25.0361,lng:121.5628,emoji:'🐮',addr:'台北市信義區松壽路12號3樓（ATT 4 FUN）',hours:'平日 11:30–22:00 / 假日 11:00–22:00',price:'和牛套餐$680起 / 伊比利豬$580起',rating:4.5,priceLevel:'$$$',note:'5歲以上 ✅，乾杯集團日式個人鍋！嚴選和牛與伊比利豬，一人一鍋超衛生，明亮舒適空間，適合家庭慶生，建議提前訂位',tags:['個人火鍋','和牛','慶生'],phone:'02-2723-1558',url:'https://daily.kurogeya.tw/',reserveUrl:'https://daily.kurogeya.tw/zh/branch'},
+
+/* 果然匯 */
+{id:'r62',name:'果然匯（台北站前店）',region:'台北市',lat:25.0456,lng:121.5121,emoji:'🥗',addr:'台北市中正區忠孝西路一段66號13樓（新光三越台北站前店）',hours:'午餐 11:30–14:30 / 下午茶 15:00–17:00 / 晚餐 17:30–21:30',price:'午餐$790起 / 晚餐$890起（加10%服務費）',rating:4.4,priceLevel:'$$$',note:'3歲以上 ✅，饗賓集團旗下多國蔬食百匯！日式、地中海、亞洲蔬食一次滿足，種類豐富連肉食者也心滿意足，親子用餐好選擇',tags:['蔬食吃到飽','多國料理','親子友善'],phone:'02-2383-0666',url:'https://www.fruitfulfood.com.tw/',reserveUrl:'https://www.fruitfulfood.com.tw/zh-TW/booking'},
+
+/* FUWA芙蘊小食料理 */
+{id:'r63',name:'FUWA芙蘊小食料理',region:'桃園市',lat:25.0043,lng:121.2251,emoji:'🍛',addr:'桃園市中壢區領航南路三段279號1樓（高鐵桃園站車程約5分鐘）',hours:'週三–五 17:00–21:00 / 週六日 11:30–14:30・17:00–21:00（週一二休）',price:'套餐$298–598 / 童趣套餐$298',rating:4.9,priceLevel:'$$',note:'1歲以上 ✅，桃園青埔超強親子餐廳！食用級矽膠畫畫餐墊、日本MEROWARE兒童餐具、20款遊具遊戲區。主廚駐日經驗，和牛漢堡肉限量供應，強烈建議事先訂位',tags:['親子遊戲區','日式料理','和牛'],phone:'03-287-2863',url:'https://www.facebook.com/fuwafuwa.restaurant',reserveUrl:'https://reurl.cc/jyrlzn'},
+
+/* 藍屋和風御膳 */
+{id:'r64',name:'藍屋和風御膳',region:'台北市',lat:25.0421,lng:121.5388,emoji:'🍣',addr:'台北市大安區忠孝東路四段216巷27弄7號（捷運忠孝敦化站）',hours:'午餐11:30–14:30 / 晚餐17:30–21:30（週一休）',price:'套餐$480起 / 御膳套餐$680起',rating:4.4,priceLevel:'$$',note:'3歲以上 ✅，平價版高級日料！自家現做的日式定食、御膳料理，魚料理、天婦羅、烏龍麵都有，環境舒適安靜，適合帶長輩的家庭聚餐',tags:['日式料理','定食','家庭聚餐'],phone:'02-2778-7078',url:'https://www.facebook.com/AIYATAIWANSKYLARK/',reserveUrl:'https://inline.app/booking/-L3TwcJm5cGrkRqggtUM'},
+
+/* 薄多義 */
+{id:'r65',name:'薄多義（微風南山店）',region:'台北市',lat:25.0330,lng:121.5641,emoji:'🍕',addr:'台北市信義區松智路17號5樓（微風南山）',hours:'週一–四 11:30–21:30 / 週五六 11:30–22:00 / 週日 11:30–21:00',price:'手工窯烤披薩$380起 / 義大利麵$280起',rating:4.4,priceLevel:'$$',note:'3歲以上 ✅，台灣最好吃的義大利披薩之一！百年窯燒手工披薩外酥內軟，炸雞翅生日禮物傳統特別，兒童可無限續高麗菜絲，信義區逛街必訪',tags:['義式料理','手工披薩','信義區'],phone:'02-2720-8817',url:'https://www.facebook.com/bite2eatpizzaoffical/'},
+
+/* 涓豆腐 */
+{id:'r66',name:'涓豆腐（ATT信義店）',region:'台北市',lat:25.0361,lng:121.5628,emoji:'🥘',addr:'台北市信義區松壽路12號5樓（ATT 4 FUN）',hours:'每日 11:30–21:30',price:'嫩豆腐煲$298起 / 石鍋飯套餐含4樣小菜',rating:4.3,priceLevel:'$$',note:'3歲以上 ✅，韓國第一大嫩豆腐煲！韓式小菜無限供應，石鍋飯香氣十足，份量實在，全台分店眾多，是親子韓食首選',tags:['韓式料理','豆腐煲','韓式小菜'],phone:'02-8780-0280',url:'https://www.dubuhouse.com.tw/'},
+{id:'r67',name:'涓豆腐（板橋環球店）',region:'新北市',lat:25.0146,lng:121.4650,emoji:'🥘',addr:'新北市板橋區縣民大道二段7號6樓（板橋環球購物中心）',hours:'每日 11:30–21:30',price:'嫩豆腐煲$298起',rating:4.3,priceLevel:'$$',note:'3歲以上 ✅，板橋環球百貨6樓，逛街用餐一站搞定，韓式小菜無限續，小孩超愛石鍋飯',tags:['韓式料理','豆腐煲','板橋'],phone:'02-2953-0086',url:'https://www.dubuhouse.com.tw/'},
+{id:'r68',name:'涓豆腐（台中文心秀泰店）',region:'台中市',lat:24.1625,lng:120.6472,emoji:'🥘',addr:'台中市北屯區文心路四段595號8樓（秀泰台中文心店）',hours:'每日 11:30–21:30',price:'嫩豆腐煲$298起',rating:4.3,priceLevel:'$$',note:'3歲以上 ✅，台中文心路上的韓食首選，秀泰影城附近，看完電影順便用餐超方便',tags:['韓式料理','豆腐煲','台中'],phone:'04-2245-6016',url:'https://www.dubuhouse.com.tw/'},
+
+/* 藏壽司 */
+{id:'r69',name:'藏壽司（台北京站店）',region:'台北市',lat:25.0479,lng:121.5168,emoji:'🍣',addr:'台北市大同區承德路一段1號3樓（京站時尚廣場）',hours:'每日 11:00–22:00',price:'迴轉壽司$30/盤起',rating:4.5,priceLevel:'$',note:'3歲以上 ✅，日本超人氣迴轉壽司！每5盤轉扭蛋，小孩瘋狂最愛！新鮮食材、平價CP值超高，全台分店多。捷運台北車站步行可達',tags:['迴轉壽司','親子歡樂','平價'],url:'https://www.facebook.com/Kurasushi.tw'},
+
+/* 聚北海道昆布鍋 */
+{id:'r70',name:'聚北海道昆布鍋（台北南京東店）',region:'台北市',lat:25.0524,lng:121.5438,emoji:'🫕',addr:'台北市中山區南京東路三段2號5樓',hours:'平日 11:30–15:00・17:00–22:00 / 假日 11:00–22:00',price:'套餐$498起 / 鍋物單點$250起',rating:4.4,priceLevel:'$$',note:'3歲以上 ✅，北海道昆布高湯鮮甜清爽！涮羊肉、海鮮超新鮮，套餐附飯麵甜點，空間舒適，適合家庭聚餐',tags:['火鍋','昆布湯底','家庭聚餐'],phone:'02-2715-5628',url:'https://www.facebook.com/juhaidao/'},
+{id:'r71',name:'聚北海道昆布鍋（板橋環球店）',region:'新北市',lat:25.0146,lng:121.4650,emoji:'🫕',addr:'新北市板橋區縣民大道二段7號6樓（板橋環球購物中心）',hours:'每日 11:30–22:00',price:'套餐$498起',rating:4.3,priceLevel:'$$',note:'3歲以上 ✅，板橋環球逛街必吃，北海道昆布湯底鮮甜無比，兒童份量適中',tags:['火鍋','昆布湯底','板橋'],phone:'02-2953-1388',url:'https://www.facebook.com/juhaidao/'},
+
+/* 胡同燒肉 */
+{id:'r72',name:'胡同燒肉（台北1號店）',region:'台北市',lat:25.0424,lng:121.5512,emoji:'🥩',addr:'台北市大安區仁愛路四段91巷12號（捷運忠孝敦化站）',hours:'每日 17:30–23:30',price:'套餐$1280起 / 單點牛肉$380起',rating:4.6,priceLevel:'$$$',note:'5歲以上 ✅，台北日式精緻燒肉天花板！桌邊代烤服務讓家長輕鬆，嚴選日本和牛、伊比利豬，家庭慶生聚餐首選，建議提前2-3週訂位',tags:['日式燒肉','桌邊代烤','慶生'],phone:'02-2708-6298',url:'https://www.facebook.com/hutong.yakiniku',reserveUrl:'https://inline.app/booking/-MAG-Crww5I2c9paKYAy:inline-live-1'},
+
+/* 世界的山將 - 目前只剩南京店 */
+{id:'r73',name:'世界的山將（南京店）',region:'台北市',lat:25.0526,lng:121.5268,emoji:'🍗',addr:'台北市中山區南京東路二段63號1樓（松江南京站步行5分鐘）',hours:'週日–四 11:30–22:00 / 週五六 11:30–23:00',price:'夢幻雞翅$180/5隻 / 飲料喝到飽$499',rating:4.3,priceLevel:'$$',note:'3歲以上 ✅，來自名古屋的夢幻雞翅！外皮酥脆胡椒香噴噴，鰻魚飯、名古屋特色菜，居酒屋輕鬆氛圍帶孩子也OK，有午餐供應，上班族、家庭都適合',tags:['日式居酒屋','夢幻雞翅','名古屋料理'],phone:'02-2567-6100',url:'https://www.facebook.com/YamachanTaiwan/'},
+
+/* 京東燒肉 */
+{id:'r74',name:'京東燒肉（松江店）',region:'台北市',lat:25.0530,lng:121.5287,emoji:'🔥',addr:'台北市中山區松江路237號1樓（捷運松江南京站）',hours:'平日 17:30–23:00 / 假日 12:00–23:00',price:'一頭牛套餐$3000起（2人）/ 單點和牛$580起',rating:4.5,priceLevel:'$$$',note:'5歲以上 ✅，全牛9部位一次品嚐！日本A5和牛混搭美澳和牛，桌邊代烤服務，適合家庭重要聚餐與慶生，需提前訂位',tags:['日式燒肉','和牛','慶生'],phone:'02-2521-3508',url:'https://www.facebook.com/jingdong.barbecue',reserveUrl:'https://inline.app/booking/-LU0in0Q2sdb0S1PjSZ6:inline-live-2a466'},
+
+/* 合shabu */
+{id:'r75',name:'合・shabu（信義貴婦百貨）',region:'台北市',lat:25.0358,lng:121.5649,emoji:'🫕',addr:'台北市信義區松仁路28號4樓（Bellavita貴婦百貨）',hours:'每日 12:00–21:30',price:'套餐$1280起（含前菜、蔬菜、黃金粥、甜點）',rating:4.5,priceLevel:'$$$',note:'6歲以上 ✅，火鍋界的愛馬仕！柳宗理鑄鐵鍋、專人桌邊服務，日式昆布湯底鮮美，澳洲和牛/帝王蟹等頂級食材。適合特殊紀念日或帶長輩的家庭大餐',tags:['頂級火鍋','精品體驗','慶生聚餐'],phone:'02-2723-7888',url:'https://www.hostshabu.com.tw/',reserveUrl:'https://inline.app/booking/-MCACAhshjLrK5SGVP2P:inline-live-1'},
+
+/* 台中飛揚俱樂部 */
+{id:'r76',name:'275飛揚俱樂部（台中）',region:'台中市',lat:24.1622,lng:120.6497,emoji:'🛩️',addr:'台中市西區英才路520號（誠品綠園道附近）',hours:'午餐11:30–14:30 / 下午茶14:30–17:30 / 晚餐17:30–21:30',price:'套餐$680起',rating:4.4,priceLevel:'$$',note:'5歲以上 ✅，台中老飛行場改建的獨特餐廳！空間寬闊有歷史感，飛機模型裝置充滿特色，適合喜歡飛機的小孩，台中親子聚餐特色選擇',tags:['特色餐廳','飛機主題','台中'],phone:'04-2375-1234',url:'https://www.facebook.com/275flyingclub/'}
+,
+/* ── 勝博殿各分店 ── */
+{id:'r80',name:'勝博殿（新光站前店）',region:'台北市',lat:25.0454,lng:121.5121,emoji:'🐷',addr:'台北市中正區忠孝西路一段66號12樓（新光三越台北站前）',hours:'每日 11:00–22:00',price:'套餐$330起 / 兒童餐$230起（6歲以下不收低消）',rating:4.3,priceLevel:'$$',note:'3歲以上 ✅，日本第一豬排連鎖！高麗菜絲＋味噌湯＋白飯無限續，使用台灣本土豬，兒童餐附玩具，空間寬敞推車友善，多間分店皆可線上訂位',tags:['日式豬排','兒童餐','親子友善','有兒童餐'],phone:'02-2371-0828',url:'https://www.saboten.com.tw/',reserveUrl:'https://inline.app/booking/-KuUwaEhVKljatiaBnAM:inline-live-2a466'},
+{id:'r81',name:'勝博殿（光復店）',region:'台北市',lat:25.0438,lng:121.5564,emoji:'🐷',addr:'台北市大安區光復南路290巷2號（捷運忠孝復興站步行5分鐘）',hours:'每日 11:00–22:00',price:'套餐$330起 / 兒童餐$230起',rating:4.3,priceLevel:'$$',note:'3歲以上 ✅，東區最方便的勝博殿，逛完SOGO或忠孝商圈直接過來，空間寬敞、服務好，兒童餐附玩具',tags:['日式豬排','兒童餐','東區','有兒童餐'],phone:'02-2771-7668',url:'https://www.saboten.com.tw/',reserveUrl:'https://inline.app/booking/-KuUwaEhVKljatiaBnAM:inline-live-2a466'},
+{id:'r82',name:'勝博殿（天母高島屋店）',region:'台北市',lat:25.1017,lng:121.5285,emoji:'🐷',addr:'台北市士林區忠誠路二段55號5樓（大葉高島屋）',hours:'每日 11:00–22:00',price:'套餐$330起 / 兒童餐$230起',rating:4.3,priceLevel:'$$',note:'3歲以上 ✅，天母居家氛圍，大葉高島屋5樓，停車方便，適合帶孩子悠閒用餐',tags:['日式豬排','兒童餐','天母','有兒童餐'],phone:'02-6617-1874',url:'https://www.saboten.com.tw/',reserveUrl:'https://inline.app/booking/-KuUwaEhVKljatiaBnAM:inline-live-2a466'},
+{id:'r83',name:'勝博殿（南京建國店）',region:'台北市',lat:25.0524,lng:121.5340,emoji:'🐷',addr:'台北市中山區南京東路二段210號',hours:'每日 11:00–22:00',price:'套餐$330起 / 兒童餐$230起',rating:4.2,priceLevel:'$$',note:'3歲以上 ✅，中山區上班族親子聚餐好選擇，不在百貨公司內、停車更方便',tags:['日式豬排','兒童餐','中山','有兒童餐'],phone:'02-6617-0081',url:'https://www.saboten.com.tw/',reserveUrl:'https://inline.app/booking/-KuUwaEhVKljatiaBnAM:inline-live-2a466'},
+{id:'r84',name:'勝博殿（板橋遠百中山店）',region:'新北市',lat:25.0142,lng:121.4644,emoji:'🐷',addr:'新北市板橋區中山路一段152號13樓',hours:'每日 11:00–22:00',price:'套餐$330起 / 兒童餐$230起',rating:4.2,priceLevel:'$$',note:'3歲以上 ✅，板橋遠百13樓，新北親子日式豬排首選，逛街用餐一次搞定',tags:['日式豬排','兒童餐','板橋','有兒童餐'],phone:'02-2956-7473',url:'https://www.saboten.com.tw/',reserveUrl:'https://inline.app/booking/-KuUwaEhVKljatiaBnAM:inline-live-2a466'},
+{id:'r85',name:'勝博殿（桃園新光站前店）',region:'桃園市',lat:24.9934,lng:121.2990,emoji:'🐷',addr:'桃園市桃園區中正路19號10樓（新光三越桃園站前）',hours:'每日 11:00–22:00',price:'套餐$330起 / 兒童餐$230起',rating:4.2,priceLevel:'$$',note:'3歲以上 ✅，桃園市區最方便的勝博殿，新光三越10樓，適合親子購物後用餐',tags:['日式豬排','兒童餐','桃園','有兒童餐'],phone:'03-332-1088',url:'https://www.saboten.com.tw/',reserveUrl:'https://inline.app/booking/-KuUwaEhVKljatiaBnAM:inline-live-2a466'},
+
+/* ── TGI Fridays 星期五 ── */
+{id:'r90',name:'TGI Fridays（美麗華）',region:'台北市',lat:25.0838,lng:121.5575,emoji:'🍔',addr:'台北市中山區敬業三路22號2樓（美麗華百樂園）',hours:'週日–四 11:00–23:00 / 週五六 11:00–24:00',price:'主餐$400起 / 兒童餐$250起 / 飲料無限續杯',rating:4.3,priceLevel:'$$',note:'3歲以上 ✅，生日必吃！壽星免費甜點＋服務員搞笑慶生，份量超大適合分食，無限續杯飲料，可樂＋雪碧＋芬達都有，嗨翻天氛圍孩子超愛，可線上訂位',tags:['美式料理','兒童餐','生日慶祝','有兒童餐'],phone:'02-2175-3358',url:'https://tgifridays.com.tw/',reserveUrl:'https://inline.app/booking/-KzvYo7DTgcAy5Kb4khD/-Ld2dCJGYNHOt4vJs0E3'},
+{id:'r91',name:'TGI Fridays（信義統一時代店）',region:'台北市',lat:25.0406,lng:121.5650,emoji:'🍔',addr:'台北市信義區忠孝東路五段8號2樓（統一時代百貨）',hours:'週一–四 11:00–23:00 / 週五六 11:00–24:00',price:'主餐$400起 / 兒童餐$250起',rating:4.3,priceLevel:'$$',note:'3歲以上 ✅，信義區慶生首選！市政府站步行可達，2樓寬敞舒適，壽星有免費甜點，帶孩子吃道地美式料理好歡樂',tags:['美式料理','兒童餐','信義區','有兒童餐'],phone:'02-2720-3579',url:'https://tgifridays.com.tw/',reserveUrl:'https://inline.app/booking/-KzvYo7DTgcAy5Kb4khD/-Ld2ePmBawaPSWU9ZNSM'},
+{id:'r92',name:'TGI Fridays（林森店）',region:'台北市',lat:25.0542,lng:121.5258,emoji:'🍔',addr:'台北市中山區林森北路247號（欣欣百貨1-2樓）',hours:'週日–四 11:00–23:00',price:'主餐$400起 / 兒童餐$250起',rating:4.2,priceLevel:'$$',note:'3歲以上 ✅，中山站3號出口可達，兩層樓大空間，適合多人家庭聚餐，份量大、選擇多，無限續杯飲料',tags:['美式料理','兒童餐','中山','有兒童餐'],phone:'02-2511-8579',url:'https://tgifridays.com.tw/',reserveUrl:'https://inline.app/booking/-KzvYo7DTgcAy5Kb4khD/-Ld2efw1WgEeK-Md2yQf'},
+{id:'r93',name:'TGI Fridays（中和環球店）',region:'新北市',lat:25.0064,lng:121.4755,emoji:'🍔',addr:'新北市中和區中山路三段122號4樓（環球購物中心）',hours:'週日–四 11:00–22:00',price:'主餐$400起 / 兒童餐$250起',rating:4.2,priceLevel:'$$',note:'3歲以上 ✅，中和環球4樓，新北親子最歡樂的美式聚餐選擇，停車超方便，壽星有免費甜點驚喜',tags:['美式料理','兒童餐','中和','有兒童餐'],phone:'02-2225-3578',url:'https://tgifridays.com.tw/',reserveUrl:'https://inline.app/booking/-KzvYo7DTgcAy5Kb4khD'},
+{id:'r94',name:'TGI Fridays（台中英才店）',region:'台中市',lat:24.1539,lng:120.6478,emoji:'🍔',addr:'台中市西區英才路531號1樓',hours:'週日–四 11:00–23:00 / 週五六 11:00–24:00',price:'主餐$400起 / 兒童餐$250起',rating:4.2,priceLevel:'$$',note:'3歲以上 ✅，台中中心地段，親子美式聚餐首選，壽星驚喜服務，無限續杯',tags:['美式料理','兒童餐','台中','有兒童餐'],phone:'04-2305-3579',url:'https://tgifridays.com.tw/',reserveUrl:'https://inline.app/booking/-KzvYo7DTgcAy5Kb4khD'},
+
+/* ── Chili's 美式休閒餐廳 ── */
+{id:'r95',name:"Chili's（信義NEO19店）",region:'台北市',lat:25.0349,lng:121.5652,emoji:'🌶️',addr:'台北市信義區松壽路2號2樓（NEO19）',hours:'每日 11:30–22:00（週五六至23:00）',price:'主餐$400起 / 兒童餐$280起 / 飲料無限續杯',rating:4.3,priceLevel:'$$',note:'3歲以上 ✅，道地德州美墨風！無限續杯可樂超讚，炸雞翅＋豬肋排份量十足，空間嗨翻天很適合多人家庭聚餐，也提供兒童座椅，壽星當週甜點免費',tags:['美式料理','兒童餐','信義區','有兒童餐'],phone:'02-2345-8838',url:'https://www.facebook.com/ChilisTaiwan/',reserveUrl:'https://www.chilis.com.tw/'},
+{id:'r96',name:"Chili's（天母高島屋店）",region:'台北市',lat:25.1017,lng:121.5285,emoji:'🌶️',addr:'台北市士林區忠誠路二段55號2樓（大葉高島屋）',hours:'午餐 11:30–14:30 / 晚餐 17:30–21:30（週六日不中場休息）',price:'主餐$400起 / 兒童餐$280起',rating:4.2,priceLevel:'$$',note:'3歲以上 ✅，天母外籍社區最愛！很多外國家庭常來，氣氛輕鬆歡樂，豬肋排、蘑菇起司漢堡必點，提供兒童座椅和畫圖紙',tags:['美式料理','兒童餐','天母','有兒童餐'],phone:'02-2875-4838',url:'https://www.facebook.com/ChilisTaiwan/',reserveUrl:'https://www.chilis.com.tw/'},
+{id:'r97',name:"Chili's（台中老虎城店）",region:'台中市',lat:24.1630,lng:120.6450,emoji:'🌶️',addr:'台中市西屯區河南路三段120號2樓（老虎城購物中心）',hours:'每日 11:30–22:00',price:'主餐$400起 / 兒童餐$280起',rating:4.2,priceLevel:'$$',note:'3歲以上 ✅，台中唯一Chilis！豬肋排超大份必點，份量大家庭分食最合適，提供兒童座椅',tags:['美式料理','兒童餐','台中','有兒童餐'],phone:'04-3602-8838',url:'https://www.facebook.com/ChilisTaiwan/',reserveUrl:'https://www.chilis.com.tw/'},
+
+/* ── 王品牛排 ── */
+{id:'r100',name:'王品牛排（台北中山北店）',region:'台北市',lat:25.0524,lng:121.5223,emoji:'🥩',addr:'台北市中山區中山北路二段33號2樓',hours:'午餐 11:30–14:30 / 晚餐 17:30–22:00',price:'套餐$1590–1990起（含前菜沙拉湯甜點飲料）加10%',rating:4.4,priceLevel:'$$$',note:'5歲以上 ✅，慶生、紀念日、帶長輩的終極選擇！一頭牛只取6客，細膩桌邊服務，服務生唱生日歌超暖心，適合小孩體驗正式西餐禮儀，建議提前訂位',tags:['精緻牛排','紀念日','慶生','有兒童餐'],phone:'02-2536-1350',url:'https://www.wangsteak.com.tw/',reserveUrl:'https://inline.app/booking/-MaSqx3P-coHdoIMveEZ:inline-live-2'},
+{id:'r101',name:'王品牛排（台北光復南店）',region:'台北市',lat:25.0453,lng:121.5596,emoji:'🥩',addr:'台北市大安區光復南路612號',hours:'午餐 11:30–14:30 / 晚餐 17:30–22:00',price:'套餐$1590起（加10%服務費）',rating:4.4,priceLevel:'$$$',note:'5歲以上 ✅，信義東區慶祝聚餐首選，桌邊服務細膩，套餐含前菜湯品甜點，小孩體驗精緻西餐禮儀的好機會',tags:['精緻牛排','紀念日','慶生','有兒童餐'],phone:'02-2325-3478',url:'https://www.wangsteak.com.tw/',reserveUrl:'https://inline.app/booking/-MaSqx3P-coHdoIMveEZ:inline-live-2'},
+{id:'r102',name:'王品牛排（台中文心店）',region:'台中市',lat:24.1540,lng:120.6448,emoji:'🥩',addr:'台中市西屯區寧夏路233號',hours:'午餐 11:30–14:30 / 晚餐 17:30–22:00',price:'套餐$1590起（加10%服務費）',rating:4.5,priceLevel:'$$$',note:'5歲以上 ✅，台中1993年創始店！王品文化發源地，裝潢典雅，備有停車場，台中親子慶生首選',tags:['精緻牛排','台中慶生','有兒童餐'],phone:'04-2313-6430',url:'https://www.wangsteak.com.tw/',reserveUrl:'https://inline.app/booking/-MaSqx3P-coHdoIMveEZ:inline-live-2'},
+{id:'r103',name:'王品牛排（高雄中正店）',region:'高雄市',lat:22.6290,lng:120.3064,emoji:'🥩',addr:'高雄市新興區中正三路88號',hours:'午餐 11:30–14:30 / 晚餐 17:30–22:00',price:'套餐$1590起（加10%服務費）',rating:4.4,priceLevel:'$$$',note:'5歲以上 ✅，高雄慶生聚餐精選，服務細膩暖心，帶孩子體驗精緻正式餐廳',tags:['精緻牛排','高雄慶生','有兒童餐'],phone:'07-236-3536',url:'https://www.wangsteak.com.tw/',reserveUrl:'https://inline.app/booking/-MaSqx3P-coHdoIMveEZ:inline-live-2'},
+
+/* ── 品田牧場 ── */
+{id:'r105',name:'品田牧場（台北敦南店）',region:'台北市',lat:25.0395,lng:121.5513,emoji:'🍖',addr:'台北市大安區敦化南路一段245巷3號（捷運忠孝敦化站）',hours:'每日 11:30–22:00',price:'豬排套餐$350起 / 兒童餐$220起',rating:4.1,priceLevel:'$$',note:'3歲以上 ✅，台灣最親民的日式豬排！高麗菜絲＋味噌湯＋白飯吃到飽，兒童餐附小玩具，全台分店超多，帶孩子吃日式定食的CP值首選',tags:['日式豬排','兒童餐','親子友善','有兒童餐'],phone:'02-2706-1339',url:'https://www.pintien.com.tw/'},
+{id:'r106',name:'品田牧場（台北中山店）',region:'台北市',lat:25.0509,lng:121.5230,emoji:'🍖',addr:'台北市中山區新生北路一段88號',hours:'每日 11:30–22:00',price:'豬排套餐$350起 / 兒童餐$220起',rating:4.1,priceLevel:'$$',note:'3歲以上 ✅，中山站附近，高麗菜絲吃到飽超滿足，空間舒適，親子用餐無負擔',tags:['日式豬排','兒童餐','中山','有兒童餐'],phone:'02-2523-9899',url:'https://www.pintien.com.tw/'},
+{id:'r107',name:'品田牧場（台中米平方店）',region:'台中市',lat:24.1628,lng:120.6411,emoji:'🍖',addr:'台中市西屯區台灣大道四段771號（台中中科附近）',hours:'每日 11:30–22:00',price:'豬排套餐$350起 / 兒童餐$220起',rating:4.2,priceLevel:'$$',note:'3歲以上 ✅，台中中科旗艦店！大面積採光玻璃超美，挑高空間寬敞，是台中體驗最好的品田牧場，假日建議訂位',tags:['日式豬排','兒童餐','台中','有兒童餐'],phone:'04-2355-3388',url:'https://www.pintien.com.tw/'},
+
+/* ── 大戶屋 ── */
+{id:'r110',name:'大戶屋（台北美麗華店）',region:'台北市',lat:25.0838,lng:121.5575,emoji:'🍱',addr:'台北市中山區敬業三路22號1樓（美麗華百樂園）',hours:'每日 11:00–21:30',price:'定食套餐$280起 / 兒童餐$180起',rating:4.2,priceLevel:'$$',note:'3歲以上 ✅，日式家庭料理第一品牌！注重健康均衡、當季食材，兒童餐附玩具，空間寬敞推車友善，全台45家分店都可以去',tags:['日式定食','健康料理','親子友善','有兒童餐'],phone:'02-2175-0096',url:'https://www.ootoya.com.tw/',reserveUrl:'https://inline.app/booking/-KzR_5HZfXQNyrd9nf4y'},
+{id:'r111',name:'大戶屋（台北微風南山店）',region:'台北市',lat:25.0330,lng:121.5641,emoji:'🍱',addr:'台北市信義區松智路17號B2（微風南山）',hours:'每日 11:00–21:30',price:'定食套餐$280起 / 兒童餐$180起',rating:4.2,priceLevel:'$$',note:'3歲以上 ✅，信義微風南山B2，逛完信義商圈吃日式定食，健康均衡不怕孩子挑食，兒童餐貼心附玩具',tags:['日式定食','健康料理','信義區','有兒童餐'],phone:'02-2722-0096',url:'https://www.ootoya.com.tw/',reserveUrl:'https://inline.app/booking/-KzR_5HZfXQNyrd9nf4y'},
+{id:'r112',name:'大戶屋（台中老虎城店）',region:'台中市',lat:24.1630,lng:120.6450,emoji:'🍱',addr:'台中市西屯區台灣大道四段1038號（老虎城）',hours:'每日 11:00–21:30',price:'定食套餐$280起 / 兒童餐$180起',rating:4.2,priceLevel:'$$',note:'3歲以上 ✅，台中老虎城百貨，日式均衡定食，烤魚、炸豬排選擇多，兒童餐適合挑食孩子',tags:['日式定食','健康料理','台中','有兒童餐'],phone:'04-2463-0560',url:'https://www.ootoya.com.tw/',reserveUrl:'https://inline.app/booking/-KzR_5HZfXQNyrd9nf4y'}
+
 ];
 
 function distR(a){if(!uLat)return 99999;return gD(uLat,uLng,a.lat,a.lng)}
@@ -722,17 +854,20 @@ function bRestCard(a){
   const stars=a.rating?'⭐ '+a.rating+' 分':'' ;
   const priceStr=a.priceLevel?a.priceLevel:'';
   const ratingBar=stars?`<div style="font-size:12px;color:#f5a623;font-weight:700;margin-bottom:6px">${stars}${priceStr?' <span style="color:var(--muted);font-weight:500;margin-left:6px">'+priceStr+'</span>':''}</div>`:'';
+  const phoneBtn=a.phone?'<a class="btngo" href="tel:'+a.phone+'" style="background:#52B788;border-bottom-color:#2D6A4F">📞 電話訂位</a>':'';
+  const reserveBtn=a.reserveUrl?'<a class="btngo" href="'+a.reserveUrl+'" target="_blank" style="background:#9B72CF;border-bottom-color:#7a5ba8">📅 線上訂位</a>':'';
   return '<div class="acard" style="margin-bottom:12px">'
     +'<div class="cstripe" style="background:#FF69B4"></div>'
     +'<div class="cbody">'
     +'<div class="ctop"><div class="ctitle">'+a.emoji+' '+a.name+'</div><div class="dbub">'+distTxt+'</div></div>'
     +'<div class="ctags">'+tags+'<span class="tpill tp-reg">'+a.region+'</span></div>'
-    +'<div style="font-size:12px;color:var(--muted);margin:6px 0">'+a.addr.slice(0,25)+'…</div>'
+    +'<div style="font-size:12px;color:var(--muted);margin:6px 0">'+a.addr+'</div>'
     +'<div style="font-size:12px;color:var(--muted);margin-bottom:6px">⏰ '+hrs+'</div>'
     +ratingBar
     +'<div style="font-size:12px;color:#FF9A3C;margin-bottom:8px;font-weight:700">🎫 '+prc+'</div>'
     +'<div style="font-size:12px;color:var(--text);margin-bottom:10px;line-height:1.5">'+a.note+'</div>'
     +'<div class="abtns">'
+    +(reserveBtn+phoneBtn)
     +'<a class="btngo" href="'+a.url+'" target="_blank" style="background:#FF69B4;border-bottom-color:#c44d8a">🔗 官網/粉專</a>'
     +'<a class="btngo" style="background:var(--ocean);border-bottom-color:#1a7fa8" href="'+mapUrl+'" target="_blank">🗺️ 地圖</a>'
     +(a.ivyUrl?'<a class="btngo" style="background:#FF69B4;border-bottom-color:#c44d8a" href="'+a.ivyUrl+'" target="_blank">🌸 Ivy分享</a>':'')
@@ -741,14 +876,19 @@ function bRestCard(a){
     +'</div>';
 }
 
-let restRegF='all', restRadius=60, restShowAll=true, restIvyF=false, restStarF='all';
+let restRegF='all', restRadius=60, restShowAll=true, restIvyF=false, restStarF='all', restFriendlyF='all';
 
 function rRestFilter(){
   const regs=[
     {v:'all',l:'全部'},
     {v:'台北市',l:'台北市'},
     {v:'新北市',l:'新北市'},
-    {v:'苗栗',l:'苗栗'}
+    {v:'桃園市',l:'桃園市'},
+    {v:'新竹',l:'新竹'},
+    {v:'苗栗',l:'苗栗'},
+    {v:'台中市',l:'台中市'},
+    {v:'台南市',l:'台南市'},
+    {v:'高雄市',l:'高雄市'}
   ];
   const stars=[{v:'all',l:'全部'},{v:'4.5',l:'⭐ 4.5+'},{v:'4.3',l:'⭐ 4.3+'},{v:'4.0',l:'⭐ 4.0+'}];
   const starHTML=stars.map(s=>{
@@ -763,11 +903,24 @@ function rRestFilter(){
 
   const showAllOn=restShowAll;
   const ivyOn=restIvyF;
+  const friendly=[
+    {v:'all',l:'全部'},
+    {v:'兒童餐',l:'🍽️ 有兒童餐'},
+    {v:'遊戲區',l:'🎠 有遊戲區'},
+    {v:'0歲起',l:'👶 0歲起'},
+    {v:'哺乳室',l:'🤱 哺乳室'},
+  ];
+  const friendlyHTML=friendly.map(f=>{
+    const on=f.v===restFriendlyF;
+    return '<div class="chip c-age'+(on?' on':'')+'" onclick="restFriendlyF=\''+f.v+'\';rRest()">'+f.l+'</div>';
+  }).join('');
   return '<div class="fpanel" style="margin-bottom:0">'
     +'<div class="fsec"><div class="ftitle"><div class="fdot" style="background:var(--coral)"></div>地區</div>'
     +'<div class="chips">'+regHTML+'</div></div>'
     +'<div class="fsec"><div class="ftitle"><div class="fdot" style="background:var(--sun)"></div>星等篩選</div>'
     +'<div class="chips">'+starHTML+'</div></div>'
+    +'<div class="fsec"><div class="ftitle"><div class="fdot" style="background:#FF69B4"></div>親子友善</div>'
+    +'<div class="chips">'+friendlyHTML+'</div></div>'
     +'<div class="fsec"><div class="ftitle"><div class="fdot" style="background:var(--ocean)"></div>搜尋距離</div>'
     +'<div class="srow"><span class="slbl">5km</span>'
     +'<input type="range" min="5" max="80" step="5" value="'+restRadius+'" oninput="restRadius=parseInt(this.value);restShowAll=false;document.getElementById(\'rrv\').textContent=restRadius+\' km\';rRest()">'
@@ -860,6 +1013,8 @@ function rRest(){
   if(restIvyF) items=items.filter(a=>a.ivyUrl);
   // 星等篩選
   if(restStarF!=='all') items=items.filter(a=>a.rating&&a.rating>=parseFloat(restStarF));
+  // 親子友善篩選
+  if(restFriendlyF!=='all') items=items.filter(a=>a.tags&&a.tags.some(t=>t.includes(restFriendlyF)));
 
   // 距離篩選
   if(uLat && !restShowAll){
@@ -940,6 +1095,12 @@ function openPick(id){
   setTimeout(()=>{const el=document.getElementById('c'+id);if(el)el.scrollIntoView({behavior:'smooth',block:'start'});},150);
 }
 render();
+
+// 回頂部按鈕
+window.addEventListener('scroll',()=>{
+  const btn=document.getElementById('topBtn');
+  if(btn) btn.classList.toggle('show', window.scrollY>300);
+},{passive:true});
 </script>
 
 
