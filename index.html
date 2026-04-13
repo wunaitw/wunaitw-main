@@ -561,7 +561,7 @@ function bCard(a,i){
       <a class="btngo" href="${a.url}" target="_blank" onclick="event.stopPropagation()">🔗 前往官網</a>
       <a class="btngo" style="background:var(--ocean);border-bottom-color:#1a7fa8" href="https://maps.google.com/?q=${encodeURIComponent(a.mQ)}" target="_blank" onclick="event.stopPropagation()">🗺️ 地圖</a>
       ${a.ivyUrl?`<a class="btngo" style="background:#FF69B4;border-bottom-color:#c44d8a" href="${a.ivyUrl}" target="_blank" onclick="event.stopPropagation()">🌸 Ivy分享</a>`:''}
-      ${a.buyUrl?`<a class="btngo" style="background:#FF9A3C;border-bottom-color:#cc7a00" href="${a.buyUrl}" target="_blank" onclick="event.stopPropagation()">🎟️ 購票連結</a>`:''}
+      ${a.buyUrl?`<a class="btngo" style="background:#FF9A3C;border-bottom-color:#cc7a00" href="${a.buyUrl}" target="_blank" onclick="event.stopPropagation()">🎟️ 線上購票免排隊</a>`:''}
       <button class="btnstar ${isSaved?'on':''}" onclick="tSv(event,${a.id})">${isSaved?'⭐':'☆'}</button>
     </div>
   </div>`:`<div class="cdet" id="d${a.id}"></div>`;
@@ -753,7 +753,7 @@ const R=[
 {id:'r16',name:'蘇維拉莊園餐廳',region:'苗栗',lat:24.5912,lng:120.9782,emoji:'🍄',addr:'苗栗縣南庄鄉田美村16鄰四灣92號',hours:'平日 09:30–18:00 / 假日 09:00–18:00',price:'入園費 $200 (可折抵餐飲 $100)',rating:4.2,priceLevel:'$$',note:'2歲以上 ✅，森林系景觀餐廳！除了有全台最長的森林溜滑梯與精靈蘑菇屋，餐廳提供義大利麵、燉飯與下午茶。環境開闊能俯瞰南庄山景，是南庄最高人氣的親子景觀餐廳，適合搭配莊園內遊樂設施一日遊',tags:['景觀咖啡','森林系','長溜滑梯'],phone:'037-982-001',url:'https://www.sudvista.com'},
 
 
-  {id:'r17',name:'農人餐桌 親子餐廳',region:'台北市',lat:25.0305,lng:121.5175,emoji:'🥗',addr:'台北市中正區重慶南路二段51號B1',hours:'每日 11:00–20:30',price:'成人低消 $300 / 兒童 2歲以上低消 $150',rating:4.1,priceLevel:'$$',note:'0歲起 ✅，信誼基金會旗下。強調有機食材與產地直送，木質調北歐風，設有高品質木製廚具遊戲區，是台北質感親子餐飲指標',tags:['產地直送','木製教具','健康料理'],phone:'02-2393-1998',url:'https://www.facebook.com/afarmtable/'},
+  {id:'r17',name:'農人餐桌 親子餐廳',region:'台北市',lat:25.0305,lng:121.5175,emoji:'🥗',addr:'台北市中正區重慶南路二段51號B1',hours:'平日 11:00–15:00,17:00-20:30/ 假日 11:00–16:00,17:00-20:30',price:'低消 $250 (2歲以下免低消)',rating:4.1,priceLevel:'$$',note:'0歲起 ✅，食材隨季節變化，從產地到餐桌，吃到真食物，真滋味的地方🍽️ 大人有一個放鬆的空間，小朋友可以吃到均衡飲食',tags:['產地直送','健康料理'],phone:'02-2322-3716',url:'https://www.facebook.com/afarmtable/',reserveUrl:'https://inline.app/booking/-LOEHQ13SpdTwu988kFy:inline-live-2a466/-LOEHQ236YEKRtVWrJq6?language=zh-TW'},
 
   {id:'r18',name:'Money Jump 親子餐廳',region:'台北市',lat:25.0602,lng:121.5745,emoji:'🎠',addr:'台北市內湖區民善街127號2樓',hours:'時段制 11:00–13:30 / 14:00–17:00 / 17:30–20:00',price:'平日低消 $300起 / 假日 $500起',rating:4.0,priceLevel:'$$$',note:'0歲起 ✅，夢幻室內旋轉木馬是標誌！還有五星主廚料理、躲貓貓隧道與科技互動球池，裝潢極具設計感，適合拍照與高標餐飲需求',tags:['旋轉木馬','室內球池','精緻排餐'],phone:'02-2793-0001',reserveUrl:'https://moneyjump.com.tw/',url:'https://moneyjump.com.tw/'},
 
@@ -899,7 +899,15 @@ const R=[
 { id: 'r125', name: '瓦城泰國料理-嘉義耐斯店', region: '嘉義', lat: 23.4975, lng: 120.4519, emoji: '🌶️', addr: '嘉義市東區忠孝路600號7樓', hours: '11:0021:30', price: '每人約$600–$800', rating: 4.2, priceLevel: '$$$', note: '嘉義唯一瓦城！位於耐斯百貨地下街，口味品質與台北同步，是嘉義市區慶生或家庭大型聚會的高人氣餐廳。', tags: ['泰式料理', '連鎖餐廳', '嘉義美食', '親子聚餐'], phone: '05-276-5899', url: 'https://www.thaitown.com.tw/' },
 
 
-{ id: 'r126', name: '太山便當店', region: '嘉義', lat: 23.4735, lng: 120.4504, emoji: '🍱', addr: '嘉義縣竹崎鄉中和村19鄰14號之1', hours: '11:30-19:00', price: '每份約$80–$120', rating: 4.7, priceLevel: '$', note: '公路旁小巷的美食', tags: ['在地美食', '便當店', '嘉義美食', '平價小吃'], phone: '0966440292', url: 'https://www.facebook.com/p/%E5%A4%AA%E5%B1%B1%E4%BE%BF%E7%95%B6-61566129813772/' }
+{ id: 'r126', name: '太山便當店', region: '嘉義', lat: 23.4735, lng: 120.4504, emoji: '🍱', addr: '嘉義縣竹崎鄉中和村19鄰14號之1', hours: '11:30-19:00', price: '每份約$80–$120', rating: 4.7, priceLevel: '$', note: '公路旁小巷的美食', tags: ['在地美食', '便當店', '嘉義美食', '平價小吃'], phone: '0966440292', url: 'https://www.facebook.com/p/%E5%A4%AA%E5%B1%B1%E4%BE%BF%E7%95%B6-61566129813772/' },
+
+{ id: 'r127', name: '一喜鍋-頭份店', region: '苗栗', lat: 24.6896, lng: 120.9103, emoji: '🍲', addr: '苗栗縣頭份市中央路125-2號', hours: '11:30-13:30 / 17:30-20:30(週二公休)', price: '每人約$200–$400', rating: 4.7, priceLevel: '$$', note: '苗栗火鍋推薦，不收服務費。吃到飽，餐點優惠時段，提供素食料理', tags: ['連鎖火鍋', '蔬食自助吧', '苗栗美食', '親子聚餐'], phone: '037-670788', url: 'https://www.facebook.com/p/一喜鍋頭份創始店-100063601164871/?locale=zh_TW'},
+{ id: 'r128', name: '一喜鍋-竹北店', region: '新竹', lat: 24.8271, lng: 121.0152, emoji: '🍲', addr: '新竹縣竹北市勝利七街一段222號', hours: '11:30-13:30 / 17:30-20:30 (週二公休)', price: '每人約$400–$500', rating: 4.9, priceLevel: '$$', note: '秉持認真挑選的肉品、豐富多元的選擇，明亮舒適的環境、不收服務費，自助區星巴克咖啡豆現磨咖啡', tags: ['連鎖火鍋', '竹北美食', '親子聚餐'], phone: '03-6588335', url: 'hhttps://www.facebook.com/p/一喜鍋竹北店-100063668513123/' },
+{ id: 'r129', name: '宸酌咖啡 Chengzhuo Coffee', region: '台北市', lat: 25.0416, lng: 121.5647, emoji: '☕', addr: '臺北市信義區光復南路449之1號', hours: '11:00-22:00  (週三公休)', price: '約$200–$300', rating: 5.0, priceLevel: '$$', note: '隱身在信義區巷弄的精品咖啡店，主打自烘豆與專業手沖。致力於推廣精品咖啡。', tags: ['精品咖啡', '手沖咖啡', '信義區', '下午茶'], phone: '02-2761-0010', url: 'https://www.facebook.com/chenjuocoffee'},
+{ id: 'r130', name: 'KIDO+ kids space 親子互動咖啡廳', region: '台中市', lat: 24.1685, lng: 120.6923, emoji: '☕', addr: '台中市北屯區敦富路801號', hours: '10:30-17:00 (週一及週日公休)', price: '約$200–$400', rating: 4.9, priceLevel: '$$', note: '北屯質感早午餐，結合簡約白系與植物裝飾。餐點擺盤精緻且味道豐富，是當地極具人氣的慢活咖啡廳。', tags: ['早午餐', '北屯美食', '下午茶', '親子友善'], url: 'https://www.kidoplus.com.tw/home' },
+{ id: 'r131', name: '春暖工坊', region: '台中市', lat: 24.1738, lng: 120.7042, emoji: '🥧', addr: '台中市北屯區后庄路869號', hours: '11:00-17:00 (週一及週日公休)', price: '約$200–$400', rating: 4.9, priceLevel: '$$', note: '鬆餅專賣店與義大利麵，抓周包場與親子派對包場', tags: ['手作甜點', '北屯美食', '下午茶', '暖心食堂'], phone: '0982-851-004', url: 'https://www.facebook.com/springwarm2'},
+{ id: 'r132', name: '金格點一杯咖啡 KONIG CAFE', region: '台北市', lat: 25.0934, lng: 121.5262, emoji: '☕', addr: '台北市士林區文林路479號', hours: '10:00-20:00', price: '每人約$200–$400', rating: 4.5, priceLevel: '$$', note: '寧靜有溫度的不限時咖啡廳。可場租、可抓周', tags: ['士林美食', '親子友善'], phone: '02-2834-7955', url: 'https://www.facebook.com/p/金格-點一杯-100066605537168'},
+{ id: 'r133', name: '心月米膳坊', region: '彰化', lat: 23.9582, lng: 120.5701, emoji: '🍚', addr: '彰化縣員林市黎明巷65號', hours: '11:00-14:30 / 17:00-21:00', price: '$200–$400', rating: 4.4, priceLevel: '$$', note: '原型食物，完整保留維生素及礦物質營養，更能享受天然的美味', tags: ['員林美食', '米食料理', '家庭聚餐'], phone: '04-837-4066', url: 'https://www.facebook.com/p/心月米膳坊飲食店-100063848056154' }
 ];
 
 function distR(a){if(!uLat)return 99999;return gD(uLat,uLng,a.lat,a.lng)}
