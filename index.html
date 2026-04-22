@@ -114,6 +114,40 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;heigh
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 .top-btn{position:fixed;right:16px;bottom:100px;width:44px;height:44px;border-radius:50%;background:var(--coral);color:#fff;border:none;border-bottom:3px solid var(--coral-dk);font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:199;box-shadow:0 4px 12px rgba(0,0,0,.18);opacity:0;pointer-events:none;transition:opacity .25s,transform .25s;transform:translateY(12px)}
 .top-btn.show{opacity:1;pointer-events:auto;transform:translateY(0)}
+
+  /* Line 橫幅 */
+  a.line-banner{
+    display:flex;align-items:center;justify-content:center;
+    gap:8px;flex-wrap:wrap;
+    background:linear-gradient(90deg,#06C755 0%,#00A54A 100%);
+    color:#fff;
+    padding:8px 16px;
+    font-size:13px;
+    font-weight:600;
+    text-align:center;
+    text-decoration:none;
+    width:100%;box-sizing:border-box;
+  }
+
+  .line-banner-loc{
+    display:flex;align-items:center;justify-content:center;
+    gap:8px;flex-wrap:wrap;
+    background:linear-gradient(90deg,#06C755 0%,#00A54A 100%);
+    color:#fff;
+    padding:10px 16px;
+    border-radius:14px;
+    font-size:13.5px;font-weight:600;
+    text-decoration:none;
+    width:100%;box-sizing:border-box;
+    margin-bottom:10px;
+  }
+  .line-btn-sm{
+    background:#fff;color:#06C755;
+    border-radius:20px;
+    padding:3px 12px;
+    font-size:12px;font-weight:700;
+    white-space:nowrap;
+  }
 </style>
 </head>
 <body>
@@ -147,7 +181,7 @@ const D=[
 {id:1,name:'北美館「小孩轉大人」兒童節計畫',region:'台北市',env:'indoor',lat:25.0726,lng:121.5236,emoji:'🎨',color:'#FF6B6B',addr:'台北市中山區中山北路三段181號',dates:'2026/3/31–4/30 全月免費',hours:'週二–五 9:30–17:30，週六至 20:30，週一休',ticket:'全月免費入館',note:'4/4 工作坊大班–小3（5–8歲）✅ 免費，需網路報名',tags:['美術館','免費','5歲✓','室內'],pR:'free',lo:0,hi:8,p:0,mQ:'台北市立美術館',url:'https://www.tfam.museum/kid/',buyUrl:'https://linkgo.one/s/Es9py'},
 {id:2,name:'台北市立動物園',region:'台北市',env:'outdoor',lat:24.9986,lng:121.5799,emoji:'🦁',color:'#52B788',addr:'台北市文山區新光路二段30號',dates:'常態開放，4/4 兒童節免費',hours:'9:00–17:00',ticket:'一般票 $100 / 6歲以下常態免費\n4/4：國小以下兒童免費（家長1位同免）',note:'5歲（6歲以下）常態免費 ✅，推車友善動線',tags:['4/4免費','6歲下免費','戶外'],pR:'free',lo:0,hi:8,p:0,mQ:'台北市立動物園',url:'https://www.zoo.gov.taipei/',buyUrl:'https://afflink.one/s/U837y'},
 {id:3,name:'台北市立兒童新樂園',region:'台北市',env:'outdoor',lat:25.0892,lng:121.5142,emoji:'🎡',color:'#3AAEDC',addr:'台北市士林區承德路五段55號',dates:'常態開放，4/3–4/6 兒童節免費',hours:'9:00–18:00（週末）',ticket:'入園 $30 / 一日票 $200（13項設施）\n4/3–4/6：國小以下持證免費（家長1位同免）',note:'5歲 ✅，兒童節持健保卡免費，設施有身高限制請現場確認',tags:['4/3–4/6免費','5歲✓','戶外'],pR:'low',lo:0,hi:8,p:200,mQ:'台北市立兒童新樂園',url:'https://www.tcap.taipei/',buyUrl:'https://linkgo.one/s/SFlUW'},
-{id:4,name:'天文科學教育館',region:'台北市',env:'indoor',lat:25.0954,lng:121.5197,emoji:'🚀',color:'#9B72CF',addr:'台北市士林區基河路89號',dates:'常態開放，4/4 宇宙探險免費1次',hours:'9:00–17:00（週一休）',ticket:'展示場 $40（兒童 $20）· 宇宙探險 $35\n4/4：12歲以下免費搭宇宙探險1次',note:'5歲 ✅，宇宙探險請現場確認身高限制',tags:['付費','5歲✓','室內'],pR:'low',lo:3,hi:8,p:75,mQ:'台北天文科學教育館',url:'https://www.tam.gov.taipei/',buyUrl:'https://afflink.one/s/PVUTk'},
+{id:4,name:'天文科學教育館',region:'台北市',env:'indoor',lat:25.0954,lng:121.5197,emoji:'🚀',color:'#9B72CF',addr:'台北市士林區基河路363號（士林站轉公車）',dates:'常態開放（週一休）',hours:'9:00–17:00',ticket:'展示場 $40（兒童 $20）/ 宇宙探險 $70 / 宇宙劇場 $100\n2歲以下免費，台北市民半票',note:'3歲以上 ✅！台北超值親子知識景點，宇宙探險搭乘式座艙10分鐘遨遊太陽系超刺激，宇宙劇場建議電話預約，銀河系牆超好拍，週六19–21點免費望遠鏡觀星，鄰近科教館、兒童新樂園可規劃三館聯遊',tags:['博物館','科學教育','3歲+','室內'],pR:'low',lo:3,hi:8,p:75,mQ:'台北天文科學教育館',url:'https://www.tam.gov.taipei/',buyUrl:'https://afflink.one/s/PVUTk'},
 {id:5,name:'蟲蟲巴斯昆蟲生態館',region:'台北市',env:'indoor',lat:25.0566,lng:121.5558,emoji:'🐛',color:'#52B788',addr:'台北市松山區富錦街350號1樓',dates:'常態開放（需預約）',hours:'請查官網各場次時間',ticket:'入館 $100（平日）/ 導覽 $300（假日）\n昆蟲互動課程 $500–$600',note:'5歲 ✅，適合學齡前初階互動課程，建議先網路預約',tags:['付費','5歲✓','昆蟲館','室內'],pR:'low',lo:2,hi:8,p:300,mQ:'蟲蟲巴斯 富錦街',url:'https://www.entobuzz.com/'},
 {id:6,name:'台灣昆蟲館台北館',region:'台北市',env:'indoor',lat:25.0157,lng:121.5469,emoji:'🪲',color:'#FF9A3C',addr:'台北市大安區和平東路三段406巷8號B1',dates:'常態開放（週一二休）',hours:'週三 12:00–21:00，週四五 16:00–21:00，週六日 10:00–21:00',ticket:'免費參觀展示\n互動課程 $500–$600（需報名）',note:'5歲 ✅，免費看昆蟲爬蟲展示，互動課4歲以上可報名',tags:['免費參觀','昆蟲館','室內'],pR:'free',lo:2,hi:8,p:0,mQ:'台灣昆蟲館 和平東路',url:'https://taiwan.insect.tw/'},
 {id:7,name:'2026台北兒童月',region:'台北市',env:'outdoor',lat:25.0330,lng:121.5654,emoji:'🎉',color:'#FFD93D',addr:'信義區香堤大道 + 全市各場館',dates:'4月全月，市集 4/25–4/26',hours:'戶外活動全日開放',ticket:'免費（戶外活動）\n持探索摺頁享場館折扣',note:'5歲 ✅ 完全適合，推車可通行',tags:['免費','5歲✓','戶外'],pR:'free',lo:0,hi:8,p:0,mQ:'台北101 信義區',url:'https://act.tp.edu.tw/'},
@@ -156,7 +190,7 @@ const D=[
 {id:10,name:'十三行博物館',region:'新北市',env:'indoor',lat:25.1557,lng:121.4278,emoji:'🏺',color:'#9B72CF',addr:'新北市八里區博物館路200號',dates:'常態開放',hours:'週一–五 9:30–17:00，週六日至 18:00',ticket:'全票 $80 / 新北市民、12歲以下、學生免費',note:'5歲 ✅，12歲以下免費，考古互動沙坑超適合小朋友',tags:['兒童免費','考古互動','室內'],pR:'free',lo:0,hi:8,p:0,mQ:'十三行博物館 八里',url:'https://www.sshm.ntpc.gov.tw/',buyUrl:'https://onelink.one/s/7wYsk'},
 {id:11,name:'鶯歌陶瓷博物館',region:'新北市',env:'indoor',lat:24.8998,lng:121.3515,emoji:'🎨',color:'#FF6B6B',addr:'新北市鶯歌區文化路200號',dates:'常態開放（每月第一週一休）',hours:'週一–五 9:30–17:00，週六日至 18:00',ticket:'$80 / 新北市民、12歲以下、學生免費',note:'5歲 ✅，12歲以下免費，兒童體驗室DIY捏陶很受歡迎',tags:['兒童免費','DIY體驗','室內'],pR:'free',lo:0,hi:8,p:0,mQ:'鶯歌陶瓷博物館',url:'https://www.ceramics.ntpc.gov.tw/',buyUrl:'https://afflink.one/s/RG09l'},
 {id:12,name:'朱銘美術館',region:'新北市',env:'outdoor',lat:25.2086,lng:121.6462,emoji:'🗿',color:'#52B788',addr:'新北市金山區西勢湖2號',dates:'常態開放',hours:'週二–日 10:00–17:30（週一休）',ticket:'全票 $350 / 6歲以下免費',note:'5歲 ✅，6歲以下免費，戶外噴水戲水區、塗鴉創作牆，超適合親子半日遊',tags:['6歲下免費','戶外美術館','戶外'],pR:'mid',lo:0,hi:8,p:350,mQ:'朱銘美術館 金山',url:'https://www.juming.org.tw/',buyUrl:'https://afflink.one/s/MpYRO'},
-{id:13,name:'XPARK 水族館（新展開幕）',region:'桃園市',env:'indoor',lat:24.9881,lng:121.3117,emoji:'🐠',color:'#3AAEDC',addr:'桃園市中壢區高鐵南路一段126號',dates:'常態開放，新展 4/3 開幕',hours:'10:00–21:00（分時段入場）',ticket:'成人 $600 / 孩童4–11歲 $270 / 未滿4歲免費',note:'5歲 ✅，孩童票 $270，強烈建議提前線上購票',tags:['水族館','付費','5歲✓','室內'],pR:'mid',lo:0,hi:8,p:270,mQ:'XPARK水族館 桃園',url:'https://www.xpark.com.tw/',buyUrl:'https://linkgo.one/s/NNrS3'},
+{id:13,name:'XPARK 水族館',region:'桃園市',env:'indoor',lat:24.9881,lng:121.3117,emoji:'🐠',color:'#3AAEDC',addr:'桃園市中壢區高鐵南路一段126號',dates:'常態開放。2026春季特展「原來如此！」4/3–6/21',hours:'10:00–18:00（週六至20:00），分時段入場，建議事先預約',ticket:'成人 $600 / 孩童4–11歲 $270 / 未滿4歲免費',note:'0歲起 ✅（未滿4歲免費）！台灣首座都會型水生公園，日本橫濱八景島合作，300種海洋生物！企鵝、水母、透明海豹隧道超療癒，2026春季特展「原來如此！」帶孩子看懂深海小秘密，企鵝咖啡廳必喝企鵝拿鐵，高鐵桃園站步行8分鐘',tags:['水族館','付費','0歲起','室內','春季特展'],pR:'mid',lo:0,hi:8,p:270,mQ:'XPARK水族館 桃園',url:'https://www.xpark.com.tw/',buyUrl:'https://linkgo.one/s/NNrS3'},
 {id:14,name:'桃園市兒童美術館',region:'桃園市',env:'indoor',lat:24.9888,lng:121.3014,emoji:'🖼️',color:'#9B72CF',addr:'桃園市中壢區高鐵南路一段101號',dates:'常態開放',hours:'週二–日 9:00–17:00（週一休）',ticket:'18歲以下全部免費！成人 $80',note:'5歲 ✅，18歲以下完全免費，台灣首座專為兒童設計的公立美術館',tags:['18歲下免費','5歲✓','室內'],pR:'free',lo:0,hi:8,p:0,mQ:'桃園市兒童美術館',url:'https://caam.tycg.gov.tw/',buyUrl:'https://afflink.one/s/zNxNu'},
 {id:15,name:'巧虎夢想樂園（桃園）',region:'桃園市',env:'indoor',lat:24.9876,lng:121.3082,emoji:'🐯',color:'#FF9A3C',addr:'桃園市中壢區春德路101號',dates:'常態開放',hours:'10:00–18:00（週末至19:00）',ticket:'平日兒童 $380 / 成人 $280（一票玩到底）',note:'5歲 ✅，五大主題區，適合0–8歲，鄰近XPARK可搭配同遊',tags:['付費','5歲✓','室內'],pR:'mid',lo:0,hi:8,p:380,mQ:'巧虎夢想樂園 桃園',url:'https://www.shinei-paradise.com.tw/',buyUrl:'https://linkgo.one/s/GiQcq'},
 {id:16,name:'蘇家莊園',region:'桃園市',env:'outdoor',lat:24.8705,lng:121.2721,emoji:'',color:'#70E000',addr:'桃園市大溪區復興路一段1037號',dates:'常態開放（週二三公休）',hours:'09:30-18:00',ticket:'全票 $280 / 3歲以下免費',note:'2歲以上 ✅，萬坪南法風格莊園！有超可愛的水豚、笑笑羊、狐獴、羊駝與數百隻名鳥。園內建築像童話世界，還有義式餐廳，是桃園非常有質感的新興農場。',tags:['動物農場','水豚','2歲+','戶外'],pR:'low',lo:2,hi:12,p:200,mQ:'蘇家莊園 大溪',url:'https://www.susgarden.tw'},
@@ -433,7 +467,14 @@ const D=[
 {id:242,name:'彰化嬉濱海豚公園',region:'彰化',env:'outdoor',lat:24.1256,lng:120.4102,emoji:'🐬',color:'#3AAEDC',addr:'彰化縣伸港鄉（彰濱工業區旁，鄰近白色海豚屋）',dates:'全年無休',hours:'全天開放',ticket:'免費',note:'3歲以上 ✅，彰化縣第一座水岸遊憩公園！2.7公頃超大，寬17米大船形溜滑梯、鯨魚造型攀爬遊具，全彰化首見越野單車PUMP TRACK場地，還有狗狗公園，搭配彰化濱海線一日遊',tags:['公園','遊戲場','免費','3歲+','戶外'],pR:'free',lo:3,hi:8,p:0,mQ:'彰化嬉濱海豚公園 伸港',url:'https://www.facebook.com/'},
 {id:243,name:'宜蘭輕親魚朶生態園區（大塭養殖區）',region:'宜蘭',env:'outdoor',lat:24.8201,lng:121.7612,emoji:'🦐',color:'#FF9A3C',addr:'宜蘭縣礁溪鄉玉龍路二段（大塭觀光休閒養殖區旁）',dates:'常態開放',hours:'依官方公告（建議事先查詢）',ticket:'入園免費！撈蝦/釣魚另計費',note:'3歲以上 ✅，宜蘭礁溪超人氣釣蝦景點！Google 4.6分，穿青蛙裝撈泰國蝦超有趣，撈起來現烤超新鮮，有沙坑讓孩子放電，距礁溪火車站約7分鐘，搭配礁溪溫泉一日遊',tags:['生態農場','釣蝦','3歲+','戶外'],pR:'low',lo:3,hi:8,p:200,mQ:'輕親魚朶 宜蘭礁溪 大塭',url:'https://www.facebook.com/'},
 {id:244,name:'苗栗西湖渡假村',region:'苗栗',env:'outdoor',lat:24.3621,lng:120.7889,emoji:'🌸',color:'#52B788',addr:'苗栗縣三義鄉11號（中山高三義交流道旁）',dates:'全年開放',hours:'09:00–17:00',ticket:'全票 $399 / 學童票 $300 / 幼兒票 $250 / 3歲以下免費',note:'0歲起 ✅，苗栗三義60公頃生態渡假園區！每年4、5月桐花雪景和螢火蟲超夢幻，安徒生童話主題花園、恐龍步道、彩蝶園，還有氣墊遊樂設施，中山高交流道旁交通超方便',tags:['遊樂園','生態農場','0歲起','戶外'],pR:'low',lo:0,hi:8,p:399,mQ:'苗栗西湖渡假村 三義',url:'https://www.westlake.com.tw/'},
-{id:245,name:'北投溫泉博物館附近—北投地熱谷',region:'台北市',env:'outdoor',lat:25.1389,lng:121.5052,emoji:'🌋',color:'#FF6B6B',addr:'台北市北投區中山路30號',dates:'全年開放（週一公休）',hours:'09:00–17:00',ticket:'免費',note:'3歲以上 ✅，北投必訪免費景點！藍綠色地獄谷溫泉湧出奇景，是台灣唯一可以看到天然地熱的免費景點，溫度高達100度超壯觀，搭配溫泉博物館排北投半日遊',tags:['戶外景點','免費','3歲+','戶外'],pR:'free',lo:3,hi:8,p:0,mQ:'北投地熱谷',url:'https://hotspringmuseum.taipei/'}
+{id:245,name:'北投溫泉博物館附近—北投地熱谷',region:'台北市',env:'outdoor',lat:25.1389,lng:121.5052,emoji:'🌋',color:'#FF6B6B',addr:'台北市北投區中山路30號',dates:'全年開放（週一公休）',hours:'09:00–17:00',ticket:'免費',note:'3歲以上 ✅，北投必訪免費景點！藍綠色地獄谷溫泉湧出奇景，是台灣唯一可以看到天然地熱的免費景點，溫度高達100度超壯觀，搭配溫泉博物館排北投半日遊',tags:['戶外景點','免費','3歲+','戶外'],pR:'free',lo:3,hi:8,p:0,mQ:'北投地熱谷',url:'https://hotspringmuseum.taipei/'},
+{id:246,name:'馬武督探索森林',region:'新竹',env:'outdoor',lat:24.7679,lng:121.2814,emoji:'🌲',color:'#52B788',addr:'新竹縣關西鎮錦山里12鄰138-3號',dates:'全年開放（農曆除夕休）',hours:'夏季平日 08:30–17:30 / 假日 08:00–18:00\n冬季平日 09:00–17:00 / 假日 08:30–17:30',ticket:'平日全票 $130 / 假日全票 $150\n3–12歲 $70 / 3歲以下免費',note:'3歲以上 ✅，偶像劇《綠光森林》拍攝地！450公頃原始森林，綠光小學是必訪打卡點，有虹橋瀑布、馬武督瀑布、竹林步道、生態菇園，4–5月桐花盛開超夢幻，芬多精滿點，北二高關西交流道下即達',tags:['森林步道','生態','3歲+','戶外'],pR:'low',lo:3,hi:8,p:150,mQ:'馬武督探索森林 關西',url:'http://www.discovery-forest.com.tw/'},
+{id:247,name:'東眼山國家森林遊樂區',region:'桃園市',env:'outdoor',lat:24.8512,lng:121.4231,emoji:'🌲',color:'#52B788',addr:'桃園市復興區霞雲里佳志35號',dates:'全年開放（農曆除夕休）',hours:'平日 08:00–17:00 / 假日 07:00–17:00',ticket:'平日全票 $80 / 假日全票 $100\n7–12歲及學生 $50 / 3–6歲 $10 / 2歲以下免費',note:'3歲以上 ✅，台灣第22號小百岳！海拔1,212公尺，整齊美麗的柳杉林如森林浴，知性步道有伐木遺跡台車、索道，親子峰步道適合全家同遊，攻頂可遠眺桃園夜景，去程可搭配大溪老街一日遊',tags:['森林步道','登山','3歲+','戶外'],pR:'low',lo:3,hi:8,p:100,mQ:'東眼山 桃園 森林遊樂區',url:'https://recreation.forest.gov.tw/Forest/RA?typ=0&typ_id=0200003'},
+{id:248,name:'大板根森林溫泉酒店',region:'新北市',env:'outdoor',lat:24.8743,lng:121.4812,emoji:'🌿',color:'#52B788',addr:'新北市三峽區插角里88號',dates:'全年開放',hours:'依官網公告',ticket:'日間入場依活動公告（住宿者含溫泉）',note:'0歲起 ✅，新北三峽人氣森林親子景點！百年大板根榕樹奇景，森林步道芬多精滿滿，有溫泉可泡，可日遊或住宿，搭配三峽老街、鶯歌陶瓷博物館排一日遊，有專屬兒童遊樂設施',tags:['溫泉','森林步道','0歲起','戶外'],pR:'low',lo:0,hi:8,p:0,mQ:'大板根 三峽 森林溫泉',url:'https://www.dban.com.tw/'},
+{id:249,name:'基隆漫遊者實境體感基地（ANIVERSE）',region:'基隆市',env:'indoor',lat:25.1310,lng:121.7412,emoji:'🚀',color:'#9B72CF',addr:'基隆市仁愛區港西街5號1樓（基隆舊火車站旁）',dates:'常態開放（週一休）',hours:'13:00–21:00',ticket:'單次體驗 $100起 / 組合票另計\n4歲以下不開放，部分設施身高需110–130cm',note:'4歲以上 ✅（滿4歲），全球首座ANIVERSE體感基地！由基隆舊火車站改建，六軸體感F16飛行、熱氣球環遊世界、VR空戰、快艇競賽，4D劇院超沉浸，基隆車站步行3分鐘，雨天備案首選！',tags:['VR體感','室內','4歲+','科技'],pR:'low',lo:4,hi:8,p:100,mQ:'ANIVERSE 基隆 漫遊者',url:'https://www.aniverse.com.tw/'},
+{id:250,name:'桃園耀輝休閒牧場',region:'桃園市',env:'outdoor',lat:24.8912,lng:121.2234,emoji:'🐄',color:'#FF9A3C',addr:'桃園市楊梅區楊湖路一段654巷81弄88號',dates:'週六日 08:00–18:00',hours:'週六日 08:00–18:00（平日請先電話確認）',ticket:'免費入場！餵小牛奶瓶 $30 / 牧草 $50',note:'0歲起 ✅，免門票！桃園楊梅第三代在地酪農牧場，百頭乳牛近距離觀看，餵小牛喝奶瓶是孩子的最愛，現場販售鮮乳、鮮奶茶、優格等在地乳製品，氣味很淡，整體乾淨，2017桃園觀光局五大休閒農場之一',tags:['農場牧場','免費','0歲起','戶外'],pR:'free',lo:0,hi:8,p:0,mQ:'耀輝牧場 桃園楊梅 乳牛',url:'https://www.facebook.com/'},
+{id:251,name:'台中東勢林場遊樂區',region:'台中市',env:'outdoor',lat:24.2523,lng:120.8621,emoji:'🌲',color:'#52B788',addr:'台中市東勢區勢林街6-1號',dates:'全年開放',hours:'06:30–22:00',ticket:'全票 $250 / 6–12歲 $200 / 3–6歲 $125 / 3歲以下免費\n停車 $50',note:'3歲以上 ✅，台中號稱最美森林花園！212公頃，春賞螢火蟲（4月最旺，免費夜間導覽），夏看蝴蝶、冬賞梅楓，全新體能訓練區三大闖關路線超有趣，溫泉足湯可泡，豐原客運209到達享$60優惠票',tags:['森林步道','生態','3歲+','戶外','賞螢'],pR:'low',lo:3,hi:8,p:250,mQ:'東勢林場 台中 遊樂區',url:'https://www.tsfa.com.tw/'},
+{id:252,name:'彰化巫家捏麵館',region:'彰化',env:'indoor',lat:24.0812,lng:120.4612,emoji:'🎨',color:'#FF9A3C',addr:'彰化縣溪湖鎮（溪湖糖廠附近）',dates:'常態開放',hours:'依官網公告',ticket:'入館免費！捏麵 DIY 另計',note:'3歲以上 ✅，全台唯一以捏麵為主題的文化館！免門票入場，館內陳列精美捏麵人作品，可報名體驗捏麵人 DIY，童趣館有糖果屋和樹屋溜滑梯超好拍，搭配溪湖糖廠五分仔車一日遊',tags:['觀光工廠','DIY體驗','免費','3歲+','室內'],pR:'free',lo:3,hi:8,p:0,mQ:'彰化巫家捏麵館 溪湖',url:'https://www.facebook.com/'}
 ];
 
 let uLat=null,uLng=null;
@@ -539,6 +580,10 @@ function render(){
           <span style="font-size:48px;display:block;margin-bottom:8px">📍</span>
           <div style="font-family:Nunito,sans-serif;font-weight:900;font-size:18px;color:var(--text);margin-bottom:6px">找你附近的親子活動！</div>
           <div style="font-size:13px;color:var(--muted);margin-bottom:14px">開啟定位後自動計算距離，由近到遠排序</div>
+          <a href="https://lin.ee/pQDyYmZ" target="_blank" class="line-banner-loc">
+            🎉 加入官方 LINE！不定期景點更新＋抽獎活動
+            <span class="line-btn-sm">加入好友 →</span>
+          </a>
           <button class="fbtn" onclick="reqLoc()" style="width:100%;margin-bottom:8px">📍 開啟定位</button>
           <button class="fbtn sec" onclick="useDemo()" style="width:100%">🏠 板橋示範模式</button>
         </div>
@@ -1209,12 +1254,12 @@ function goTab(t){
 }
 
 // 偵測 URL 參數自動切換頁籤
-(function(){
+window.addEventListener('DOMContentLoaded',function(){
   const p=new URLSearchParams(window.location.search);
   const t=p.get('tab');
   const map={'spots':'nearby','food':'rest','stay':'stay','nearby':'nearby','rest':'rest'};
-  if(t && map[t]) setTimeout(()=>goTab(map[t]),0);
-})();
+  if(t && map[t]) goTab(map[t]);
+});
 
 function goBlog(){
   toast('部落格即將上線，敬請期待！📝');
