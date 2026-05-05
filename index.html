@@ -1025,17 +1025,128 @@ function rSaved(){
 
 function rInfo(){
   const mc=document.getElementById('mc');
-  mc.innerHTML=`<div style="padding:16px;font-family:Nunito,sans-serif">
-    <div style="font-size:20px;font-weight:900;color:var(--coral);margin-bottom:12px">👋 關於本站</div>
-    <div style="font-size:14px;line-height:1.8;color:var(--text)">
-      <b>出發！育兒趣</b> 是 <b>軟糖媽咪 Ivy</b> 整理的親子景點資料庫，收錄全台 ${D.length}+ 個景點，所有景點都有 Ivy 親身篩選。<br><br>
-      📍 開啟定位，找你附近的親子景點<br>
-      ⭐ 點星星收藏喜歡的景點<br>
-      🔗 分享景點給朋友<br><br>
-      <a href="https://blog.wunaitw.com" target="_blank" style="color:var(--ocean)">📝 Ivy 的部落格</a><br>
-      <a href="https://lin.ee/pQDyYmZ" target="_blank" style="color:#06C755">💬 加入 LINE 官方帳號</a>
-    </div>
-  </div>`;
+  const tips=[
+    ['📍','景點定位','開啟定位後自動計算距離，由近到遠排序'],
+    ['🌏','全台顯示','距離篩選器下方，點一下顯示全台所有景點'],
+    ['👶','年齡篩選','0–2 / 2–4 / 4–6 / 6–8 歲四個區間'],
+    ['🏠','室內/戶外','下雨天選室內，好天氣選戶外'],
+    ['🎫','票價篩選','免費 / $300以下 / $300–500 / $500+'],
+    ['🌸','Ivy分享','篩選出有軟糖媽咪親身分享的景點'],
+    ['⭐','收藏','點☆收藏，關掉頁面也不消失'],
+  ];
+  const tipsHTML=tips.map(([ic,t,d])=>'<div style="display:flex;gap:12px;margin-bottom:13px">'
+    +'<span style="font-size:20px;flex-shrink:0">'+ic+'</span>'
+    +'<div><div style="font-family:Nunito,sans-serif;font-weight:900;font-size:14px;margin-bottom:2px">'+t+'</div>'
+    +'<div style="font-size:12px;color:var(--muted);line-height:1.6">'+d+'</div></div></div>'
+  ).join('');
+
+  const contacts=[
+    {icon:'📸',label:'Instagram',color:'#dc2743',url:'https://www.instagram.com/ivyhuanglichia/'},
+    {icon:'🧵',label:'Threads',color:'#000000',url:'https://www.threads.com/@ivyhuanglichia'},
+    {icon:'💬',label:'Facebook',color:'#1877F2',url:'https://www.facebook.com/ivy.huanglichia'},
+    {icon:'✉️',label:'Email',color:'#EA4335',url:'mailto:wunai.learning@gmail.com'},
+  ];
+  const contactHTML=contacts.map(c=>'<a href="'+c.url+'" target="_blank" style="display:flex;align-items:center;gap:12px;padding:12px 14px;background:#fff;border-radius:14px;border:2px solid var(--border);text-decoration:none;margin-bottom:10px">'
+    +'<span style="font-size:22px">'+c.icon+'</span>'
+    +'<span style="font-family:Nunito,sans-serif;font-weight:900;font-size:15px;color:'+c.color+'">'+c.label+'</span>'
+    +'<span style="margin-left:auto;color:var(--muted);font-size:18px">›</span>'
+    +'</a>'
+  ).join('');
+
+  mc.innerHTML='<div style="padding:16px">'
+    +'<div style="font-family:Nunito,sans-serif;font-size:19px;font-weight:900;text-align:center;margin-bottom:16px">💡 使用說明</div>'
+    +tipsHTML
+    +'<div style="margin-top:4px;padding:12px;background:var(--sky);border-radius:12px;font-size:12px;color:var(--muted);line-height:1.75">'
+    +'📋 <strong>涵蓋地區：</strong>全台13縣市，共 '+D.length+' 個景點<br>'
+    +'📅 <strong>資料更新：</strong>2026/04/05<br>'
+    +'⚠️ 前往前請至官網再次確認最新資訊與票價'
+    +'</div>'
+    +'<div style="margin-top:20px">'
+    +'<div style="font-family:Nunito,sans-serif;font-size:17px;font-weight:900;margin-bottom:12px">🌸 聯絡軟糖媽咪Ivy</div>'
+    +contactHTML
+    +'</div>'
+    +'<div style="margin-top:20px;display:flex;gap:10px">'
+    +'<div onclick="rAbout()" style="flex:1;padding:14px;background:#fff;border:2px solid var(--border);border-radius:14px;text-align:center;cursor:pointer">'
+    +'<div style="font-size:24px;margin-bottom:4px">👩‍👦</div>'
+    +'<div style="font-family:Nunito,sans-serif;font-weight:900;font-size:13px;color:var(--text)">關於我們</div>'
+    +'</div>'
+    +'<div onclick="rPrivacy()" style="flex:1;padding:14px;background:#fff;border:2px solid var(--border);border-radius:14px;text-align:center;cursor:pointer">'
+    +'<div style="font-size:24px;margin-bottom:4px">🔒</div>'
+    +'<div style="font-family:Nunito,sans-serif;font-weight:900;font-size:13px;color:var(--text)">隱私權政策</div>'
+    +'</div>'
+    +'</div>'
+    +'</div>';
+}
+
+function rPrivacy(){
+  const mc=document.getElementById('mc');
+  mc.innerHTML='<div style="padding:16px">'
+    +'<div style="display:flex;align-items:center;gap:10px;margin-bottom:20px">'
+    +'<div onclick="rInfo()" style="cursor:pointer;font-size:20px;color:var(--muted)">‹</div>'
+    +'<div style="font-family:Nunito,sans-serif;font-size:19px;font-weight:900">🔒 隱私權政策</div>'
+    +'</div>'
+    +'<div style="font-size:12px;color:var(--muted);margin-bottom:16px">最後更新：2026年4月</div>'
+    +'<div style="background:#fff;border-radius:14px;padding:16px;border:2px solid var(--border);margin-bottom:12px">'
+    +'<div style="font-family:Nunito,sans-serif;font-weight:900;font-size:14px;margin-bottom:8px">📍 位置資訊</div>'
+    +'<div style="font-size:12px;color:var(--text);line-height:1.8">本網站會在您允許的情況下取得您的裝置位置，用於計算與景點的距離並進行排序。位置資訊僅在您的裝置本地處理，不會上傳或儲存於任何伺服器。</div>'
+    +'</div>'
+    +'<div style="background:#fff;border-radius:14px;padding:16px;border:2px solid var(--border);margin-bottom:12px">'
+    +'<div style="font-family:Nunito,sans-serif;font-weight:900;font-size:14px;margin-bottom:8px">📊 數據分析</div>'
+    +'<div style="font-size:12px;color:var(--text);line-height:1.8">本網站使用 Google Analytics 分析流量與使用狀況，以持續改善服務品質。Google Analytics 可能使用 Cookie 收集匿名使用資料，包含頁面瀏覽次數、停留時間等，但不會識別個人身分。您可至 <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" style="color:var(--coral)">Google Analytics 退出工具</a> 停用追蹤。</div>'
+    +'</div>'
+    +'<div style="background:#fff;border-radius:14px;padding:16px;border:2px solid var(--border);margin-bottom:12px">'
+    +'<div style="font-family:Nunito,sans-serif;font-weight:900;font-size:14px;margin-bottom:8px">⭐ 收藏功能</div>'
+    +'<div style="font-size:12px;color:var(--text);line-height:1.8">您的收藏清單儲存於您的裝置本地（localStorage），本網站不會收集或傳送此資料。</div>'
+    +'</div>'
+    +'<div style="background:#fff;border-radius:14px;padding:16px;border:2px solid var(--border);margin-bottom:12px">'
+    +'<div style="font-family:Nunito,sans-serif;font-weight:900;font-size:14px;margin-bottom:8px">🔗 外部連結</div>'
+    +'<div style="font-size:12px;color:var(--text);line-height:1.8">本網站包含連結至 Google Maps、官方景點網站等外部網站，點擊後的隱私權由各該網站自行負責。</div>'
+    +'</div>'
+    +'<div style="background:#fff;border-radius:14px;padding:16px;border:2px solid var(--border);margin-bottom:12px">'
+    +'<div style="font-family:Nunito,sans-serif;font-weight:900;font-size:14px;margin-bottom:8px">💰 廣告</div>'
+    +'<div style="font-size:12px;color:var(--text);line-height:1.8">本網站使用 Google AdSense 顯示廣告。Google 可能根據您過去的瀏覽記錄投放個人化廣告。您可至 <a href="https://www.google.com/settings/ads" target="_blank" style="color:var(--coral)">Google 廣告設定</a> 管理個人化廣告偏好。</div>'
+    +'</div>'
+    +'<div style="font-size:12px;color:var(--muted);line-height:1.8;text-align:center">'
+    +'如有任何隱私相關問題，歡迎聯絡<br>'
+    +'<a href="mailto:wunai.learning@gmail.com" style="color:var(--coral);font-weight:700">wunai.learning@gmail.com</a>'
+    +'</div>'
+    +'</div>';
+}
+
+function rAbout(){
+  const mc=document.getElementById('mc');
+  mc.innerHTML='<div style="padding:16px">'
+    +'<div style="display:flex;align-items:center;gap:10px;margin-bottom:20px">'
+    +'<div onclick="rInfo()" style="cursor:pointer;font-size:20px;color:var(--muted)">‹</div>'
+    +'<div style="font-family:Nunito,sans-serif;font-size:19px;font-weight:900">👩‍👦 關於我們</div>'
+    +'</div>'
+    +'<div style="text-align:center;margin-bottom:20px">'
+    +'<div style="font-size:56px;margin-bottom:8px">🐾</div>'
+    +'<div style="font-family:Nunito,sans-serif;font-size:18px;font-weight:900;color:var(--coral);margin-bottom:4px">與軟糖媽咪Ivy的共玩筆記</div>'
+    +'<div style="font-size:13px;color:var(--muted)">全台親子景點一站搜尋</div>'
+    +'</div>'
+    +'<div style="background:#fff;border-radius:16px;padding:18px;border:2px solid var(--border);margin-bottom:14px">'
+    +'<div style="font-family:Nunito,sans-serif;font-weight:900;font-size:15px;margin-bottom:10px;color:var(--text)">👋 嗨！我是軟糖媽咪Ivy</div>'
+    +'<div style="font-size:13px;color:var(--text);line-height:1.9">'
+    +'台北土生土長的職業媽媽，家裡有一個5歲的男孩和一隻長得很無奈的狗🐶<br><br>'
+    +'每週末要帶孩子出去玩，但找景點真的好花時間⋯⋯看完媽媽們的分享，還要去 Google 確認景點資訊，確定適合年齡、查票價、看有沒有需要預約，繞了一大圈才能出發。<br><br>'
+    +'<strong>所以我乾脆自己整理！</strong><br><br>'
+    +'這裡收錄了我親自篩選過的全台親子景點、餐廳和住宿，幫你省下找資料的時間，讓每一次出發都輕鬆又開心 🎉'
+    +'</div>'
+    +'</div>'
+    +'<div style="background:var(--sky);border-radius:16px;padding:16px;border:2px solid var(--border);margin-bottom:14px">'
+    +'<div style="font-family:Nunito,sans-serif;font-weight:900;font-size:14px;margin-bottom:10px">🗺️ 目前收錄</div>'
+    +'<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;text-align:center">'
+    +'<div><div style="font-family:Nunito,sans-serif;font-size:26px;font-weight:900;color:var(--coral)">'+D.length+'</div><div style="font-size:11px;color:var(--muted)">親子景點</div></div>'
+    +'<div><div style="font-family:Nunito,sans-serif;font-size:26px;font-weight:900;color:#FF69B4">84</div><div style="font-size:11px;color:var(--muted)">親子餐廳</div></div>'
+    +'<div><div style="font-family:Nunito,sans-serif;font-size:26px;font-weight:900;color:#9B72CF">5</div><div style="font-size:11px;color:var(--muted)">親子住宿</div></div>'
+    +'</div>'
+    +'</div>'
+    +'<div style="text-align:center;font-size:12px;color:var(--muted);line-height:1.8">'
+    +'持續更新中，歡迎追蹤 Ivy 的社群獲得最新資訊 🌸<br>'
+    +'<span style="color:var(--coral);font-weight:700">@ivyhuanglichia</span>'
+    +'</div>'
+    +'</div>';
 }
 
 function rComing(emoji,title,desc){
