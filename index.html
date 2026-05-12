@@ -234,7 +234,7 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;heigh
   <button class="nbtn on" id="nb-nearby" onclick="goTab('nearby')"><span class="nico">📍</span><span class="nlbl">景點</span></button>
   <button class="nbtn" id="nb-rest" onclick="goTab('rest')"><span class="nico">🍽️</span><span class="nlbl">餐廳</span></button>
   <button class="nbtn" id="nb-stay" onclick="goTab('stay')"><span class="nico">🏨</span><span class="nlbl">住宿</span></button>
-  <button class="nbtn" id="nb-goods" onclick="goTab('goods')"><span class="nico">🛍️</span><span class="nlbl">育兒好物</span></button>
+  <button class="nbtn" id="nb-goods" onclick="goTab('goods')"><span class="nico">🎁</span><span class="nlbl">最新團購</span></button>
   <button class="nbtn" id="nb-saved" onclick="goTab('saved')"><span class="nico">⭐</span><span class="nlbl">收藏</span></button>
   <button class="nbtn" id="nb-info" onclick="goTab('info')"><span class="nico">💡</span><span class="nlbl">說明/聯絡</span></button>
 </div>
@@ -579,7 +579,13 @@ const D=[
 {id:304,name:'碧潭水舞季',region:'新北市',env:'outdoor',lat:24.9612,lng:121.5423,emoji:'💧',color:'#3AAEDC',addr:'新北市新店區碧潭風景區（新店捷運站步行5分鐘）',dates:'2026/5/1–6/14（每週五六日及國定假日 19:30–21:30）',hours:'水舞表演：週五六日 19:30–21:30（白天免費進入）',ticket:'免費觀賞',note:'0歲起 ✅，完全免費！新北新店碧潭水域音樂噴泉水舞秀，燈光、水舞、音樂完美結合，傍晚可先在碧潭吊橋散步、划船，晚上等水舞秀，捷運新店站步行即達，親子夜晚好去處',tags:['景觀','免費','0歲起'],pR:'free',lo:0,hi:8,p:0,mQ:'碧潭水舞季 新北新店',new:true,url:'https://newtaipei.travel/zh-tw/calendar/detail/3805'},
 {id:305,name:'台中中央公園飛航特色館',region:'台中市',env:'outdoor',lat:24.1823,lng:120.6534,emoji:'✈️',color:'#3AAEDC',addr:'台中市南屯區中央公園內',dates:'常態開放（展館週一休）',hours:'展館 09:00–17:00 / 公園全天',ticket:'展館免費',note:'0歲起 ✅，完全免費！台中中央公園內的航空主題特色館，有退役飛機展示、飛行知識互動展，公園內有大草坪、兒童遊樂區、親子腳踏車道，假日野餐首選，旁邊還有台中花博場館可順遊',tags:['博物館','公園','免費','0歲起'],pR:'free',lo:0,hi:8,p:0,mQ:'台中中央公園 飛航特色館',new:true,url:'https://cpark.taichung.gov.tw/main/697'},
 {id:306,name:'蓋婭莊園（嘉義）',region:'嘉義',env:'indoor',lat:23.4823,lng:120.4234,emoji:'🏛️',color:'#9B72CF',addr:'嘉義縣義竹鄉（請至官網確認地址）',dates:'常態開放（週一休）',hours:'09:00–17:00',ticket:'全票 $350 / 優待票 $280 / 3歲以下免費\n5月女神月：姓名含「康倪蓋婭」字者本人免票，隨行者優惠',note:'0歲起 ✅（3歲以下免費），台版希臘聖托里尼！嘉義唯一希臘式宮殿莊園，純白建築配藍天超夢幻，室內有冷氣涼爽，有沙坑供小孩玩耍，每年5月「寵愛女神月」媽媽可享免票優惠，網美打卡必訪',tags:['文化園區','觀光工廠','0歲起'],pR:'low',lo:0,hi:8,p:280,mQ:'蓋婭莊園 嘉義',new:true,url:'https://www.facebook.com/'},
-{id:308,name:'福隆國際沙雕藝術季',region:'新北市',env:'outdoor',lat:25.0156,lng:121.9423,emoji:'🏖️',color:'#FF9A3C',addr:'新北市貢寮區福隆里（福隆海水浴場）',dates:'2026/5/29 起登場',hours:'依官網公告',ticket:'依官網公告',note:'3歲以上 ✅，每年一度的全台最大沙雕盛典！來自世界各國的沙雕藝術家打造超壯觀主題沙雕，作品栩栩如生，搭配福隆海水浴場戲水，夏日親子必訪，搭台鐵福隆站下車即達，可順遊舊草嶺自行車道',tags:['景觀','3歲+'],pR:'low',lo:3,hi:8,p:0,new:true,buyUrl:'https://afflink.one/s/15C4f',mQ:'福隆沙雕藝術季 新北貢寮',url:'https://www.taiwan.net.tw/m1.aspx?sNo=0001019&lid=081893'}
+{id:308,name:'福隆國際沙雕藝術季',region:'新北市',env:'outdoor',lat:25.0156,lng:121.9423,emoji:'🏖️',color:'#FF9A3C',addr:'新北市貢寮區福隆里（福隆海水浴場）',dates:'2026/5/29 起登場',hours:'依官網公告',ticket:'依官網公告',note:'3歲以上 ✅，每年一度的全台最大沙雕盛典！來自世界各國的沙雕藝術家打造超壯觀主題沙雕，作品栩栩如生，搭配福隆海水浴場戲水，夏日親子必訪，搭台鐵福隆站下車即達，可順遊舊草嶺自行車道',tags:['景觀','3歲+'],pR:'low',lo:3,hi:8,p:0,new:true,buyUrl:'https://afflink.one/s/15C4f',mQ:'福隆沙雕藝術季 新北貢寮',url:'https://www.taiwan.net.tw/m1.aspx?sNo=0001019&lid=081893'},
+{id:309,name:'國立教育廣播電台（臺北總台）',region:'台北市',env:'indoor',lat:25.0332,lng:121.5123,emoji:'📻',color:'#3AAEDC',addr:'台北市中正區南海路45號',dates:'常態開放（參訪採預約制）',hours:'週一至週五 09:00–17:00',ticket:'免費（需事先電話或線上預約）',note:'0歲起 ✅，完全免費！台灣最大教育廣播電台，可預約參訪廣播錄音室、認識廣播製作流程，還有親子頻道節目錄製體驗，寓教於樂，適合親子校外教學或假日文化之旅，位於南海學園文教特區，可與植物園、郵政博物館一起規劃半日遊',tags:['博物館','科學教育','免費','0歲起'],pR:'free',lo:0,hi:8,p:0,new:true,mQ:'國立教育廣播電台 台北中正區',url:'https://www.ner.gov.tw/'},
+{id:310,name:'台北植物園臘葉館',region:'台北市',env:'indoor',lat:25.0334,lng:121.5089,emoji:'🌿',color:'#52B788',addr:'台北市中正區南海路53號（台北植物園內）',dates:'常態開放（週一休館）',hours:'09:00–17:00',ticket:'完全免費',note:'0歲起 ✅，免費！台灣第一座植物標本館，收藏30萬份植物標本，展示台灣豐富植物多樣性，搭配植物園戶外荷花池、熱帶植物溫室一起逛，整個南海學園文教特區可安排半日遊：植物園→臘葉館→郵政博物館→教育廣播電台，全部免費！',tags:['博物館','生態農場','免費','0歲起'],pR:'free',lo:0,hi:8,p:0,new:true,mQ:'台北植物園臘葉館 中正區',url:'https://tpbg.tfri.gov.tw/'},
+{id:311,name:'吳福洋襪子故事館',region:'新北市',env:'indoor',lat:25.0823,lng:121.3634,emoji:'🧦',color:'#FF9A3C',addr:'新北市林口區工二工業區工九路3號',dates:'全年無休（國定假日照常）',hours:'09:30–17:30',ticket:'全票 $100（可折抵館內消費）/ 身高100cm以下免費\nDIY課程 $250起（建議假日事先預約）',note:'0歲起 ✅（身高100cm以下免費），台灣第一家百年襪子工廠！1936年創立，改良式手搖織襪機DIY超有趣，5歲以上小孩就能自己操作，約1小時體驗，作品帶回家，假日導覽11:10/14:40/16:40，雨天室內備案首選，林口近桃園機場也適合接機後順遊',tags:['觀光工廠','DIY體驗','0歲起'],pR:'low',lo:0,hi:8,p:100,new:true,mQ:'吳福洋襪子故事館 新北林口',url:'http://www.socksmuseum.com/'},
+{id:312,name:'中國信託文薈館',region:'台北市',env:'indoor',lat:25.0534,lng:121.6234,emoji:'🏦',color:'#3AAEDC',addr:'台北市南港區經貿二路168號A棟1樓（中信金融園區）',dates:'常態開放（週一及農曆除夕至初二休館）',hours:'11:00–17:30',ticket:'完全免費',note:'0歲起 ✅，免費！南港最夯親子互動館！360度環形全景LED數位互動牆超震撼，可騎偉士牌速克達機車玩互動遊戲，VR體驗未來金融，用遊戲學理財，捷運南港軟體園區站1或2號出口對面直達，夏天冷氣吹到飽，雨天備案首選，園區內還有美食餐廳',tags:['博物館','科學教育','免費','0歲起'],pR:'free',lo:0,hi:8,p:0,new:true,mQ:'中信文薈館 台北南港軟體園區',url:'https://www.ctbcmuseum.com/'},
+{id:313,name:'磐龍石木坊',region:'新竹',env:'outdoor',lat:24.7934,lng:121.1612,emoji:'🪵',color:'#FF9A3C',addr:'新竹縣關西鎮仁安里7鄰3號',dates:'常態開放（建議事先預約）',hours:'依官網公告，建議電話詢問',ticket:'DIY課程 $250起（含鬆餅飲品套餐）',note:'3歲以上 ✅，舊茶廠改建的木工藝術園區！有彈珠台、木椅、貓頭鷹時鐘、筆筒等DIY選項，完成後享現作鬆餅，蔡老師親切帶領，園區保留老茶廠建築與製茶器具，還有盪鞦韆、輪胎鞦韆，假日親子平日需30人預約，搭配關西老街、仙草博物館排一日遊',tags:['DIY體驗','歷史建築','3歲+'],pR:'low',lo:3,hi:8,p:0,new:true,mQ:'磐龍石木坊 新竹關西',url:'https://www.facebook.com/'},
+{id:314,name:'關西仙草博物館',region:'新竹',env:'indoor',lat:24.7912,lng:121.1734,emoji:'🌿',color:'#52B788',addr:'新竹縣關西鎮中豐路二段326號',dates:'常態開放（週三公休）',hours:'09:30–18:00',ticket:'免費入場！仙草凍DIY $185/人（15人以上預約）',note:'0歲起 ✅，完全免費入場！台灣仙草故鄉關西的必訪景點，全台80%仙草產自關西。館內有25種仙草鹹甜料理可品嚐，招牌仙草膠質丁不勾芡超養生，另有黑膠唱片展覽室、戶外仙草生態步道，仙草凍DIY需事先預約（建議電話03-5870058），搭配磐龍石木坊、牛欄河親水公園排關西一日遊，關西交流道下5分鐘',tags:['觀光工廠','生態農場','DIY體驗','免費','0歲起'],pR:'free',lo:0,hi:8,p:0,new:true,mQ:'關西仙草博物館 新竹關西',url:'https://www.facebook.com/'}
 ];
 
 const R=[
@@ -979,7 +985,7 @@ function render(){
   if(tab==='info'){rInfo();return}
   if(tab==='rest'){rRest();return}
   if(tab==='stay'){rStay();return}
-  if(tab==='goods'){rComing('🛍️','育兒好物','Ivy精選好物推薦，含媽媽包、玩具、外出神器！');return}
+  if(tab==='goods'){window.location.href='https://lihi2.me/5HfOn';return}
   const mc=document.getElementById('mc');
   if(!uLat){
     const allItems=applyF(D.map(a=>({...a,dist:null})));
